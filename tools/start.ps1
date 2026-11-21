@@ -13,6 +13,52 @@ $python = Join-Path $cache 'runtime\python.exe'
 if ($RuntimePath) { Write-Output $python; exit 0 }
 $mutex = [Threading.Mutex]::new($false, "Local\NexusPDF-$instance")
 $ownsLock = $false
+
+function Get-RuntimeAssets {
+    $manifest = Get-Content -Raw -LiteralPath (Join-Path $PSScriptRoot 'runtime-assets.json') | ConvertFrom-Json
+    foreach ($asset in $manifest.files) {
+        $destination = Join-Path $bundle $asset.path
+        $current = Get-Item -LiteralPath $destination -ErrorAction SilentlyContinue
+        if ($current -and $current.Length -eq $asset.size) { continue }
+
+        $partial = "$destination.download"
+        $previous = Get-Item -LiteralPath $partial -ErrorAction SilentlyContinue
+        if ($previous -and $previous.Length -gt $asset.size) {
+            Remove-Item -LiteralPath $partial
+            $previous = $null
+        }
+        [IO.Directory]::CreateDirectory((Split-Path $destination -Parent)) | Out-Null
+        if (-not $previous -or $previous.Length -lt $asset.size) {
+            $downloadUrl = [Uri]($manifest.base_url + $asset.path)
+            $curlArgs = @('--fail', '--location', '--retry', '2', '--connect-timeout', '30',
+                '--progress-bar', '--continue-at', '-', '--output', $partial)
+            if (-not ($env:HTTPS_PROXY -or $env:ALL_PROXY -or $env:NO_PROXY)) {
+                $proxy = [Net.WebRequest]::DefaultWebProxy.GetProxy($downloadUrl)
+                if ($proxy -and $proxy -ne $downloadUrl) { $curlArgs += @('--proxy', $proxy.AbsoluteUri) }
+            }
+            Write-Host "Downloading $($asset.path) ($([Math]::Round($asset.size / 1MB)) MB)..."
+            & curl.exe @curlArgs $downloadUrl.AbsoluteUri
+            if ($LASTEXITCODE -ne 0) {
+                throw "Download interrupted. Check your connection to GitHub and double-click start.cmd to resume."
+            }
+        }
+        $digest = [Security.Cryptography.SHA256]::Create()
+        $stream = [IO.File]::OpenRead($partial)
+        try {
+            $valid = $stream.Length -eq $asset.size -and
+                [BitConverter]::ToString($digest.ComputeHash($stream)).Replace('-', '') -eq $asset.sha256
+        } finally {
+            $stream.Dispose()
+            $digest.Dispose()
+        }
+        if (-not $valid) {
+            Remove-Item -LiteralPath $partial
+            throw "Download verification failed for $($asset.path). Run start.cmd again."
+        }
+        Move-Item -LiteralPath $partial -Destination $destination -Force
+    }
+}
+
 try {
     try { $ownsLock = $mutex.WaitOne(0) }
     catch [Threading.AbandonedMutexException] { $ownsLock = $true }
@@ -26,19 +72,7 @@ try {
         }
         exit 0
     }
-    $files = @($archive, (Join-Path $bundle 'models\NuExtract-1.5-tiny\model.safetensors'),
-        (Join-Path $bundle 'models\criteria\qwen2.5-1.5b-instruct-q4_k_m.gguf'))
-    foreach ($file in $files) {
-        if (-not (Test-Path -LiteralPath $file -PathType Leaf) -or (Get-Item -LiteralPath $file).Length -lt 1024) {
-            Write-Host "Downloading required files with Git LFS..."
-            & git lfs pull
-            if ($LASTEXITCODE -ne 0) { throw "Clone the project with Git for Windows, then run git lfs pull." }
-            break
-        }
-    }
-    foreach ($file in $files) {
-        if ((Get-Item -LiteralPath $file).Length -lt 1024) { throw "Missing Git LFS file: $file" }
-    }
+    Get-RuntimeAssets
     $stamp = Join-Path $cache 'runtime\.nexus-archive'
     $info = Get-Item -LiteralPath $archive
     $archiveKey = "$($info.Length):$($info.LastWriteTimeUtc.Ticks)"

@@ -6,6 +6,7 @@ node_modules/
 /tmp/
 /backend/runs/
 /model_bundle/runtime/
+/model_bundle/**/*.download
 /model_bundle/models/criteria/criteria-*/
 /Результаты_*/
 .~lock.*#
