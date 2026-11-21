@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Извлечение данных из статей · Кибер-Гарден</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/app.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="/">Кибер-Гарден</a>
+      <p class="connection" id="connection" data-state="checking" role="status">Проверяем модель</p>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <header class="intro">
+      <h1>Данные из научных статей</h1>
+      <p>Загрузите публикации и укажите, какие сведения собрать в таблицы.</p>
+    </header>
+
+    <form class="panel" id="job-form">
+      <div class="form-grid">
+        <section class="form-section" aria-labelledby="file-heading">
+          <h2 id="file-heading">Публикации</h2>
+          <input class="visually-hidden" type="file" id="files" name="files" accept=".pdf,.zip" multiple>
+          <label class="drop-area" id="drop-area" for="files">
+            <span class="upload-symbol" aria-hidden="true">↑</span>
+            <strong>Выбрать PDF или ZIP</strong>
+            <span>или перетащите файлы сюда</span>
+          </label>
+          <div class="file-meta" id="file-meta" aria-live="polite">До 100 PDF · 128 МиБ на загрузку</div>
+          <ul class="file-list" id="file-list" hidden></ul>
+        </section>
+
+        <section class="form-section" aria-labelledby="criteria-heading">
+          <div class="section-heading">
+            <h2 id="criteria-heading"><label for="criteria">Критерии</label></h2>
+            <button class="text-button" type="button" id="example">Вставить пример</button>
+          </div>
+          <textarea id="criteria" name="criteria" maxlength="32000" required
+                    placeholder="Какие показатели, условия и источники нужно извлечь?"></textarea>
+        </section>
+      </div>
+      <div class="form-footer">
+        <p class="form-message" id="form-message" role="status"></p>
+        <button type="submit" class="button primary" id="submit" disabled>Обработать статьи</button>
+      </div>
+    </form>
+
+    <section class="panel result-panel" aria-labelledby="result-heading">
+      <div class="result-heading">
+        <h2 id="result-heading">Результаты</h2>
+        <a class="button primary" id="zip-link" hidden>Скачать ZIP</a>
+      </div>
+      <p id="job-progress" class="job-progress" role="status">После обработки здесь появятся таблицы и ссылки на PDF.</p>
+      <div id="result-data" hidden>
+        <aside id="warnings" class="warnings" hidden aria-labelledby="warnings-heading">
+          <h3 id="warnings-heading">Замечания модели</h3>
+          <ul id="warnings-list"></ul>
+        </aside>
+        <div class="table-toolbar">
+          <label class="table-picker" for="table-select">Таблица
+            <select id="table-select"></select>
+          </label>
+          <a class="button secondary" id="csv-link" hidden>Скачать CSV</a>
+        </div>
+        <p id="table-message" class="table-message" role="status"></p>
+        <div class="table-scroll" id="table-scroll" tabindex="0" aria-label="Область просмотра таблицы" hidden>
+          <table>
+            <thead id="table-head"></thead>
+            <tbody id="table-body"></tbody>
+          </table>
+        </div>
+        <div class="pagination" id="pagination" hidden>
+          <p id="table-count" aria-live="polite"></p>
+          <div>
+            <button type="button" class="button secondary" id="previous">Назад</button>
+            <button type="button" class="button secondary" id="next">Далее</button>
+          </div>
+        </div>
+        <details class="sources" id="sources" hidden>
+          <summary>Исходные PDF</summary>
+          <ul id="source-list"></ul>
+        </details>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
