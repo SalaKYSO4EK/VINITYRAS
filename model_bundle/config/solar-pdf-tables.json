@@ -1,0 +1,38 @@
+{
+  "domain": "solar photovoltaic measurements",
+  "metric_enum_field": "metric_name",
+  "criterion_fields": {
+    "PCE": ["pce", "power_conversion_efficiency", "efficiency", "eta"],
+    "Voc": ["voc", "v_oc", "open_circuit_voltage"],
+    "FF": ["ff", "fill_factor"],
+    "Jsc": ["jsc", "j_sc", "short_circuit_current_density"],
+    "Jsc_EQE": ["jsc_eqe", "integrated_jsc", "eqe_current_density"]
+  },
+  "headers": {
+    "PCE": ["pce", "efficiency", "η"],
+    "Voc": ["voc", "v_oc"],
+    "FF": ["ff", "fill factor"],
+    "Jsc": ["jsc", "j_sc"]
+  },
+  "pce_column_statistics": {
+    "max": "champion", "maximum": "champion", "mean": "mean", "avg": "mean", "average": "mean"
+  },
+  "units": {
+    "PCE": {"normalized": "%", "factors": {"%": "1"}},
+    "Voc": {"normalized": "V", "factors": {"V": "1", "mV": "0.001"}},
+    "FF": {"normalized": "%", "factors": {"%": "1", "fraction": "100", "1": "100"}},
+    "Jsc": {"normalized": "mA/cm2", "factors": {"mA cm−2": "1", "mA cm^-2": "1", "mA/cm2": "1", "A/m2": "0.1", "A m−2": "0.1", "mA cm(cid:1)2": "1", "mA cm(cid:4)2": "1"}},
+    "Eg": {"normalized": "eV", "factors": {"eV": "1", "meV": "0.001"}},
+    "Pin": {"normalized": "mW/cm2", "factors": {"mW cm−2": "1", "mW cm^-2": "1", "mW/cm2": "1", "W/m2": "0.1", "W m−2": "0.1"}}
+  },
+  "bandgap_headers": {"Eg_PL": ["eg,pl", "egpl", "egpl,"], "Eg_EQE": ["eg,eqe", "egeqe", "egeqe,"]},
+  "checks": {
+    "jv_consistency": {"relative_tolerance": "0.03", "reference": "ВИНИТИ+ЮФУ (1).pdf, стр. 6", "denominator": "reported PCE, inferred from dev_gold D012/I5"},
+    "eqe_consistency": {"relative_tolerance": "0.05", "reference": "ВИНИТИ+ЮФУ (1).pdf, стр. 6", "denominator": "Jsc from J-V; implementation convention"},
+    "voc_limit": {"reference": "ВИНИТИ+ЮФУ (1).pdf, стр. 6"},
+    "champion_vs_mean": {"reference": "ВИНИТИ+ЮФУ (1).pdf, стр. 6", "requires": "same cohort, conditions and direction"},
+    "range": {"reference": "ВИНИТИ+ЮФУ (1).pdf, стр. 6", "status": "needs_clarification", "reason": "Численные пределы для Jsc, FF и PCE отсылают к разделу 3.3 полного описания кейса. Этот раздел отсутствует в предоставленных материалах."}
+  },
+  "location": "physical PDF page and top-origin PDF points",
+  "unknown_unit": "Keep the raw unit blank when undeclared. Bare FF between 0 and 1 uses the documented fraction convention with a recorded alternative."
+}

@@ -1,0 +1,17 @@
+{
+  "base_revision": "63e2e80c804d9c97f3f19a4aa25613e7beca83c9",
+  "configuration": {
+    "epochs": 1,
+    "lr": 5e-05,
+    "rank": 8,
+    "threads": 2,
+    "attention": "sdpa",
+    "device": "cpu",
+    "dtype": "float32",
+    "seed": 42
+  },
+  "best_epoch": 1,
+  "elapsed_seconds": 1129.7324544000003,
+  "initial_adapter": "artifacts\\device-training\\row-model\\epoch-1",
+  "evaluation_kind": "in_sample_diagnostic"
+}

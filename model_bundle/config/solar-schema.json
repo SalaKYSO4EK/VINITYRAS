@@ -1,0 +1,42 @@
+{
+  "name": "solar-submission",
+  "template_directory": "../submission_template",
+  "groups": [
+    {"names": ["publication", "publications"], "target": "publications", "has": ["title"], "role": "bibliography", "criteria_page": 4},
+    {"names": ["material", "materials"], "target": "materials", "has": ["material_id"], "role": "absorber material", "criteria_page": 4},
+    {"names": ["measurement", "measurements"], "target": "measurements", "has": ["measurement_id"], "role": "conditions for one measurement", "criteria_page": 4},
+    {"names": ["device", "devices"], "target": "devices", "has": ["device_label"], "role": "one physical device or sample variant", "criteria_page": 4},
+    {"names": ["layer", "layers"], "target": "layers", "has": ["layer_id"], "role": "one device layer", "criteria_page": 4},
+    {"names": ["result", "results"], "target": "results", "has": ["metric_name", "result_id"], "role": "one metric occurrence", "criteria_page": 5},
+    {"names": ["publication_p5", "publication"], "target": "results", "has": ["result_origin", "source_page"], "role": "provenance of the same metric occurrence", "criteria_page": 5, "companion": true},
+    {"names": ["raw_value"], "target": "results", "has": ["raw_value", "extraction_status"], "role": "raw value, normalized value and status of the same metric occurrence", "criteria_page": 5, "companion": true}
+  ],
+  "scope_only": [
+    {"name": "item", "fields": ["item_id", "item_name"], "criteria_page": 3, "reason": "Page 3 describes corpus scope and gives an overview of object types. Neither item_id nor item_name is defined in the assignment or a submission table."}
+  ],
+  "tables": {
+    "publications": {"primary_key": ["publication_id"], "references": []},
+    "materials": {"primary_key": ["publication_id", "material_id"], "references": [{"columns": ["publication_id"], "table": "publications"}]},
+    "devices": {"primary_key": ["publication_id", "device_id"], "references": [{"columns": ["publication_id", "absorber_material_id"], "table": "materials", "when": "when the absorber is identified"}]},
+    "layers": {"primary_key": ["publication_id", "layer_id"], "references": [{"columns": ["publication_id", "device_id"], "table": "devices"}]},
+    "measurements": {"primary_key": ["publication_id", "measurement_id"], "references": [{"columns": ["publication_id", "device_id"], "table": "devices"}]},
+    "results": {
+      "primary_key": ["publication_id", "result_id"],
+      "references": [
+        {"columns": ["publication_id"], "table": "publications"},
+        {"columns": ["publication_id", "device_id"], "table": "devices", "when": "primary result with a supported device link"},
+        {"columns": ["publication_id", "measurement_id"], "table": "measurements", "when": "primary result with a supported measurement link"},
+        {"columns": ["publication_id", "material_id"], "table": "materials", "when": "material association is supported"},
+        {"columns": ["publication_id", "duplicate_of"], "table": "results", "when": "a separately sourced duplicate of a known result"}
+      ],
+      "constraints": [
+        "Every provenance and value field describes the result keyed by publication_id + result_id. Never join provenance or raw values on publication_id alone.",
+        "One row per metric, device, conditions, aggregation and source occurrence. Separate forward/reverse, champion/mean and different time points.",
+        "A cited result has a citation; its local device_id and measurement_id are empty. Attach a primary result only where the device and measurement links are supported.",
+        "Keep the original raw_value and raw_unit; normalized_value and normalized_unit describe the same occurrence.",
+        "If more than one result could own a source or value, retain the alternatives and needs_clarification; do not manufacture the link."
+      ]
+    },
+    "issues": {"primary_key": ["publication_id", "issue_id"], "references": [{"columns": ["publication_id", "record_ids"], "table": "results", "list_separator": ";"}]}
+  }
+}
