@@ -277,13 +277,15 @@ class Jobs:
             entry = [str(Path(__file__).with_name("pdf_criteria_runner.py")), "--runner", str(self.runner)]
         command = [str(self.model_python), "-X", "utf8", "-u", *entry, "--request", str(directory / "request.json"),
                    "--out", str(output)]
-        with (directory / "runner.log").open("wb") as log:
+        with (directory / "runner.log").open("w+b") as log:
             try:
                 process = subprocess.Popen(command, cwd=self.runner.parent, stdin=subprocess.DEVNULL,
                                            stdout=log, stderr=subprocess.STDOUT, start_new_session=os.name != "nt",
                                            creationflags=subprocess.CREATE_NO_WINDOW if os.name == "nt" else 0)
             except OSError as exc:
                 logging.exception("Не удалось запустить модель для %s", directory.name)
+                if getattr(exc, "winerror", None) == 4551:
+                    raise JobFailure("runner_blocked", "Политика Windows заблокировала запуск Python для модели.") from exc
                 raise JobFailure("runner_unavailable", "Не удалось запустить пакет модели.") from exc
             deadline = time.monotonic() + self.timeout
             try:
@@ -300,6 +302,12 @@ class Jobs:
                 criteria_error = directory / "criteria-error.txt"
                 if criteria_error.is_file():
                     raise JobFailure("criteria_pdf_error", criteria_error.read_text(encoding="utf-8"))
+                end = log.seek(0, os.SEEK_END)
+                log.seek(max(0, end - 8192))
+                if b"OSError: [WinError 4551]" in log.read():
+                    raise JobFailure("runner_blocked",
+                                     "Политика Windows заблокировала компонент модели (WinError 4551). "
+                                     "Передайте сообщение администратору компьютера.")
                 raise JobFailure("runner_failed", f"Пакет модели завершился с кодом {process.returncode}.")
 
     def _publish(self, directory, output):
