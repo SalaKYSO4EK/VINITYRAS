@@ -18,6 +18,7 @@ MAX_TOTAL_PDF_BYTES = 256 * MIB
 MAX_PDFS = 100
 MAX_CRITERIA_CHARS = 32_000
 _RESERVED_NAME = re.compile(r"(?:CON|PRN|AUX|NUL|COM[1-9¹²³]|LPT[1-9¹²³]|CONIN\$|CONOUT\$)(?:\.|$)", re.I)
+_PAGE_SELECTION = re.compile(r"[1-9][0-9]*(?:-[1-9][0-9]*)?(?:,[1-9][0-9]*(?:-[1-9][0-9]*)?)*")
 
 
 class InvalidUpload(ValueError):
@@ -68,6 +69,8 @@ def read_form(headers, read):
         raise InvalidUpload("Не удалось прочитать форму загрузки.")
 
     criteria = None
+    criteria_pdf = None
+    criteria_pages = None
     uploads = []
     for part in form.iter_parts():
         name = part.get_param("name", header="Content-Disposition")
@@ -80,16 +83,35 @@ def read_form(headers, read):
                 criteria = payload.decode("utf-8-sig").strip()
             except UnicodeDecodeError as exc:
                 raise InvalidUpload("Критерии должны быть в UTF-8.") from exc
+        elif name == "criteria_pdf" and filename and valid_filename(filename) and criteria_pdf is None:
+            if Path(filename).suffix.lower() != ".pdf" or b"%PDF-" not in payload[:1024]:
+                raise InvalidUpload("В поле критериев должен быть файл PDF.", status=415)
+            if len(payload) > MAX_PDF_BYTES:
+                raise InvalidUpload("PDF с критериями превышает 64 МиБ.", status=413)
+            criteria_pdf = (filename, payload)
+        elif name == "criteria_pages" and filename is None and criteria_pages is None:
+            try:
+                value = payload.decode("utf-8-sig").translate(str.maketrans("–—", "--"))
+            except UnicodeDecodeError as exc:
+                raise InvalidUpload("Неправильный диапазон страниц PDF.") from exc
+            criteria_pages = re.sub(r"\s*([,-])\s*", r"\1", value.strip())
+            if criteria_pages and (len(criteria_pages) > 300 or not _PAGE_SELECTION.fullmatch(criteria_pages)):
+                raise InvalidUpload("Укажите страницы в формате 3-6 или 3,5,7-9.")
         elif name == "files" and filename and valid_filename(filename):
             uploads.append((filename, payload))
         else:
-            raise InvalidUpload("Нужны одно текстовое поле criteria и поля files с PDF или ZIP.")
+            raise InvalidUpload("Передайте статьи в полях files и укажите критерии текстом или PDF.")
 
-    if not criteria or len(criteria) > MAX_CRITERIA_CHARS or "\x00" in criteria:
-        raise InvalidUpload(f"Введите критерии длиной от 1 до {MAX_CRITERIA_CHARS} символов.")
+    criteria = criteria or ""
+    if len(criteria) > MAX_CRITERIA_CHARS or "\x00" in criteria:
+        raise InvalidUpload(f"Текст критериев должен занимать до {MAX_CRITERIA_CHARS} символов.")
+    if bool(criteria) == bool(criteria_pdf):
+        raise InvalidUpload("Введите критерии текстом или приложите PDF с критериями.")
+    if criteria_pages and criteria_pdf is None:
+        raise InvalidUpload("Диапазон страниц задаётся для PDF с критериями.")
     if not uploads or len(uploads) > MAX_PDFS:
         raise InvalidUpload(f"Загрузите от 1 до {MAX_PDFS} файлов PDF или ZIP.")
-    return criteria, uploads
+    return criteria, uploads, criteria_pdf, criteria_pages or None
 
 
 def stage_pdfs(uploads, destination):

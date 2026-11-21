@@ -4,15 +4,20 @@ import argparse
 import json
 import logging
 import queue
+import re
 import shutil
 import sys
 import threading
 import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
+from tempfile import SpooledTemporaryFile
 from urllib.parse import parse_qs, quote, unquote, urlsplit
 
-from jobs import MAX_WAITING, Jobs, read_json, table_page
+# Embedded Python uses an isolated module search path on Windows.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+from jobs import MAX_WAITING, Jobs, archive_files, read_json, table_page, write_archive
 from uploads import MIB, MAX_UPLOAD, InvalidUpload, read_form
 
 
@@ -32,11 +37,13 @@ class ApiError(Exception):
 
 
 class ApiServer(ThreadingHTTPServer):
-    def __init__(self, address, jobs, origins):
+    def __init__(self, address, jobs, origins, *, frontend_dir=None, site_origin=None):
         super().__init__(address, Handler)
         self.jobs = jobs
         self.origins = set(origins)
         self.uploads = threading.BoundedSemaphore(2)
+        self.frontend_dir = frontend_dir
+        self.site_origin = site_origin
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -61,9 +68,10 @@ class Handler(BaseHTTPRequestHandler):
             self._check_origin()
             target = urlsplit(self.path)
             parts = target.path.strip("/").split("/")
-            if method == "GET" and target.path in WEB_ASSETS:
-                name, content_type = WEB_ASSETS[target.path]
-                self._file(BACKEND_DIR / "web" / name, content_type, disposition=None)
+            asset = self._web_asset(target.path) if method == "GET" else None
+            if asset:
+                filename, content_type = asset
+                self._file(filename, content_type, disposition=None)
             elif method == "GET" and parts == ["api", "jobs"]:
                 self._headers(303, 0, extra={"Location": "/"})
             elif method == "OPTIONS" and parts[0] == "api":
@@ -91,6 +99,23 @@ class Handler(BaseHTTPRequestHandler):
             logging.exception("Ошибка API при обработке %s", method)
             self._json(500, {"error": {"code": "internal_error", "message": "Не удалось обработать запрос."}})
 
+    def _web_asset(self, path):
+        frontend = self.server.frontend_dir
+        if frontend is None:
+            if path in WEB_ASSETS:
+                name, mime = WEB_ASSETS[path]
+                return BACKEND_DIR / "web" / name, mime
+            return None
+        if path == "/" or re.fullmatch(r"/dashboard/[a-f0-9]{32}/?", path):
+            return frontend / "index.html", "text/html; charset=utf-8"
+        asset = re.fullmatch(r"/assets/([A-Za-z0-9_-]+\.(js|css))", path)
+        if asset:
+            filename = frontend / "assets" / asset[1]
+            if filename.is_file() and not filename.is_symlink():
+                mime = "text/javascript" if asset[2] == "js" else "text/css"
+                return filename, f"{mime}; charset=utf-8"
+        return None
+
     def _check_origin(self):
         local_ip = self.connection.getsockname()[0]
         port = self.server.server_port
@@ -99,10 +124,13 @@ class Handler(BaseHTTPRequestHandler):
         allowed_hosts = {f"{name}:{port}" for name in local_names}
         if port == 80:
             allowed_hosts.update(local_names)
-        if host not in allowed_hosts:
+        site = self.server.site_origin
+        site_host = site is not None and site.netloc.lower() == host
+        if host not in allowed_hosts and not site_host:
             raise ApiError(403, "host_forbidden", "Используйте адрес, указанный при запуске сервера.")
         origin = self.headers.get("Origin")
-        if origin and origin != f"http://{host}" and origin not in self.server.origins:
+        same_origin = f"{site.scheme if site_host else 'http'}://{host}"
+        if origin and origin != same_origin and origin not in self.server.origins:
             raise ApiError(403, "origin_forbidden", "Этот адрес интерфейса не подключён к API.")
         self.allowed_origin = origin
 
@@ -115,9 +143,9 @@ class Handler(BaseHTTPRequestHandler):
         if not self.server.uploads.acquire(timeout=5):
             raise ApiError(429, "upload_busy", "Сервер принимает другие файлы. Повторите отправку позже.")
         try:
-            criteria, files = read_form(self.headers, self._read_body)
+            criteria, files, criteria_pdf, criteria_pages = read_form(self.headers, self._read_body)
             try:
-                state = jobs.enqueue(criteria, files)
+                state = jobs.enqueue(criteria, files, criteria_pdf, criteria_pages)
             except queue.Full as exc:
                 raise ApiError(429, "queue_full", "Очередь заполнена. Повторите отправку позже.") from exc
         finally:
@@ -163,9 +191,6 @@ class Handler(BaseHTTPRequestHandler):
 
         directory = jobs.root / job_id
         url = f"/api/jobs/{job_id}"
-        if route == ["download"]:
-            self._file(directory / "submission.zip", "application/zip")
-            return
         if len(route) == 2 and route[0] == "sources":
             name = unquote(route[1])
             if name not in state["source_files"]:
@@ -174,6 +199,9 @@ class Handler(BaseHTTPRequestHandler):
             return
 
         result = read_json(directory / "result.json")
+        if route == ["download"]:
+            self._download(directory, result)
+            return
         if route == ["result"]:
             for file in result["files"]:
                 encoded_name = quote(file["name"], safe="")
@@ -182,7 +210,8 @@ class Handler(BaseHTTPRequestHandler):
                     file["table_url"] = f"{url}/tables/{encoded_name}"
             result["sources"] = [{"name": name, "publication_id": Path(name).stem,
                                   "url": f"{url}/sources/{quote(name, safe='')}"} for name in state["source_files"]]
-            result["download_url"] = f"{url}/download"
+            result["archive_files"] = archive_files(directory / "output", result)
+            result["download_url"] = f"{url}/download" if result["archive_files"] else None
             self._json(200, result)
             return
         if len(route) == 2 and route[0] in ("files", "tables"):
@@ -199,6 +228,20 @@ class Handler(BaseHTTPRequestHandler):
                 self._table(path, file, query)
                 return
         raise ApiError(404, "not_found", "Такого адреса нет.")
+
+    def _download(self, directory, result):
+        names = archive_files(directory / "output", result)
+        if not names:
+            raise ApiError(404, "empty_export", "В задании нет заполненных CSV для скачивания.")
+        if "archive_files" in result:
+            self._file(directory / "submission.zip", "application/zip")
+            return
+        with SpooledTemporaryFile(max_size=8 * MIB) as stream:
+            write_archive(directory / "output", names, stream)
+            size = stream.tell()
+            stream.seek(0)
+            self._headers(200, size, "application/zip", {"Content-Disposition": 'attachment; filename="submission.zip"'})
+            self._copy_response(stream)
 
     def _table(self, path, file, query):
         try:
@@ -220,10 +263,13 @@ class Handler(BaseHTTPRequestHandler):
                 name = quote(path.name, safe="")
                 headers = {"Content-Disposition": f"{disposition}; filename*=UTF-8''{name}"}
             self._headers(200, path.stat().st_size, content_type, headers)
-            try:
-                shutil.copyfileobj(stream, self.wfile, 64 * 1024)
-            except (BrokenPipeError, ConnectionResetError, TimeoutError):
-                pass
+            self._copy_response(stream)
+
+    def _copy_response(self, stream):
+        try:
+            shutil.copyfileobj(stream, self.wfile, 64 * 1024)
+        except (BrokenPipeError, ConnectionResetError, TimeoutError):
+            pass
 
     def _json(self, status, data, extra=None):
         body = json.dumps(data, ensure_ascii=False).encode("utf-8")
@@ -256,22 +302,41 @@ def main():
     parser.add_argument("--runner", type=Path, default=BACKEND_DIR.parent / "model_bundle" / "run_inference.py")
     parser.add_argument("--model-python", type=Path, help="Model interpreter; uses the bundled runtime when present")
     parser.add_argument("--jobs-dir", type=Path, default=BACKEND_DIR / "runs")
+    parser.add_argument("--frontend-dir", type=Path, help="Serve a built frontend from this directory")
+    parser.add_argument("--site-origin", help="Canonical website origin behind the reverse proxy")
     parser.add_argument("--cors-origin", action="append", default=[])
     parser.add_argument("--timeout", type=int, default=1800, help="Maximum model runtime in seconds")
     parser.add_argument("--host", default="127.0.0.1")
     parser.add_argument("--port", type=int, default=8080)
+    parser.add_argument("--open-browser", action="store_true", help="Open the site after binding its port")
     args = parser.parse_args()
     if args.timeout < 1 or not 0 <= args.port <= 65535:
         parser.error("Use a positive --timeout and a port from 0 to 65535")
+    frontend_dir = args.frontend_dir.resolve() if args.frontend_dir else None
+    if frontend_dir is not None and not (frontend_dir / "index.html").is_file():
+        parser.error("Build the frontend and pass its output directory to --frontend-dir")
+    site = None
+    if args.site_origin:
+        try:
+            site = urlsplit(args.site_origin)
+            if (site.scheme not in ("http", "https") or not site.hostname or site.username is not None
+                    or site.path not in ("", "/") or site.query or site.fragment):
+                raise ValueError
+            _ = site.port
+        except ValueError:
+            parser.error("--site-origin must be an http(s) origin without a path or query")
     model_python = args.model_python
     if model_python is None:
         bundled_python = args.runner.resolve().parent / "runtime" / "python.exe"
         model_python = bundled_python if bundled_python.is_file() else Path(sys.executable)
     jobs = Jobs(args.jobs_dir, args.runner, model_python, args.timeout)
     model_state = "готов" if jobs.configured else "ожидает подключения"
-    with ApiServer((args.host, args.port), jobs, args.cors_origin) as server:
+    with ApiServer((args.host, args.port), jobs, args.cors_origin, frontend_dir=frontend_dir, site_origin=site) as server:
         jobs.start()
         print(f"API http://{args.host}:{server.server_port} | пакет модели {model_state}", flush=True)
+        if args.open_browser:
+            import webbrowser
+            webbrowser.open(f"http://{args.host}:{server.server_port}/")
         try:
             server.serve_forever()
         except KeyboardInterrupt:

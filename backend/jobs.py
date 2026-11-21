@@ -54,6 +54,35 @@ def table_page(path, offset, limit):
         return [dict(zip(columns, row)) for row in islice(rows, offset, offset + limit)]
 
 
+def filled_csv(path, entry):
+    if not entry["row_count"]:
+        return False
+    if "populated_columns" in entry:
+        return bool(entry["populated_columns"])
+    with path.open(encoding="utf-8-sig", newline="") as stream:
+        rows = csv_rows(stream)
+        next(rows, None)
+        return any(any(value.strip() for value in row) for row in rows)
+
+
+def archive_files(output, result):
+    if "archive_files" in result:
+        return result["archive_files"]
+    entries = result["files"]
+    tables = [item["name"] for item in entries
+              if item["format"] == "csv" and filled_csv(output / item["name"], item)]
+    if tables:
+        tables.extend(item["name"] for item in entries
+                      if item["name"] == "records.json" or (item["name"] == "report.json" and result["warnings"]))
+    return tables
+
+
+def write_archive(output, names, destination):
+    with zipfile.ZipFile(destination, "w", zipfile.ZIP_DEFLATED, compresslevel=3) as archive:
+        for name in names:
+            archive.write(output / name, arcname=name)
+
+
 def inspect_output(output):
     files = []
     total_bytes = 0
@@ -76,11 +105,15 @@ def inspect_output(output):
             if not columns or not all(col.strip() for col in columns) or len(set(columns)) != len(columns):
                 raise ValueError(f"Пустые или повторяющиеся заголовки в {path.name}")
             count = 0
+            empty_columns = set(range(len(columns)))
             for row in rows:
                 if len(row) != len(columns):
                     raise ValueError(f"Число полей не совпадает с заголовком в {path.name}")
+                if empty_columns:
+                    empty_columns = {index for index in empty_columns if not row[index].strip()}
                 count += 1
-        files.append({"name": path.name, "format": "csv", "size_bytes": size, "columns": columns, "row_count": count})
+        files.append({"name": path.name, "format": "csv", "size_bytes": size, "columns": columns, "row_count": count,
+                      "populated_columns": [name for index, name in enumerate(columns) if index not in empty_columns]})
     if not files:
         raise ValueError("Модель не создала CSV в каталоге вывода")
 
@@ -163,7 +196,7 @@ class Jobs:
         self.stopping.set()
         self.worker.join()
 
-    def enqueue(self, criteria, uploads):
+    def enqueue(self, criteria, uploads, criteria_pdf=None, criteria_pages=None):
         job_id = uuid.uuid4().hex
         directory = self.root / job_id
         with tempfile.TemporaryDirectory(dir=self.root, prefix="upload-") as temporary:
@@ -171,12 +204,18 @@ class Jobs:
             input_dir = staging / "input"
             input_dir.mkdir()
             names = stage_pdfs(uploads, input_dir)
-            write_json(staging / "request.json", {
+            request = {
                 "schema_version": 1,
                 "job_id": job_id,
                 "criteria": criteria,
                 "files": [{"name": name, "path": str(directory / "input" / name)} for name in names],
-            })
+            }
+            if criteria_pdf:
+                name, contents = criteria_pdf
+                (staging / "criteria.pdf").write_bytes(contents)
+                request["criteria"] = "Извлеки данные по критериям из приложенного PDF."
+                request["criteria_pdf"] = {"name": name, "path": str(directory / "criteria.pdf"), "pages": criteria_pages}
+            write_json(staging / "request.json", request)
             state = {"job_id": job_id, "status": "queued", "created_at": now(), "source_files": names}
             write_json(staging / "status.json", state)
             with self.lock:
@@ -233,7 +272,10 @@ class Jobs:
                 self.pending.task_done()
 
     def _invoke(self, directory, output):
-        command = [str(self.model_python), "-X", "utf8", "-u", str(self.runner), "--request", str(directory / "request.json"),
+        entry = [str(self.runner)]
+        if (directory / "criteria.pdf").is_file():
+            entry = [str(Path(__file__).with_name("pdf_criteria_runner.py")), "--runner", str(self.runner)]
+        command = [str(self.model_python), "-X", "utf8", "-u", *entry, "--request", str(directory / "request.json"),
                    "--out", str(output)]
         with (directory / "runner.log").open("wb") as log:
             try:
@@ -255,6 +297,9 @@ class Jobs:
                 if process.poll() is None:
                     stop_runner(process)
             if process.returncode:
+                criteria_error = directory / "criteria-error.txt"
+                if criteria_error.is_file():
+                    raise JobFailure("criteria_pdf_error", criteria_error.read_text(encoding="utf-8"))
                 raise JobFailure("runner_failed", f"Пакет модели завершился с кодом {process.returncode}.")
 
     def _publish(self, directory, output):
@@ -264,7 +309,8 @@ class Jobs:
             with (directory / "runner.log").open("a", encoding="utf-8") as log:
                 print(f"\nОшибка контракта выгрузки: {exc}", file=log)
             raise JobFailure("invalid_result", "Модель вернула выгрузку неверного формата.") from exc
-        with zipfile.ZipFile(directory / "submission.zip", "w", zipfile.ZIP_DEFLATED, compresslevel=3) as archive:
-            for file in result["files"]:
-                archive.write(output / file["name"], arcname=file["name"])
+        names = archive_files(output, result)
+        if names:
+            write_archive(output, names, directory / "submission.zip")
+        result["archive_files"] = names
         write_json(directory / "result.json", result)
