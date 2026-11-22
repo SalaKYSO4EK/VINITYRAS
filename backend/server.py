@@ -122,11 +122,11 @@ class Handler(BaseHTTPRequestHandler):
                 return None
         if path == "/" or re.fullmatch(r"/dashboard/[a-f0-9]{32}/?", path):
             return frontend / "index.html", "text/html; charset=utf-8"
-        asset = re.fullmatch(r"/assets/([A-Za-z0-9_-]+\.(js|css))", path)
+        asset = re.fullmatch(r"/assets/([A-Za-z0-9_-]+\.(js|css|png))", path)
         if asset:
             filename = frontend / "assets" / asset[1]
             if filename.is_file() and not filename.is_symlink():
-                mime = "text/javascript" if asset[2] == "js" else "text/css"
+                mime = {"js": "text/javascript", "css": "text/css", "png": "image/png"}[asset[2]]
                 return filename, f"{mime}; charset=utf-8"
         return None
 
