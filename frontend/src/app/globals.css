@@ -106,7 +106,7 @@ h1.title{font-size:clamp(1.9rem,4vw,2.6rem);font-weight:700;letter-spacing:-.02e
 .zip-item{display:flex;align-items:center;gap:.6rem;color:var(--navy-800);font-size:.92rem;padding:.35rem 0}
 .zip-item svg{color:var(--navy-600);flex:none}
 
-.deer-bg{position:absolute;pointer-events:none;width:320px;height:320px;object-fit:cover;opacity:.075;mix-blend-mode:multiply;border-radius:38px}
+.deer-bg{position:absolute;pointer-events:none;width:300px;height:300px;object-fit:cover;opacity:.11;mix-blend-mode:multiply;border-radius:38px}
 
 .toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,30px);background:var(--navy-950);color:var(--beige-50);padding:.8rem 1.3rem;border-radius:9999px;font-size:.9rem;opacity:0;pointer-events:none;transition:all .4s;z-index:80;max-width:90vw;box-shadow:0 12px 30px rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.1)}
 .toast.show{opacity:1;transform:translate(-50%,0)}

@@ -107,7 +107,7 @@ export default function HomePage() {
 
       {step === 1 && (
         <section className="view max-w-4xl mx-auto relative">
-          <img className="deer-bg hidden lg:block" style={{ right: -210, top: 40 }} src="/assets/nexus-deer.png" alt="" />
+          <img className="deer-bg hidden lg:block" style={{ right: -85, top: 42 }} src="/assets/nexus-deer.png" alt="" />
           <div className="text-center mt-8 sm:mt-10 relative">
             <h1 className="title">Начните с научных статей</h1>
             <p className="subtitle mt-3">Загрузите PDF или ZIP с публикациями. По умолчанию используется схема для солнечных элементов.</p>
