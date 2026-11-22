@@ -24,7 +24,8 @@ body{
 }
 #app{display:flex;flex-direction:column;min-height:100vh}
 .site-header{background:var(--navy-900);color:var(--beige-100);position:sticky;top:0;z-index:30;border-bottom:1px solid rgba(255,255,255,.08)}
-.logo-badge{width:42px;height:42px;border-radius:9999px;background:var(--beige-100);color:var(--navy-900);display:grid;place-items:center;flex:none}
+.logo-badge{width:42px;height:42px;border-radius:9999px;background:var(--beige-100);color:var(--navy-900);display:grid;place-items:center;flex:none;overflow:hidden}
+.nexus-deer-logo{width:58px;height:58px;max-width:none;object-fit:cover;display:block}
 .org{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:#B8AE9A}
 .link-btn{color:var(--beige-200);font-size:.9rem;padding:.5rem .95rem;border-radius:9999px;transition:all .25s;border:1px solid transparent;cursor:pointer;background:none;display:inline-flex;align-items:center;gap:.5rem}
 .link-btn:hover{background:rgba(245,239,228,.1);border-color:rgba(245,239,228,.22)}
@@ -69,8 +70,8 @@ h1.title{font-size:clamp(1.9rem,4vw,2.6rem);font-weight:700;letter-spacing:-.02e
 .strict-step{display:flex;gap:1rem;align-items:center;background:var(--beige-50);border:1px solid var(--beige-300);border-radius:20px;padding:1rem 1.25rem}
 .strict-step .n{width:36px;height:36px;border-radius:10px;background:var(--navy-800);color:var(--beige-50);display:grid;place-items:center;font-weight:700;flex:none;font-size:.85rem}
 
-/* Progress slider + running deer + trees */
-.progress-slider-wrap{position:relative;padding-top:58px;margin-top:.5rem}
+/* Compact progress indicator */
+.progress-slider-wrap{position:relative;margin-top:.5rem}
 .progress-track{height:10px;border-radius:9999px;background:var(--beige-200);overflow:hidden;position:relative;box-shadow:inset 0 1px 2px rgba(12,26,51,.12)}
 .progress-fill{height:100%;background:linear-gradient(90deg,var(--navy-800),#2B4C7E);border-radius:9999px;transition:width .16s linear}
 .deer-runner{
@@ -105,7 +106,7 @@ h1.title{font-size:clamp(1.9rem,4vw,2.6rem);font-weight:700;letter-spacing:-.02e
 .zip-item{display:flex;align-items:center;gap:.6rem;color:var(--navy-800);font-size:.92rem;padding:.35rem 0}
 .zip-item svg{color:var(--navy-600);flex:none}
 
-.deer-bg{position:absolute;pointer-events:none;color:var(--navy-900);opacity:.05}
+.deer-bg{position:absolute;pointer-events:none;width:320px;height:320px;object-fit:cover;opacity:.075;mix-blend-mode:multiply;border-radius:38px}
 
 .toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,30px);background:var(--navy-950);color:var(--beige-50);padding:.8rem 1.3rem;border-radius:9999px;font-size:.9rem;opacity:0;pointer-events:none;transition:all .4s;z-index:80;max-width:90vw;box-shadow:0 12px 30px rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.1)}
 .toast.show{opacity:1;transform:translate(-50%,0)}

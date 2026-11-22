@@ -1,8 +1,6 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { useApp } from "@/components/AppProvider";
-import DeerRunner from "@/components/DeerRunner";
 import FileDiagnostics from "@/components/FileDiagnostics";
-import Forest from "@/components/Forest";
 import { ChartIcon, CheckIcon, DocIcon, DownloadIcon, UploadIcon } from "@/components/icons";
 import { csvArtifacts, progressDetails, reuseNotice, type FileIssue } from "@/lib/api";
 import { tableName } from "@/lib/tables";
@@ -109,9 +107,7 @@ export default function HomePage() {
 
       {step === 1 && (
         <section className="view max-w-4xl mx-auto relative">
-          <svg className="deer-bg hidden lg:block" style={{ right: -210, top: 40 }} width="320" height="320" aria-hidden="true">
-            <use href="#deer" />
-          </svg>
+          <img className="deer-bg hidden lg:block" style={{ right: -210, top: 40 }} src="/assets/nexus-deer.png" alt="" />
           <div className="text-center mt-8 sm:mt-10 relative">
             <h1 className="title">Начните с научных статей</h1>
             <p className="subtitle mt-3">Загрузите PDF или ZIP с публикациями. По умолчанию используется схема для солнечных элементов.</p>
@@ -219,8 +215,6 @@ export default function HomePage() {
           </div>
           <div className="card p-5 sm:p-8 mt-8 sm:mt-10">
             <div className="progress-slider-wrap" aria-hidden="true">
-              <Forest pct={45} />
-              <DeerRunner pct={45} running={phase === "running"} />
               <div className="progress-track"><div className="progress-fill progress-indeterminate" /></div>
             </div>
             {names.length > 0 && <ul className="mt-6 space-y-3" aria-label="Файлы задания">

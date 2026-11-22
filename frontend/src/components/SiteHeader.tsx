@@ -1,5 +1,5 @@
 import { useApp } from "./AppProvider";
-import { Deer, UserIcon } from "./icons";
+import { UserIcon } from "./icons";
 
 const connectionLabel = {
   checking: "Проверяем подключение",
@@ -18,7 +18,7 @@ export default function SiteHeader() {
         <div className="flex items-center gap-3 min-w-0">
           <a href="/" className="flex items-center gap-2.5 min-w-0" aria-label="NEXUS — на главную">
             <span className="logo-badge">
-              <Deer size={32} />
+              <img className="nexus-deer-logo" src="/assets/nexus-deer.png" alt="" />
             </span>
             <span className="text-lg sm:text-xl font-semibold tracking-[.12em]">NEXUS</span>
           </a>
