@@ -215,6 +215,7 @@ export default function HomePage() {
           </div>
           <div className="card p-5 sm:p-8 mt-8 sm:mt-10">
             <div className="progress-slider-wrap" aria-hidden="true">
+              <img className="processing-deer" src="/assets/nexus-deer.png" alt="" />
               <div className="progress-track"><div className="progress-fill progress-indeterminate" /></div>
             </div>
             {names.length > 0 && <ul className="mt-6 space-y-3" aria-label="Файлы задания">
