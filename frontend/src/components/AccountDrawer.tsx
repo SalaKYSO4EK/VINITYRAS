@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useModalDialog } from "@/lib/use-modal-dialog";
 import { statusLabel } from "@/lib/api";
 import { useApp } from "./AppProvider";
 import { ChartIcon, CloseIcon, DocIcon, DownloadIcon, UserIcon } from "./icons";
@@ -6,12 +6,7 @@ import { ChartIcon, CloseIcon, DocIcon, DownloadIcon, UserIcon } from "./icons";
 export default function AccountDrawer() {
   const { accountOpen, closeAccount, accountTab, setAccountTab, history, clearHistory, resetFlow } = useApp();
 
-  useEffect(() => {
-    if (!accountOpen) return;
-    const onKey = (event: KeyboardEvent) => { if (event.key === "Escape") closeAccount(); };
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, [accountOpen, closeAccount]);
+  const dialog = useModalDialog(accountOpen);
 
   const tabs = [
     { key: "all", label: "Все" },
@@ -21,10 +16,13 @@ export default function AccountDrawer() {
   const shown = history.filter((item) => accountTab === "all" || (item.status === "completed") === (accountTab === "completed"));
 
   return (
-    <>
-      <div className={`account-backdrop${accountOpen ? " open" : ""}`} onClick={closeAccount} />
-      <aside className={`account-drawer${accountOpen ? " open" : ""}`} aria-hidden={!accountOpen} inert={!accountOpen}
-        aria-labelledby="accountDrawerTitle">
+      <dialog ref={dialog} className="account-drawer" aria-labelledby="accountDrawerTitle"
+        onCancel={(event) => { event.preventDefault(); closeAccount(); }}
+        onClick={(event) => {
+          if (event.target !== event.currentTarget) return;
+          const box = event.currentTarget.getBoundingClientRect();
+          if (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom) closeAccount();
+        }}>
         <div className="p-5 sm:p-6 bg-[var(--navy-900)] text-[var(--beige-100)] flex items-center justify-between gap-3">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full bg-[var(--beige-100)] text-[var(--navy-900)] grid place-items-center"><UserIcon size={20} /></div>
@@ -81,7 +79,6 @@ export default function AccountDrawer() {
           <a href="/" className="btn btn-sm" onClick={() => { closeAccount(); resetFlow(); }}>К загрузке статей</a>
           {history.length > 0 && <button type="button" className="text-btn text-xs" onClick={clearHistory}>Очистить список</button>}
         </div>
-      </aside>
-    </>
+      </dialog>
   );
 }

@@ -11,7 +11,8 @@ import time
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from article_analyzer.criteria import InterpretationError, LocalCriteriaInterpreter, Source
+from article_analyzer.criteria import InterpretationError, Source, configured_interpreter
+from article_analyzer.qwen_api import QwenApiError
 from article_analyzer.photovoltaic_tables import compact, detect_pdf
 from tools.interpret_criteria import read_source, save_json
 
@@ -50,10 +51,13 @@ def main():
     start = time.perf_counter()
     criteria = (read_source(args.criteria, None) if args.criteria else
                 Source("request", hashlib.sha256(args.text.encode()).hexdigest(), {1: args.text}))
-    model = LocalCriteriaInterpreter(ROOT / "models/criteria/qwen2.5-1.5b-instruct-q4_k_m.gguf",
-                                     ROOT / "models/criteria/llama-b8157/llama-completion.exe", args.threads)
     try:
+        model = configured_interpreter(ROOT, args.threads)
         plan = model.interpret(criteria, 900)
+    except QwenApiError as exc:
+        save_json(args.out, {"criteria": criteria.text(), "error": str(exc)})
+        print(str(exc), file=sys.stderr)
+        return 1
     except InterpretationError as exc:
         save_json(args.out, {"criteria": criteria.text(), "qwen_raw_responses": model.raw_responses,
                              "error": str(exc), "raw_error": exc.raw})

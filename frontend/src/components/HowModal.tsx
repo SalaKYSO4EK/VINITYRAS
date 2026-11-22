@@ -1,20 +1,16 @@
-import { useEffect } from "react";
+import { useModalDialog } from "@/lib/use-modal-dialog";
 import { useApp } from "./AppProvider";
 import { CloseIcon, Deer } from "./icons";
 
 export default function HowModal() {
   const { howOpen, setHowOpen } = useApp();
 
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setHowOpen(false);
-    };
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, [setHowOpen]);
+  const dialog = useModalDialog(howOpen);
 
   return (
-    <div className={`modal${howOpen ? " open" : ""}`} role="dialog" aria-modal="true" aria-hidden={!howOpen} inert={!howOpen} aria-labelledby="modalTitle" onClick={(e) => { if (e.target === e.currentTarget) setHowOpen(false); }}>
+    <dialog ref={dialog} className="modal" aria-labelledby="modalTitle"
+      onCancel={(event) => { event.preventDefault(); setHowOpen(false); }}
+      onClick={(event) => { if (event.target === event.currentTarget) setHowOpen(false); }}>
       <div className="modal-card">
         <button className="absolute top-4 right-4 w-9 h-9 rounded-full grid place-items-center hover:bg-[var(--beige-200)] transition cursor-pointer" onClick={() => setHowOpen(false)} aria-label="Закрыть">
           <CloseIcon />
@@ -38,7 +34,7 @@ export default function HowModal() {
             <span className="n">2</span>
             <div>
               <b className="text-[var(--navy-900)]">Запустите обработку</b>
-              <p className="text-sm text-[var(--navy-600)] mt-0.5">Перечислите показатели или сведения, которые нужно извлечь.</p>
+              <p className="text-sm text-[var(--navy-600)] mt-0.5">При необходимости задайте свои критерии. Пустое поле включает схему для солнечных элементов.</p>
             </div>
           </li>
           <li className="strict-step">
@@ -54,6 +50,6 @@ export default function HowModal() {
         </div>
         <button className="btn w-full mt-5" onClick={() => setHowOpen(false)}>Понятно</button>
       </div>
-    </div>
+    </dialog>
   );
 }

@@ -6,6 +6,10 @@ node_modules/
 /tmp/
 /backend/runs/
 /model_bundle/runtime/
+/model_bundle/config/qwen-api.json
+/model_bundle/config/dual-qwen.json
+/model_bundle/config/dual-worker.token
+/model_bundle/models/criteria/Qwen3-4B-Q4_K_M.gguf
 /model_bundle/**/*.download
 /model_bundle/models/criteria/criteria-*/
 /Результаты_*/

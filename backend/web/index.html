@@ -19,7 +19,7 @@
   <main class="workspace">
     <header class="intro">
       <h1>Данные из научных статей</h1>
-      <p>Загрузите публикации и укажите, какие сведения собрать в таблицы.</p>
+      <p>Загрузите публикации. По умолчанию приложение использует схему для солнечных элементов.</p>
     </header>
 
     <form class="panel" id="job-form">
@@ -38,10 +38,10 @@
 
         <section class="form-section" aria-labelledby="criteria-heading">
           <div class="section-heading">
-            <h2 id="criteria-heading"><label for="criteria">Критерии</label></h2>
+            <h2 id="criteria-heading"><label for="criteria">Свои критерии (необязательно)</label></h2>
             <button class="text-button" type="button" id="example">Вставить пример</button>
           </div>
-          <textarea id="criteria" name="criteria" maxlength="32000" required
+          <textarea id="criteria" name="criteria" maxlength="32000"
                     placeholder="Какие показатели, условия и источники нужно извлечь?"></textarea>
         </section>
       </div>
@@ -57,7 +57,10 @@
         <a class="button primary" id="zip-link" hidden>Скачать ZIP</a>
       </div>
       <p id="job-progress" class="job-progress" role="status">После обработки здесь появятся таблицы и ссылки на PDF.</p>
+      <aside class="warnings" id="file-diagnostics" aria-label="Обработка файлов" hidden></aside>
       <div id="result-data" hidden>
+        <a class="button secondary" id="dashboard-link" hidden>Открыть дашборд</a>
+        <a class="button secondary" id="reference-link" hidden>Скачать отчёт сверки</a>
         <aside id="warnings" class="warnings" hidden aria-labelledby="warnings-heading">
           <h3 id="warnings-heading">Замечания модели</h3>
           <ul id="warnings-list"></ul>

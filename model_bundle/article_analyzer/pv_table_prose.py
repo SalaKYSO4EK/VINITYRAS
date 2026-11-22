@@ -7,7 +7,13 @@ from article_analyzer.jv_methods import cited_span
 from article_analyzer.photovoltaic_tables import compact
 
 
-TABLE_CAPTION = re.compile(r"(?m)^ *(Table\s+S?\d+[a-z]?)\.[ \t]*(.*)$", re.I)
+TABLE_CAPTION = re.compile(r"(?m)^ *(Table[ \t]+S?\d+[a-z]?)[ \t]*[.|:][ \t]*(.*)$", re.I)
+REPORTED_SCAN = re.compile(
+    r"\bAll\s+J\s*[–−-]\s*V\s+(?:characteristics|curves|measurements)\s+(?:were|are)\s+"
+    r"(?:measured|recorded|obtained)\b(?:(?![.!?]\s+[A-Z]).){0,130}?\bwith\s+(?:a\s+)?"
+    r"(?P<direction>reverse|forward)\s+scan\b[^.]{0,40}(?:\.\d+[^.]{0,30})?\.\s*"
+    r"As\s*shown\s*in\s+(?:(?:Fig(?:ure)?\.?)\s+\d+[a-z]?\s+and\s+)?"
+    r"(?P<table>Table\s+S?\d+[a-z]?)\b(?=\s*,)", re.I | re.S)
 SMALL_COUNTS = dict(zip(("one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"),
                         map(str, range(1, 11)), strict=True))
 GROUP_MEAN = re.compile(r"\b(?P<count>\d+|" + "|".join(SMALL_COUNTS) +
@@ -21,15 +27,53 @@ HEAT_TREATMENT = re.compile(r"(?P<agent>[a-z0-9][a-z0-9-]*)\s*"
 ANNEALING = re.compile(r"\bannealing\s+temperatures?\b", re.I)
 
 
+def restore_caption_spacing(cells, pages):
+    """Accept a text-layer caption only if the entire geometric caption matches on that page."""
+    cache = {}
+    for cell in cells:
+        caption = cell["sources"].get("caption")
+        if not caption or cell["page"] not in pages:
+            continue
+        key = (cell["page"], caption["text"])
+        if key not in cache:
+            text = pages[cell["page"]]
+            target = compact(caption["text"])
+            copies = []
+            for start in TABLE_CAPTION.finditer(text):
+                if compact(start[1]) != compact(cell["table"]):
+                    continue
+                stop = start.end()
+                for _ in range(12):
+                    candidate = compact(text[start.start():stop])
+                    if candidate == target:
+                        copies.append(cited_span(text, cell["page"], start.start(), stop))
+                        break
+                    if not target.startswith(candidate) or stop >= len(text):
+                        break
+                    newline = text.find("\n", stop + 1)
+                    stop = newline if newline >= 0 else len(text)
+            cache[key] = copies[0] if len(copies) == 1 else None
+        original = cache[key]
+        if original and " ".join(original["text"].split()) != " ".join(caption["text"].split()):
+            cell["sources"]["caption"] = {**caption, **original, "layout_text": caption["text"]}
+
+
 def table_prose(pages):
     """Bind an immediately adjacent, explicit statement to its page and caption."""
     settings = {}
+    scans = {}
+    for page, text in pages.items():
+        for match in REPORTED_SCAN.finditer(text):
+            scans.setdefault(compact(match["table"]), []).append({
+                "value": match["direction"].casefold(), "source": cited_span(text, page, match.start(), match.end())})
     for number, text in pages.items():
         captions = list(TABLE_CAPTION.finditer(text))
         for i, caption in enumerate(captions):
             name = caption[1]
             end = min(captions[i + 1].start() if i + 1 < len(captions) else len(text), caption.end() + 1100)
             metadata = {}
+            if compact(name) in scans:
+                metadata["scan_directions"] = scans[compact(name)]
             mean = GROUP_MEAN.search(text, caption.end(), end)
             if mean:
                 count = mean["count"].casefold()
@@ -55,6 +99,14 @@ def table_prose(pages):
 def apply_table_prose(row, settings):
     metadata = settings.get((row["page"], compact(row["table"])), {})
     context = row["context"]
+    options = metadata.get("scan_directions", [])
+    if options and not context["scan_direction_raw"] and not context["scan_direction"]:
+        if len({option["value"] for option in options}) == 1:
+            context["scan_direction"] = options[0]["value"]
+            context["scan_direction_source"] = options[0]["source"]
+        else:
+            context["ambiguities"]["scan_direction"] = {
+                "reason": "Текст связывает таблицу с несколькими направлениями сканирования.", "alternatives": options}
     if metadata.get("aggregation") and "aggregation" not in context and "aggregation" not in context["ambiguities"]:
         context["aggregation"] = metadata["aggregation"]
     heading = row["sources"].get("sample_heading") or {}

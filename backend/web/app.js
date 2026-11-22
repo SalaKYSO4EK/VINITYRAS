@@ -22,6 +22,7 @@ const tableNames = {
   "layers.csv": "Слои",
   "measurements.csv": "Измерения",
   "results.csv": "Результаты измерений",
+  "Efficiency.csv": "КПД по публикациям",
   "issues.csv": "Замечания проверки",
 };
 
@@ -30,12 +31,25 @@ const columnNames = {
   metric_name: "Показатель",
   metric_value: "Значение",
   metric_unit: "Единица",
+  result_id: "Код результата",
+  raw_value: "Исходное значение",
+  raw_unit: "Исходная единица",
+  aggregation: "Агрегация",
+  spread_value: "Разброс",
+  spectrum: "Спектр освещения",
+  light_intensity: "Интенсивность освещения",
+  intensity_unit: "Единица интенсивности",
+  temperature: "Температура измерения",
+  efficiency_status: "Данные о КПД",
   device_label: "Образец",
   device_id: "Код образца",
   measurement_id: "Код измерения",
   source_file: "Файл",
   source_page: "Страница PDF",
   source_table: "Таблица в статье",
+  source_row: "Строка таблицы",
+  source_column: "Столбец таблицы",
+  source_bbox: "Координаты ячейки в PDF",
   source_fragment: "Цитата",
   scan_direction: "Направление сканирования",
   title: "Название",
@@ -53,7 +67,11 @@ async function getJson(url, options) {
     throw new Error("Сервер вернул неожиданный ответ.");
   }
   const data = await response.json();
-  if (!response.ok) throw new Error(data.error?.message || "Не удалось выполнить запрос.");
+  if (!response.ok) {
+    const error = new Error(data.error?.message || "Не удалось выполнить запрос.");
+    error.fileIssues = data.error?.file_issues;
+    throw error;
+  }
   return data;
 }
 
@@ -76,7 +94,7 @@ async function checkConnection() {
   try {
     const health = await getJson("/api/health");
     modelReady = health.runner_configured;
-    connection.textContent = modelReady ? "Модель подключена" : "Пакет модели не подключён";
+    connection.textContent = modelReady ? "Пакет модели настроен" : "Пакет модели не подключён";
   } catch {
     modelReady = false;
     connection.textContent = "Сервер недоступен";
@@ -114,10 +132,6 @@ function addFiles(selection) {
   formMessage.textContent = "";
   let total = files.reduce((size, file) => size + file.size, 0);
   for (const file of selection) {
-    if (!/\.(pdf|zip)$/i.test(file.name)) {
-      formMessage.textContent = "Поддерживаются файлы PDF и ZIP.";
-      continue;
-    }
     if (files.some((existing) => existing.name.toLowerCase() === file.name.toLowerCase())) {
       formMessage.textContent = `Файл «${file.name}» уже выбран.`;
       continue;
@@ -141,6 +155,25 @@ function showWarnings(warnings) {
     list.append(item);
   }
   $("warnings").hidden = warnings.length === 0;
+}
+
+function showFileDiagnostics(skipped = [], outcomes = []) {
+  const container = $("file-diagnostics");
+  container.replaceChildren();
+  for (const [title, items] of [["Файлы, пропущенные при загрузке", skipped], ["Результат по файлам", outcomes]]) {
+    if (!items.length) continue;
+    const heading = document.createElement("h3");
+    heading.textContent = title;
+    const list = document.createElement("ul");
+    for (const entry of items) {
+      const row = document.createElement("li");
+      const name = entry.archive ? entry.archive + " / " + entry.file : entry.file;
+      row.textContent = name + " — " + entry.reason;
+      list.append(row);
+    }
+    container.append(heading, list);
+  }
+  container.hidden = !container.childElementCount;
 }
 
 function sourceLink(url, text) {
@@ -221,8 +254,9 @@ async function openTable() {
   }
 }
 
-async function showResult(statusUrl) {
+async function showResult(statusUrl, job) {
   result = await getJson(`${statusUrl}/result`);
+  showFileDiagnostics(job.upload_issues, result.file_outcomes);
   const tables = result.files.filter((file) => file.format === "csv");
   tableSelect.replaceChildren();
   for (const table of tables) {
@@ -235,23 +269,49 @@ async function showResult(statusUrl) {
   offset = 0;
   showWarnings(result.warnings);
   showSources(result.sources);
-  $("zip-link").href = result.download_url;
-  $("zip-link").hidden = false;
+  const comparison = result.files.find((file) => file.name === result.reference_comparison?.file);
+  const referenceLink = $("reference-link");
+  referenceLink.hidden = !comparison;
+  if (comparison) referenceLink.href = comparison.url;
+  else referenceLink.removeAttribute("href");
+  $("dashboard-link").hidden = !result.dashboard_url;
+  if (result.dashboard_url) $("dashboard-link").href = result.dashboard_url;
+  const zipLink = $("zip-link");
+  zipLink.hidden = !result.download_url;
+  if (result.download_url) zipLink.href = result.download_url;
+  else zipLink.removeAttribute("href");
   $("result-data").hidden = false;
   const total = tables.reduce((sum, table) => sum + table.row_count, 0);
-  showJob(`Готово. Таблиц: ${tables.length} · строк во всех таблицах: ${total}`);
+  const summary = `Таблиц — ${tables.length} · строк во всех таблицах — ${total}`;
+  let notice = "Готово.";
+  if (job.reused) notice = "Использован сохранённый результат.";
+  else if (job.progress?.phase_seconds?.reuse_devices !== undefined) notice = "Свойства образцов взяты из предыдущего анализа тех же PDF.";
+  showJob(notice + " " + summary);
   await openTable();
+}
+
+function progressMessage(job) {
+  const progress = job.progress;
+  const details = [progress?.label || (job.status === "queued" ? "Задание в очереди…" : "Модель обрабатывает статьи…")];
+  if (progress?.pdf_index && progress.pdf_total && progress.file) {
+    details.push(`PDF ${progress.pdf_index} из ${progress.pdf_total} · ${progress.file}`);
+  } else if (progress?.phase === "queued" && progress.uploaded_pdf_count) {
+    details.push(`PDF в задании — ${progress.uploaded_pdf_count}`);
+  }
+  if (progress?.elapsed_seconds >= 10) details.push(`Этап длится ${progress.elapsed_seconds} с`);
+  return details.join(" · ");
 }
 
 async function followJob(statusUrl) {
   while (true) {
     const job = await getJson(statusUrl);
     if (job.status === "completed") {
-      await showResult(statusUrl);
+      await showResult(statusUrl, job);
       return;
     }
+    showFileDiagnostics(job.upload_issues, job.file_outcomes);
     if (job.status === "failed") throw new Error(job.error?.message || "Не удалось обработать статьи.");
-    showJob(job.status === "queued" ? "Задание в очереди…" : "Модель обрабатывает статьи…", "running");
+    showJob(progressMessage(job), "running");
     await new Promise((resolve) => setTimeout(resolve, 1200));
   }
 }
@@ -260,24 +320,26 @@ $("job-form").addEventListener("submit", async (event) => {
   event.preventDefault();
   if (busy || !modelReady) return;
   const task = criteria.value.trim();
-  if (!files.length || !task) {
-    formMessage.textContent = files.length ? "Укажите критерии извлечения." : "Выберите хотя бы один PDF или ZIP.";
-    (files.length ? criteria : fileInput).focus();
+  if (!files.length) {
+    formMessage.textContent = "Выберите хотя бы один PDF или ZIP.";
+    fileInput.focus();
     return;
   }
   formMessage.textContent = "";
   const body = new FormData();
-  body.append("criteria", task);
+  if (task) body.append("criteria", task);
   for (const file of files) body.append("files", file);
   setBusy(true);
   tableRequest++;
+  showFileDiagnostics();
   $("zip-link").hidden = $("result-data").hidden = true;
-  showJob("Загружаем файлы…", "running");
+  showJob("Загружаем и проверяем файлы…", "running");
   try {
     const job = await getJson("/api/jobs", { method: "POST", body });
     history.replaceState(null, "", `/?job=${job.job_id}`);
     await followJob(job.status_url);
   } catch (error) {
+    if (error.fileIssues) showFileDiagnostics(error.fileIssues);
     showJob(error.message, "error");
   } finally {
     setBusy(false);

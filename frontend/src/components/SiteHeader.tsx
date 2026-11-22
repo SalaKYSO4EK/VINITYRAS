@@ -3,7 +3,7 @@ import { Deer, UserIcon } from "./icons";
 
 const connectionLabel = {
   checking: "Проверяем подключение",
-  ready: "Модель подключена",
+  ready: "Пакет модели настроен",
   "no-model": "Пакет модели не подключён",
   unavailable: "Сервер недоступен",
 };

@@ -16,7 +16,15 @@ $ownsLock = $false
 
 function Get-RuntimeAssets {
     $manifest = Get-Content -Raw -LiteralPath (Join-Path $PSScriptRoot 'runtime-assets.json') | ConvertFrom-Json
+    $remoteCriteria = (Test-Path -LiteralPath (Join-Path $bundle 'config/qwen-api.json')) -or
+        -not [string]::IsNullOrWhiteSpace($env:NEXUS_QWEN_API_BASE) -or
+        -not [string]::IsNullOrWhiteSpace($env:NEXUS_QWEN_API_MODEL) -or
+        -not [string]::IsNullOrWhiteSpace($env:NEXUS_QWEN_API_TIMEOUT)
+    $dualQwen = (Test-Path -LiteralPath (Join-Path $bundle 'config/dual-qwen.json')) -and
+        $env:NEXUS_LEGACY_INFERENCE -ne '1'
     foreach ($asset in $manifest.files) {
+        if ($dualQwen -and $asset.path -like 'models/NuExtract-1.5-tiny/*') { continue }
+        if (($remoteCriteria -or $dualQwen) -and $asset.component -eq 'local-qwen') { continue }
         $destination = Join-Path $bundle $asset.path
         $current = Get-Item -LiteralPath $destination -ErrorAction SilentlyContinue
         if ($current -and $current.Length -eq $asset.size) { continue }
@@ -73,6 +81,21 @@ try {
         exit 0
     }
     Get-RuntimeAssets
+    $dualConfig = Join-Path $bundle 'config/dual-qwen.json'
+    if ((Test-Path -LiteralPath $dualConfig) -and $env:NEXUS_LEGACY_INFERENCE -ne '1') {
+        $dualSettings = Get-Content -LiteralPath $dualConfig -Raw | ConvertFrom-Json
+        $qwenAddress = [uri]$dualSettings.local_api
+        if ($qwenAddress.IsLoopback -and $qwenAddress.Scheme -eq 'http') {
+            $qwenUp = $false
+            try {
+                $qwenModels = Invoke-RestMethod ($qwenAddress.AbsoluteUri.TrimEnd('/') + '/models') -TimeoutSec 2
+                $qwenUp = $qwenModels.data.id -contains 'nexus-qwen3-4b'
+            } catch {}
+            if (-not $qwenUp) {
+                & (Join-Path $PSScriptRoot 'start-dual-qwen.ps1') -Port $qwenAddress.Port -Background
+            }
+        }
+    }
     $stamp = Join-Path $cache 'runtime\.nexus-archive'
     $info = Get-Item -LiteralPath $archive
     $archiveKey = "$($info.Length):$($info.LastWriteTimeUtc.Ticks)"

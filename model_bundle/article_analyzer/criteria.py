@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from collections import Counter
 import json
+import os
 import re
 import subprocess
 import time
@@ -15,6 +16,9 @@ from pydantic import BaseModel, ConfigDict, Field, StringConstraints
 
 from .evidence import EvidenceIndex, Fragment, render_fragments, source_fragments
 from .local_model import ExtractionError, LocalNuExtract, _reject_constant, _unique_object
+from .qwen_api import QwenApi
+from . import criteria_cache
+from .job_progress import report_qwen_request
 
 
 Identifier = Annotated[str, StringConstraints(pattern=r"^[A-Za-z][A-Za-z0-9_]*$", max_length=80)]
@@ -341,7 +345,7 @@ def parse_field_page(raw: str) -> Interpretation:
                     continue
                 group["fields"] = [
                     field["item_id"] if isinstance(field, dict) and field.keys() == {"item_id", "item_name"}
-                    and isinstance(field["item_id"], str) and field["item_id"] == field["item_name"] else field
+                    and isinstance(field["item_id"], str) and isinstance(field["item_name"], str) else field
                     for field in group["fields"]
                 ]
         page = FieldPage.model_validate(record)
@@ -391,17 +395,13 @@ def parse_rule_labels(raw: str, fragments: dict[str, Fragment]) -> Interpretatio
     return Interpretation(groups=[], rules=rules, questions=[])
 
 
-class LocalCriteriaInterpreter:
-    """Run the quantized instruction model and release its memory after each request."""
+class CriteriaInterpreter:
+    """Compile model replies into the same source-grounded plan on either transport."""
 
-    def __init__(self, model_path: Path, executable: Path, threads: int):
-        if threads < 1:
-            raise ValueError("threads must be positive")
-        self.model_path = model_path.resolve()
-        self.executable = executable.resolve()
-        if not self.model_path.is_file() or not self.executable.is_file():
-            raise ValueError("Missing GGUF weights or llama.cpp runtime. Run tools/setup_criteria_model.py.")
-        self.threads = threads
+    def __init__(self, model_name, runtime, complete):
+        self.model_name = model_name
+        self.runtime = runtime
+        self.complete = complete
         self.raw_responses: list[dict] = []
 
     def interpret(self, source: Source, max_new_tokens: int = 3072) -> dict:
@@ -450,9 +450,9 @@ class LocalCriteriaInterpreter:
 
         combined = merge_page_interpretations(responses)
         profile = compile_interpretation(combined, source)
-        profile["interpreter"] = {"model": self.model_path.name, "runtime": "llama.cpp",
+        profile["interpreter"] = {"model": self.model_name, "runtime": self.runtime,
                                   "seconds": round(time.perf_counter() - started, 3),
-                                  "peak_working_set_bytes_sampled": peak_rss}
+                                  "peak_working_set_bytes_sampled": peak_rss if self.runtime == "llama.cpp" else None}
         if page_errors:
             profile["page_errors"] = page_errors
         profile["coverage"]["plain_text_field_pages"] = field_pages
@@ -461,15 +461,16 @@ class LocalCriteriaInterpreter:
 
     def _generate(self, source: Source, max_new_tokens: int, *, fields_only: bool = False,
                   missing_fields: list[str] | None = None) -> tuple[str, int]:
-        import psutil
-
         if not 1 <= max_new_tokens < 8192:
             raise ValueError("Criteria token budget must be between 1 and 8191")
         page = next(iter(source.pages))
         task = FIELDS_PROMPT if fields_only else RULES_PROMPT
         if fields_only and not source.name.lower().endswith(".pdf"):
-            task += ("\nThe request names the exact fields to extract. Do not expand it into a standard schema. "
-                     "If it asks for only a title, return only the title field, without other bibliography fields.\n")
+            task += ("\nThe user may describe a task in ordinary language rather than list column names. "
+                     "Translate each explicitly requested scientific quantity or property into a concise English field identifier. "
+                     "For Russian «КПД солнечных элементов», use pce. "
+                     "For «сопоставь» or 'compare', extract the requested values needed for comparison. "
+                     "Do not add unrelated fields. If it asks for only a title, return only title.\n")
         if fields_only and missing_fields:
             task += ("\nThe prior field list missed these explicit identifiers. Return the full field schema, "
                      "including the original fields and these exact names: " + ", ".join(missing_fields) + ".\n")
@@ -477,8 +478,55 @@ class LocalCriteriaInterpreter:
         if not fields_only and not fragments:
             return Interpretation(groups=[], rules=[], questions=[]).model_dump_json(), 0
         criteria = (source.text() if fields_only else render_fragments(fragments)).replace("<|", "< |")
+        if "qwen3" in self.model_name.casefold():
+            criteria += "\n/no_think"
+        schema = None
+        if not fields_only:
+            label_schema = {"type": "string", "enum": RULE_LABELS}
+            schema = {"type": "object", "properties": dict.fromkeys(fragments, label_schema),
+                      "required": list(fragments), "additionalProperties": False}
+        mode = "fields" if fields_only else "rules"
+        entry = criteria_cache.entry_for(self.model_name, self.runtime, task, criteria, schema, max_new_tokens)
+        raw = criteria_cache.read_reply(entry)
+        reused = raw is not None
+        peak_rss = 0
+        if not reused:
+            report_qwen_request(len(task.encode("utf-8")) + len(criteria.encode("utf-8")))
+            try:
+                raw, peak_rss = self.complete(task, criteria, schema, max_new_tokens)
+            except InterpretationError as error:
+                self.raw_responses.append({"page": page, "mode": mode, "raw_output": error.raw})
+                raise
+        response = {"page": page, "mode": mode, "raw_output": raw}
+        if reused:
+            response["reused"] = True
+        self.raw_responses.append(response)
+        interpretation = parse_field_page(raw) if fields_only else parse_rule_labels(raw, fragments)
+        if not reused:
+            criteria_cache.save_reply(entry, raw)
+        for rule in interpretation.rules:
+            rule.candidate_page = page
+        return interpretation.model_dump_json(), peak_rss
+
+
+class LocalCriteriaInterpreter(CriteriaInterpreter):
+    def __init__(self, model_path: Path, executable: Path, threads: int):
+        if threads < 1:
+            raise ValueError("threads must be positive")
+        self.model_path = model_path.resolve()
+        self.executable = executable.resolve()
+        if not self.model_path.is_file() or not self.executable.is_file():
+            raise ValueError("Missing GGUF weights or llama.cpp runtime. Run tools/setup_criteria_model.py.")
+        self.threads = threads
+        super().__init__(self.model_path.name, "llama.cpp", self._local_completion)
+
+    def _local_completion(self, task, criteria, schema, max_new_tokens):
+        import psutil
+
         prompt = (f"<|im_start|>system\n{task}<|im_end|>\n"
                   f"<|im_start|>user\n{criteria}<|im_end|>\n<|im_start|>assistant\n")
+        if "qwen3" in self.model_path.name.casefold():
+            prompt += "<think>\n\n</think>\n\n"
         peak_rss = 0
         started = time.perf_counter()
         # llama.cpp's Windows command-line parser can mangle Cyrillic paths.
@@ -491,10 +539,7 @@ class LocalCriteriaInterpreter:
                     "-f", str(prompt_file.relative_to(self.model_path.parent)),
                     "-t", str(self.threads), "-ngl", "0", "-c", "8192", "-n", str(max_new_tokens),
                     "--temp", "0", "--no-display-prompt", "--no-context-shift", "-no-cnv"]
-            if not fields_only:
-                label_schema = {"type": "string", "enum": RULE_LABELS}
-                schema = {"type": "object", "properties": dict.fromkeys(fragments, label_schema),
-                          "required": list(fragments), "additionalProperties": False}
+            if schema:
                 schema_file = Path(directory) / "rules.schema.json"
                 schema_file.write_text(json.dumps(schema), encoding="utf-8")
                 args.extend(["-jf", str(schema_file.relative_to(self.model_path.parent))])
@@ -522,17 +567,20 @@ class LocalCriteriaInterpreter:
                 output.seek(0)
                 raw = output.read().decode("utf-8", errors="replace").strip()
                 raw = raw.removesuffix(" [end of text]").strip()
-                self.raw_responses.append({"page": page, "mode": "fields" if fields_only else "rules",
-                                           "raw_output": raw})
                 if returncode:
                     log.seek(0)
                     detail = log.read().decode("utf-8", errors="replace").splitlines()
                     raise InterpretationError("llama.cpp failed: " + "\n".join(detail[-8:]), raw)
 
-        interpretation = parse_field_page(raw) if fields_only else parse_rule_labels(raw, fragments)
-        for rule in interpretation.rules:
-            rule.candidate_page = page
-        return interpretation.model_dump_json(), peak_rss
+        return raw, peak_rss
+
+
+def configured_interpreter(root: Path, threads=4):
+    api = QwenApi.configured(root / "config/qwen-api.json")
+    if api is not None:
+        return CriteriaInterpreter(api.model, "chat_completions_api", api.complete)
+    model = Path(os.getenv("NEXUS_QWEN_GGUF") or "models/criteria/qwen2.5-1.5b-instruct-q4_k_m.gguf")
+    return LocalCriteriaInterpreter(root / model, root / "models/criteria/llama-b8157/llama-completion.exe", threads)
 
 
 def ground_article_record(raw: dict, evidence: EvidenceIndex, index: int) -> tuple[dict, dict]:

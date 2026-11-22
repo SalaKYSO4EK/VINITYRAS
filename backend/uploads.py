@@ -1,6 +1,7 @@
 """Read browser uploads and stage PDF files without extracting archive paths."""
 
 import io
+import lzma
 import re
 import shutil
 import stat
@@ -17,14 +18,15 @@ MAX_PDF_BYTES = 64 * MIB
 MAX_TOTAL_PDF_BYTES = 256 * MIB
 MAX_PDFS = 100
 MAX_CRITERIA_CHARS = 32_000
-_RESERVED_NAME = re.compile(r"(?:CON|PRN|AUX|NUL|COM[1-9¹²³]|LPT[1-9¹²³]|CONIN\$|CONOUT\$)(?:\.|$)", re.I)
+_RESERVED_NAME = re.compile(r"(?:CON|PRN|AUX|NUL|COM[1-9¹²³]|LPT[1-9¹²³]|CONIN\$|CONOUT\$) *(?:\.|$)", re.I)
 _PAGE_SELECTION = re.compile(r"[1-9][0-9]*(?:-[1-9][0-9]*)?(?:,[1-9][0-9]*(?:-[1-9][0-9]*)?)*")
 
 
 class InvalidUpload(ValueError):
-    def __init__(self, message, *, status=400):
+    def __init__(self, message, *, status=400, file_issues=()):
         super().__init__(message)
         self.status = status
+        self.file_issues = file_issues
 
 
 def valid_filename(name):
@@ -40,7 +42,7 @@ def valid_filename(name):
 def read_form(headers, read):
     content_type = headers.get("Content-Type", "")
     if headers.get_content_type() != "multipart/form-data" or not headers.get_boundary():
-        raise InvalidUpload("Отправьте критерии и статьи как multipart/form-data.", status=415)
+        raise InvalidUpload("Отправьте форму загрузки как multipart/form-data.", status=415)
     if not content_type.isascii() or "\r" in content_type or "\n" in content_type:
         raise InvalidUpload("Некорректный заголовок Content-Type.")
     if headers.get("Transfer-Encoding") or headers.get("Content-Length") is None:
@@ -97,16 +99,16 @@ def read_form(headers, read):
             criteria_pages = re.sub(r"\s*([,-])\s*", r"\1", value.strip())
             if criteria_pages and (len(criteria_pages) > 300 or not _PAGE_SELECTION.fullmatch(criteria_pages)):
                 raise InvalidUpload("Укажите страницы в формате 3-6 или 3,5,7-9.")
-        elif name == "files" and filename and valid_filename(filename):
+        elif name == "files" and filename is not None:
             uploads.append((filename, payload))
         else:
-            raise InvalidUpload("Передайте статьи в полях files и укажите критерии текстом или PDF.")
+            raise InvalidUpload("Передайте статьи в полях files. Для своих критериев используйте criteria или criteria_pdf.")
 
     criteria = criteria or ""
     if len(criteria) > MAX_CRITERIA_CHARS or "\x00" in criteria:
         raise InvalidUpload(f"Текст критериев должен занимать до {MAX_CRITERIA_CHARS} символов.")
-    if bool(criteria) == bool(criteria_pdf):
-        raise InvalidUpload("Введите критерии текстом или приложите PDF с критериями.")
+    if criteria and criteria_pdf:
+        raise InvalidUpload("Передайте критерии либо текстом, либо файлом PDF.")
     if criteria_pages and criteria_pdf is None:
         raise InvalidUpload("Диапазон страниц задаётся для PDF с критериями.")
     if not uploads or len(uploads) > MAX_PDFS:
@@ -114,53 +116,98 @@ def read_form(headers, read):
     return criteria, uploads, criteria_pdf, criteria_pages or None
 
 
-def stage_pdfs(uploads, destination):
+def stage_pdfs(uploads, destination, *, file_issues=None):
     names = {}
     total_bytes = 0
+    problems = file_issues if file_issues is not None else []
+    statuses = []
+
+    def reject(name, error, archive=None):
+        label = re.sub(r"[\x00-\x1f\x7f]", "�", name)[:256] or "Файл без имени"
+        issue = {"file": label, "reason": str(error)}
+        if archive is not None:
+            issue["archive"] = archive
+        statuses.append(error.status)
+        problems.append(issue)
 
     def save_pdf(name, stream, size):
         nonlocal total_bytes
-        if not valid_filename(name) or Path(name).suffix.lower() != ".pdf":
+        candidate = Path(name)
+        if not valid_filename(name) or candidate.suffix.lower() != ".pdf" or not candidate.stem.strip(". "):
             raise InvalidUpload("Недопустимое имя PDF в загрузке.")
         if name.casefold() in names:
-            raise InvalidUpload(f"В загрузке повторяется имя «{name}».")
+            raise InvalidUpload("PDF с таким именем уже добавлен.")
         if len(names) >= MAX_PDFS or size > MAX_PDF_BYTES or total_bytes + size > MAX_TOTAL_PDF_BYTES:
             raise InvalidUpload("Лимит — 100 PDF, 64 МиБ на PDF и 256 МиБ после распаковки.", status=413)
         prefix = stream.read(1024)
         if b"%PDF-" not in prefix:
-            raise InvalidUpload(f"Файл «{name}» не похож на PDF.")
-        with (destination / name).open("xb") as target:
-            target.write(prefix)
-            shutil.copyfileobj(stream, target, MIB)
+            raise InvalidUpload("В файле отсутствует заголовок PDF.")
+        path = destination / name
+        target = path.open("xb")
+        try:
+            with target:
+                target.write(prefix)
+                shutil.copyfileobj(stream, target, MIB)
+        except BaseException:
+            path.unlink()
+            raise
         names[name.casefold()] = name
         total_bytes += size
 
+    archive_errors = (zipfile.BadZipFile, NotImplementedError, RuntimeError, EOFError, zlib.error, lzma.LZMAError)
+    member_errors = (*archive_errors, InvalidUpload)
+
+    def unpack(name, data):
+        with zipfile.ZipFile(io.BytesIO(data)) as archive:
+            entries = archive.infolist()
+            if len(entries) > 5000:
+                raise InvalidUpload("Слишком много элементов в ZIP.", status=413)
+            candidates = 0
+            archive_issues = 0
+            for entry in entries:
+                parts = entry.filename.replace("\\", "/").split("/")
+                basename = parts[-1]
+                if entry.is_dir() or not basename or "__MACOSX" in parts or basename.startswith("._"):
+                    continue
+                try:
+                    if not basename.lower().endswith(".pdf"):
+                        raise InvalidUpload("Формат внутри ZIP не поддерживается. Используйте PDF.", status=415)
+                    candidates += 1
+                    if (any(not valid_filename(part) for part in parts)
+                            or stat.S_ISLNK(entry.external_attr >> 16)
+                            or "\x00" in entry.orig_filename):
+                        raise InvalidUpload("Недопустимый путь или ссылка на PDF внутри ZIP.")
+                    with archive.open(entry) as stream:
+                        save_pdf(basename, stream, entry.file_size)
+                except member_errors as error:
+                    archive_issues += 1
+                    if archive_issues <= MAX_PDFS:
+                        issue = (error if isinstance(error, InvalidUpload)
+                                 else InvalidUpload("Не удалось распаковать этот PDF. Проверьте ZIP и пароль."))
+                        reject(entry.orig_filename, issue, name)
+            if archive_issues > MAX_PDFS:
+                reject(name, InvalidUpload(f"Остальные пропущенные элементы ZIP — {archive_issues - MAX_PDFS}."))
+            if not candidates:
+                raise InvalidUpload("В ZIP нет файлов PDF.")
+
     for name, data in uploads:
-        extension = Path(name).suffix.lower()
-        if extension == ".pdf":
-            save_pdf(name, io.BytesIO(data), len(data))
-        elif extension == ".zip":
-            try:
-                with zipfile.ZipFile(io.BytesIO(data)) as archive:
-                    entries = archive.infolist()
-                    if len(entries) > 5000:
-                        raise InvalidUpload("Слишком много элементов в ZIP.", status=413)
-                    for entry in entries:
-                        parts = entry.filename.replace("\\", "/").split("/")
-                        basename = parts[-1]
-                        if (entry.is_dir() or not basename.lower().endswith(".pdf")
-                                or "__MACOSX" in parts or basename.startswith("._")):
-                            continue
-                        if (any(not valid_filename(part) for part in parts)
-                                or stat.S_ISLNK(entry.external_attr >> 16)
-                                or "\x00" in entry.orig_filename):
-                            raise InvalidUpload("ZIP содержит недопустимый путь или ссылку на PDF.")
-                        with archive.open(entry) as stream:
-                            save_pdf(basename, stream, entry.file_size)
-            except (zipfile.BadZipFile, NotImplementedError, RuntimeError, EOFError, zlib.error) as exc:
-                raise InvalidUpload(f"Не удалось распаковать «{name}». Проверьте ZIP и пароль.") from exc
-        else:
-            raise InvalidUpload(f"Формат файла «{name}» не поддерживается. Используйте PDF или ZIP.", status=415)
+        try:
+            if not valid_filename(name):
+                raise InvalidUpload("Недопустимое имя файла.")
+            extension = Path(name).suffix.lower()
+            if extension == ".pdf":
+                save_pdf(name, io.BytesIO(data), len(data))
+            elif extension == ".zip":
+                try:
+                    unpack(name, data)
+                except archive_errors as exc:
+                    raise InvalidUpload("Не удалось открыть ZIP. Проверьте, что архив цел и без пароля.") from exc
+            else:
+                raise InvalidUpload("Формат не поддерживается. Используйте PDF или ZIP.", status=415)
+        except InvalidUpload as error:
+            reject(name, error)
     if not names:
-        raise InvalidUpload("В загрузке нет PDF.")
+        status = statuses[0] if statuses and len(set(statuses)) == 1 else 400
+        raise InvalidUpload("Не удалось принять ни одного PDF. Проверьте перечисленные файлы.",
+                            status=status, file_issues=problems)
     return list(names.values())

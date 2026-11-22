@@ -1,0 +1,2 @@
+﻿publication_id,issue_id,record_ids,check_name,description,source_page,source_fragment
+P014,I001,R0009;R0010;R0011;R0012,jv_consistency,HT / w/o interlayer: в статье 12.76 %; расчёт или сравнение 11.73540225 %. PCE[%] = Voc[V] × Jsc[mA/cm2] × FF[%] / Pin[mW/cm2],8,12.76

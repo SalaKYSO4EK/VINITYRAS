@@ -211,8 +211,7 @@ def table_note(words, box):
     return {"text": text(note), "bbox": bounds(note)}
 
 
-def row_words(page, bbox):
-    characters = inside(page.chars, bbox)
+def row_text(characters):
     output = []
     right = None
     for c in sorted(characters, key=lambda x: (round(x["x0"], 2), x["top"])):
@@ -221,6 +220,10 @@ def row_words(page, bbox):
         output.append(c["text"])
         right = c["x1"]
     return re.sub(r"\s+", " ", "".join(output)).strip()
+
+
+def row_words(page, bbox):
+    return row_text(inside(page.chars, bbox))
 
 
 def number_lines(region, width):
@@ -276,8 +279,10 @@ def longitudinal(page, number, page_words, box, region, body):
         if prev_y is not None and y - prev_y > 20:
             break
         minimum_height = max(w["bottom"] for w in numbers) - y
-        label_box = [box[0], round(y - 2.0, 3), round(label_end, 3), round(y + minimum_height + 3.1, 3)]
-        label = row_words(page, label_box)
+        label_area = [box[0], round(y - 2.0, 3), round(label_end, 3), round(y + minimum_height + 3.1, 3)]
+        label_chars = inside(page.chars, label_area)
+        label = row_text(label_chars)
+        label_box = bounds(label_chars) if label else None
         direction = DIRECTION.search(label)
         condition = direction[0] if direction else ""
         direction_words = [w for w in row if direction and compact(w["text"]) in compact(condition)
@@ -352,17 +357,29 @@ def transverse(number, page_words, box, region, body):
     return records
 
 
-def detect_pdf(path):
+def detect_pdf(path, *, check_title=False):
     from article_analyzer.coordinate_pv_tables import coordinate_tables
+    from article_analyzer.pv_layout_review import compare_layouts, empty_layout_review, review_selected_cell
     from article_analyzer.ruled_pv_tables import merged_tables
     from article_analyzer.visible_pdf import visible_page
+    from article_analyzer.pdf_title_evidence import printed_metadata_title, printed_outline_title
 
     records = {}
+    title = None
+    image_only_pages = []
     candidates, conflicts, review_regions = [], {}, []
+    verification = empty_layout_review()
+    decisions = {}
     with pdfplumber.open(path) as pdf:
         for number, original in enumerate(pdf.pages, 1):
             page = visible_page(original)
+            if check_title and number == 1:
+                title = printed_metadata_title(page, pdf.metadata.get("Title"))
+                if not title and "Outlines" in pdf.doc.catalog:
+                    title = printed_outline_title(page, path)
             words = page.extract_words(x_tolerance=2, y_tolerance=2)
+            if not words and page.images:
+                image_only_pages.append(number)
             page_tables = []
             for box in plateaus(page):
                 region = inside(words, box)
@@ -376,9 +393,12 @@ def detect_pdf(path):
                     continue
                 page_tables.append((box, found))
             covered = {compact(found[0]["table"]) for _, found in page_tables}
-            page_tables.extend((box, found) for box, found in merged_tables(page, number)
+            fine_words = page.extract_words(x_tolerance=1, y_tolerance=2)
+            page_tables.extend((box, found) for box, found in merged_tables(page, number, fine_words)
                                if compact(found[0]["table"]) not in covered)
-            for box, found, pending in coordinate_tables(page, number, page.extract_words(x_tolerance=1, y_tolerance=2)):
+            coordinate_candidates = list(coordinate_tables(page, number, fine_words))
+            decisions.update(compare_layouts(page, page_tables, coordinate_candidates, verification))
+            for box, found, pending in coordinate_candidates:
                 table = compact(found[0]["table"])
                 prior = [rows for _, rows in page_tables if compact(rows[0]["table"]) == table]
                 if prior:
@@ -404,15 +424,19 @@ def detect_pdf(path):
                             options = conflicts.setdefault(key, [first])
                             if item not in options:
                                 options.append(item)
+            page.close()
     for key, options in conflicts.items():
         records[key] = dict(records[key], ambiguity={
             "reason": "Пересекающиеся области PDF дают разные связи для одной и той же ячейки.",
             "alternatives": [{k: r[k] for k in ("sample", "condition", "unit_raw", "table", "sources")}
                              for r in options],
         })
+    for key, row in records.items():
+        records[key] = review_selected_cell(row, decisions)
     return {"records": sorted(records.values(), key=lambda r: (r["page"], r["sources"]["value"]["bbox"][1],
                                                                r["sources"]["value"]["bbox"][0])),
-            "candidate_regions": candidates, "review_regions": review_regions}
+            "candidate_regions": candidates, "review_regions": review_regions,
+            "layout_verification": verification, "verified_title": title, "image_only_pages": image_only_pages}
 
 
 def attributed_cells(records):

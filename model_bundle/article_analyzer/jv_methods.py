@@ -13,7 +13,8 @@ from article_analyzer.pv_checks import amount, illumination_options
 JV_METHOD = re.compile(r"\bJ\s*[–−-]?\s*V\b.{0,125}\b(?:measur(?:ed|ements?)|recorded|performed|obtained)\b",
                        re.I | re.S)
 METHOD_SECTION = re.compile(r"\b(?:(?:device|pv|solar cell)\s+characteri[sz]ation|"
-                            r"materials and methods|experimental section|measurement methods)\b", re.I)
+                            r"materials and methods|experimental section|measurement methods)\b"
+                            r"|^[ \t]*characteri[sz]ation[ \t]*$", re.I | re.M)
 GENERAL_METHOD = re.compile(r"\b(?:under|at)\b", re.I)
 JV_CURVES = re.compile(r"\bJ\s*[–−-]?\s*V\b", re.I)
 TABLE_LINK = re.compile(r"\bcorresponding\s+(?:parameters|results|values)(?:\s+for\s+[^.]{1,190}?)?\s+"
@@ -35,6 +36,48 @@ EXTERNAL = re.compile(r"\b(?:literature|previous studies|previously reported|pub
 def cited_span(text, page, start, end):
     excerpt = text[start:end].rstrip()
     return {"page": page, "text": excerpt, "start": start, "end": start + len(excerpt)}
+
+
+JV_TEMPERATURE = re.compile(
+    r"\bAll\s+(?:J\s*[-–−]?\s*V|current[-– ]voltage)\s+(?:tests|measurements|scans|curves)"
+    r"\s+(?:were|are)\s+(?:performed|conducted|measured|recorded|acquired)"
+    r"\s+(?:under\s+ambient\s+conditions\s+)?at\s+"
+    r"(?P<value>room\s+temperature|[+\-−]?\d+(?:[.,]\d+)?\s*(?:[°º]\s*C|K))\s*[.]"
+    r"(?=\s|$)", re.I)
+
+
+def jv_temperatures(pages):
+    """Only an unqualified statement about all J–V measurements can supply a common temperature."""
+    options = []
+    for page, text in pages.items():
+        for match in JV_TEMPERATURE.finditer(text):
+            prefix = text[:match.start()].rstrip()
+            if prefix and prefix[-1] not in ".!?":
+                continue
+            raw = " ".join(match["value"].split())
+            value = "room temperature" if raw.casefold() == "room temperature" else raw
+            options.append({"value": value, "scope": "all_jv_measurements",
+                            "source": cited_span(text, page, match.start(), match.end())})
+    return options
+
+
+def apply_jv_temperature(row, options):
+    if not options or row["measurement_type"] != "J-V":
+        return
+    context = row["context"]
+    if "temperature" in context or "temperature" in context["ambiguities"]:
+        return
+    sources = row["sources"]
+    # A temperature series or a local temperature note needs its own row-level binding.
+    local = " ".join((sources.get(k) or {}).get("text", "") for k in ("caption", "note", "sample_heading", "sample"))
+    if (len({compact(o["value"]) for o in options}) > 1
+            or re.search(r"\btemperatures?\b|[°º]\s*C\b|\d\s*K\b", local, re.I)):
+        context["ambiguities"]["temperature"] = {
+            "reason": "Температурный режим требует сверки с условиями конкретной строки.",
+            "alternatives": options,
+        }
+        return
+    context["temperature"] = dict(options[0], table_source=dict(sources["caption"], page=row["page"]))
 
 
 def adjacent_scan_protocol(text, page, after):
@@ -164,7 +207,7 @@ def apply_illumination_methods(context, candidates, basis=None):
     table = compact(basis.get("table", "")) if basis else ""
     specific = [candidate for candidate in candidates if table and compact(candidate.get("table", "")) == table]
     candidates = specific or [candidate for candidate in candidates if not candidate.get("table")]
-    compatible, unresolved = [], []
+    compatible, unresolved, different_directions = [], [], []
     for candidate in candidates:
         direction = context["scan_direction"]
         directions = candidate["directions"]
@@ -176,6 +219,8 @@ def apply_illumination_methods(context, candidates, basis=None):
         if directions is not None and direction not in directions:
             if not directions or not direction:
                 unresolved.append(values)
+            else:
+                different_directions.append(candidate)
             continue
         compatible.append(candidate)
 
@@ -201,6 +246,14 @@ def apply_illumination_methods(context, candidates, basis=None):
                 "reason": "Применимость светового режима к этой строке требует сверки.",
                 "alternatives": list(alternatives.values()),
             }
+        elif not compatible and not unresolved:
+            excluded = [dict(option, directions=candidate["directions"]) for candidate in different_directions
+                        for option in candidate["options"].get(name, ())]
+            if excluded:
+                context["ambiguities"][name] = {
+                    "reason": "Опубликованный протокол освещения описывает другое направление сканирования.",
+                    "alternatives": excluded,
+                }
     if basis and (applied or any(key in context["ambiguities"] for key in ("pin", "spectrum", "insolation"))):
         reference = applied.get("pin") or applied.get("spectrum") or applied.get("insolation")
         protocol = reference.get("scan_protocol") if reference else None

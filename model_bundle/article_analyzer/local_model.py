@@ -30,6 +30,21 @@ def _reject_constant(value):
     raise ValueError(f"Non-finite JSON constant: {value}")
 
 
+def model_file_matches_digest(path: Path, expected: str) -> bool:
+    with path.open("rb") as stream:
+        if hashlib.file_digest(stream, "sha256").hexdigest() == expected:
+            return True
+        if path.suffix.lower() not in {".json", ".md", ".txt"}:
+            return False
+        # Git on Windows can check out text files with CRLF. Compare their
+        # canonical LF bytes too, while retaining exact-byte checks for weights.
+        stream.seek(0)
+        digest = hashlib.sha256()
+        for line in stream:
+            digest.update(line[:-2] + b"\n" if line.endswith(b"\r\n") else line)
+        return digest.hexdigest() == expected
+
+
 def _shape(value: Any, template: Any, path: str = "$") -> None:
     if isinstance(template, dict):
         if not isinstance(value, dict) or set(value) != set(template):
@@ -88,9 +103,8 @@ class LocalNuExtract:
             file = (path / item["name"]).resolve(strict=True)
             if not file.is_relative_to(path):
                 raise ValueError("Model manifest file is outside the model directory")
-            with file.open("rb") as stream:
-                if hashlib.file_digest(stream, "sha256").hexdigest() != item["sha256"]:
-                    raise ValueError(f"Model checksum mismatch: {item['name']}")
+            if not model_file_matches_digest(file, item["sha256"]):
+                raise ValueError(f"Model checksum mismatch: {item['name']}")
         self.revision = manifest["revision"]
         torch.set_num_threads(threads)
         started = time.perf_counter()
@@ -100,13 +114,18 @@ class LocalNuExtract:
             dtype=torch.float32, attn_implementation="eager",
         ).to("cpu")
         if adapter_path is not None:
-            from peft import PeftModel
-            adapter = Path(adapter_path).resolve(strict=True)
-            if not all((adapter / name).is_file() for name in ("adapter_config.json", "adapter_model.safetensors")):
-                raise ValueError("Local LoRA configuration and safetensors weights are required")
-            self.model = PeftModel.from_pretrained(self.model, str(adapter), local_files_only=True)
+            self.attach_adapter(adapter_path)
         self.model.eval()
         self.load_seconds = time.perf_counter() - started
+
+    def attach_adapter(self, adapter_path):
+        from peft import PeftModel
+
+        adapter = Path(adapter_path).resolve(strict=True)
+        if not all((adapter / name).is_file() for name in ("adapter_config.json", "adapter_model.safetensors")):
+            raise ValueError("Local LoRA configuration and safetensors weights are required")
+        self.model = PeftModel.from_pretrained(self.model, str(adapter), local_files_only=True)
+        self.model.eval()
 
     @staticmethod
     def prompt(text: str, template: dict) -> str:

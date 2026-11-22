@@ -112,11 +112,12 @@ h1.title{font-size:clamp(1.9rem,4vw,2.6rem);font-weight:700;letter-spacing:-.02e
 
 /* Modal & right-side account drawer */
 .modal{position:fixed;inset:0;background:rgba(12,26,51,.6);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:1rem;z-index:60}
-.modal.open{display:flex;animation:rise .25s both}
+.modal{width:100%;height:100%;max-width:none;max-height:none;margin:0;border:0;color:inherit}
+.modal[open]{display:flex;animation:rise .25s both}
+.modal::backdrop{background:transparent}
 .modal-card{background:var(--beige-50);border-radius:28px;max-width:480px;width:100%;padding:2rem;max-height:90vh;overflow:auto;position:relative;border:1px solid var(--beige-300)}
 
-.account-backdrop{position:fixed;inset:0;background:rgba(12,26,51,.55);backdrop-filter:blur(3px);display:none;z-index:60}
-.account-backdrop.open{display:block}
+.account-drawer::backdrop{background:rgba(12,26,51,.55);backdrop-filter:blur(3px)}
 .account-drawer{
   position:fixed;top:0;right:0;bottom:0;
   width:min(460px,92vw);
@@ -128,7 +129,8 @@ h1.title{font-size:clamp(1.9rem,4vw,2.6rem);font-weight:700;letter-spacing:-.02e
   transition:transform .32s cubic-bezier(.22,1,.36,1);
   display:flex;flex-direction:column;
 }
-.account-drawer.open{transform:translateX(0)}
+.account-drawer:not([open]){display:none}
+.account-drawer[open]{transform:translateX(0);height:100%;max-height:none;margin:0 0 0 auto;left:auto;max-width:100%;padding:0;color:inherit}
 .account-tab{flex:1;padding:.7rem .9rem;border-radius:12px;font-size:.86rem;font-weight:600;color:var(--navy-600);background:transparent;border:0;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:.5rem}
 .account-tab.active{background:var(--navy-900);color:var(--beige-50);box-shadow:0 4px 12px rgba(20,38,74,.2)}
 .account-item{background:#F7F1E5;border:1px solid var(--beige-300);border-radius:16px;padding:.85rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:.75rem}
@@ -201,4 +203,15 @@ footer{margin-top:auto}
 .result-table th { position: sticky; top: 0; white-space: nowrap; background: var(--beige-100); }
 .result-table td { min-width: 80px; max-width: 320px; overflow-wrap: anywhere; }
 .result-table tbody tr:nth-child(even) { background: var(--beige-50); }
+.result-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; font-size: .875rem; color: var(--navy-600); }
+.result-actions .dash-select { max-width: min(100%, 16rem); }
+.result-actions .result-link-field { flex: 1 1 18rem; max-width: 100%; min-width: 0; }
+.result-table .result-table-select { min-width: 0; width: 2.6rem; text-align: center; }
+.result-table input[type="checkbox"] { width: 1rem; height: 1rem; accent-color: var(--navy-900); }
+.result-sort { display: inline-flex; align-items: center; gap: .35rem; white-space: nowrap; text-align: left; }
+.result-sort span { color: var(--navy-600); }
+.result-sort:hover { text-decoration: underline; }
+.result-share-button { white-space: nowrap; }
+.result-table .result-linked-row > td { background: #fff0bd; }
+.result-table .result-linked-row > td:first-child { box-shadow: inset 4px 0 #d59720; }
 .btn:disabled { cursor: default; opacity: .55; }

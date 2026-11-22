@@ -1,0 +1,4 @@
+{
+  "local_api": "http://127.0.0.1:8086/v1",
+  "remote_worker": "auto"
+}

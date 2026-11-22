@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from collections import Counter, defaultdict
+from contextlib import redirect_stderr, redirect_stdout
 from decimal import Decimal, InvalidOperation
 import hashlib
 import json
@@ -11,8 +12,8 @@ import sys
 import time
 import unicodedata
 
-from pypdf import PdfReader
-
+from article_analyzer.job_progress import report_phase
+from article_analyzer.jv_methods import article_page_texts
 from article_analyzer.local_model import ExtractionError, LocalNuExtract
 from article_analyzer.photovoltaic_tables import compact
 from tools.interpret_criteria import save_json
@@ -202,6 +203,19 @@ def infer_sample(client, item, pages, wanted, role_context=None):
 def main(args):
     request_path, output_path, threads = args
     requests = json.loads(Path(request_path).read_text(encoding="utf-8"))
+    base_path = ROOT / "models/NuExtract-1.5-tiny"
+    model = None
+    titles = requests.get("titles")
+    if titles:
+        from article_analyzer.pdf_lab_titles import extract_titles
+        report_phase("extract_titles")
+        with Path(titles["log"]).open("w", encoding="utf-8") as log, redirect_stdout(log), redirect_stderr(log):
+            start = time.perf_counter()
+            model = LocalNuExtract(base_path, threads=int(threads))
+            extract_titles(model, titles["output"], titles["paths"], round(time.perf_counter() - start, 3),
+                           requests.get("pages_dir"))
+        Path(titles["finished"]).touch()
+    report_phase("extract_devices")
     manifest = json.loads((ADAPTER.parent / "manifest.json").read_text(encoding="utf-8"))
     hashes = manifest["adapters"]["per-device"]["sha256"]
     for name, expected in hashes.items():
@@ -209,16 +223,23 @@ def main(args):
             if hashlib.file_digest(stream, "sha256").hexdigest() != expected:
                 raise ValueError(f"Adapter checksum mismatch: {name}")
     start = time.perf_counter()
-    model = LocalNuExtract(ROOT / "models/NuExtract-1.5-tiny", adapter_path=ADAPTER, threads=int(threads))
+    if model is None:
+        model = LocalNuExtract(base_path, threads=int(threads))
+    model.attach_adapter(ADAPTER)
     model.model = model.model.merge_and_unload(safe_merge=True)
     model.model.set_attn_implementation("sdpa")
     report = {"load_seconds": round(time.perf_counter() - start, 3), "base_revision": model.revision,
               "adapter_hashes": hashes, "publications": {}}
     output = Path(output_path)
     save_json(output, report)
-    for article in requests["documents"]:
-        pdf = PdfReader(article["path"])
-        pages = [(index, page.extract_text() or "") for index, page in enumerate(pdf.pages, 1)]
+    for index, article in enumerate(requests["documents"], 1):
+        path = Path(article["path"])
+        report_phase("extract_devices", pdf_index=index, pdf_total=len(requests["documents"]), file=path.name)
+        pages_file = Path(requests["pages_dir"], path.name + ".json") if requests.get("pages_dir") else None
+        if pages_file and pages_file.exists():
+            pages = list(enumerate(json.loads(pages_file.read_text(encoding="utf-8")), 1))
+        else:
+            pages = list(article_page_texts(path).items())
         entries = []
         report["publications"][article["publication_id"]] = entries
         roles = comparison_roles(pages, article["samples"]) if "device_role" in requests["fields"] else {}

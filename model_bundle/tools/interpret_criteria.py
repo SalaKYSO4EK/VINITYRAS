@@ -16,10 +16,12 @@ from article_analyzer.criteria import (
     InterpretationError,
     LocalCriteriaInterpreter,
     Source,
+    configured_interpreter,
     exact_model_fields,
     extract_with_profile,
 )
 from article_analyzer.local_model import ExtractionError, LocalNuExtract
+from article_analyzer.qwen_api import QwenApiError
 from article_analyzer.schema_config import apply_schema_config
 
 
@@ -82,10 +84,8 @@ def main() -> int:
     parser.add_argument("--exact-fields", action="store_true", help="Send only the requested value fields to NuExtract")
     parser.add_argument("--schema-config", type=Path, help="Optional subject configuration for submission tables")
     parser.add_argument("--out", type=Path, help="Save JSON to this path instead of printing it")
-    parser.add_argument("--interpreter-model", type=Path,
-                        default=ROOT / "models/criteria/qwen2.5-1.5b-instruct-q4_k_m.gguf")
-    parser.add_argument("--llama-completion", type=Path,
-                        default=ROOT / "models/criteria/llama-b8157/llama-completion.exe")
+    parser.add_argument("--interpreter-model", type=Path, help="Explicit local GGUF override")
+    parser.add_argument("--llama-completion", type=Path, help="Explicit local llama.cpp executable")
     parser.add_argument("--adapter", type=Path, help="Optional NuExtract adapter")
     parser.add_argument("--threads", type=int, default=4)
     parser.add_argument("--criteria-tokens", type=int, default=3072)
@@ -105,8 +105,14 @@ def main() -> int:
         criteria = (read_source(args.criteria, args.criteria_pages) if args.criteria else
                     Source("request", hashlib.sha256(args.text.encode("utf-8")).hexdigest(), {1: args.text.strip()}))
         article = read_source(args.article, args.article_pages) if args.article else None
-        print("Interpreting criteria locally…", file=sys.stderr, flush=True)
-        interpreter = LocalCriteriaInterpreter(args.interpreter_model, args.llama_completion, args.threads)
+        if args.interpreter_model or args.llama_completion:
+            interpreter = LocalCriteriaInterpreter(
+                args.interpreter_model or ROOT / "models/criteria/qwen2.5-1.5b-instruct-q4_k_m.gguf",
+                args.llama_completion or ROOT / "models/criteria/llama-b8157/llama-completion.exe", args.threads)
+        else:
+            interpreter = configured_interpreter(ROOT, args.threads)
+        print(f"Interpreting criteria with {interpreter.model_name} ({interpreter.runtime})…",
+              file=sys.stderr, flush=True)
         result = interpreter.interpret(criteria, args.criteria_tokens)
         if args.exact_fields:
             exact_model_fields(result)
@@ -127,7 +133,7 @@ def main() -> int:
             if any("error" in group for group in result["article_extraction"]["groups"].values()):
                 result["error"] = "One or more extraction groups returned invalid JSON. See article_extraction.groups."
                 exit_code = 1
-    except (OSError, ValueError) as error:
+    except (OSError, ValueError, QwenApiError) as error:
         result["error"] = str(error)
         if isinstance(error, InterpretationError):
             result["raw_interpretation"] = error.raw

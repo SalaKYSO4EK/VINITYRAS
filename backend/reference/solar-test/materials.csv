@@ -1,0 +1,7 @@
+﻿publication_id,material_id,material_name_raw,formula_normalized,material_class,dimensionality,additives,bandgap_value,bandgap_unit,bandgap_method,note
+P078,MA0001,MA0.8FA0.2PbI2.9Br0.1,MA0.8FA0.2PbI2.9Br0.1,perovskite,,,,,,"PDF, стр. 3: a MA0.8FA0.2PbI2.9Br0.1 layer (470 nm), a SnO2 layer (60 nm), and a FTO glass."
+P083,MA0001,CdTe NCs,CdTe,CdTe,,,,,,"PDF, стр. 3: The ITO/ZnO/CdSe/CdTe structure, featuring a single layer of ZnO, two layers of CdSe NCs, and four layers of CdTe NCs,"
+P001,MA0001,CZTS,Cu2ZnSnS4,kesterite,,,,,,"PDF, стр. 7: As fabricated Al/Al-ZnO/i-ZnO/CdS/CZTS/ Mo foil device shows 0.55% power conversion efficiency Fig. 5 SEM cross-sectional image of fabricated CZTS solar cell Fig. 6 J-V characteristics of fabricated CZT"
+P019,MA0001,CIGS,"Cu(In,Ga)Se2",CIGS,,,,,,"PDF, стр. 1: approximately 8.3% with an optimized device structure of Al/ITO/ZnO/CdS/CIGS/Mo."
+P024,MA0001,Sb2Se3,Sb2Se3,Sb2Se3,,,,,,"PDF, стр. 1: 2 ETLdeliversan8.12%powerconversioneﬃciency(𝜼),the highestTiO2/Sb2Se3 devicereportedto-date.Thisisachievedbyasubstantial reductioninseriesresistance,drivenb"
+P049,MA0001,Sb2Se3,Sb2Se3,Sb2Se3,,,,,,"PDF, стр. 2: chieveda PCE of6.88%,and Jsc of32.44mAcm−2. 2.ExperimentalSection 2.1.DeviceFabrication All devices in this work were fabricated with an FTO/TiO2/Sb2Se3/P3H"

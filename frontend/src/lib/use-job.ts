@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getJob, getResult, JOB_ID, type Job, type Result } from "./api";
+import { getJob, getResult, JOB_ID, RequestError, type Job, type Result } from "./api";
 
 interface Snapshot {
   id: string;
@@ -28,7 +28,7 @@ export function useJob(id: string | null) {
         if (job.status === "queued" || job.status === "running") timer = setTimeout(() => poll(jobId), 1200);
       } catch (error) {
         if (signal.aborted) return;
-        if (retries < 2) {
+        if (retries < 2 && !(error instanceof RequestError && [401, 403, 404].includes(error.status))) {
           retries++;
           timer = setTimeout(() => poll(jobId), 1500);
           return;

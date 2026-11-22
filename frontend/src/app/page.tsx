@@ -1,23 +1,25 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { useApp } from "@/components/AppProvider";
 import DeerRunner from "@/components/DeerRunner";
+import FileDiagnostics from "@/components/FileDiagnostics";
 import Forest from "@/components/Forest";
 import { ChartIcon, CheckIcon, DocIcon, DownloadIcon, UploadIcon } from "@/components/icons";
-import { csvArtifacts } from "@/lib/api";
+import { csvArtifacts, progressDetails, reuseNotice, type FileIssue } from "@/lib/api";
 import { tableName } from "@/lib/tables";
 
 const steps = ["Загрузить статьи", "Обработка статей", "Скачать таблицы"];
 const uploadLimit = 128 * 1024 * 1024;
 const pdfLimit = 64 * 1024 * 1024;
 const progressLabels = {
-  uploading: "Загружаем файлы",
+  uploading: "Загружаем и проверяем файлы",
   checking: "Проверяем статус задания",
   queued: "Задание в очереди",
   running: "Модель обрабатывает статьи",
 };
 
 export default function HomePage() {
-  const { phase, busy, names, jobId, result, error, startProcessing, toast, resetFlow } = useApp();
+  const { phase, busy, names, jobId, result, error, progress, reused, uploadIssues, fileOutcomes, startProcessing, resetFlow } = useApp();
+  const reuse = reuseNotice(reused, progress);
   const input = useRef<HTMLInputElement>(null);
   const criteriaInput = useRef<HTMLTextAreaElement>(null);
   const criteriaFileInput = useRef<HTMLInputElement>(null);
@@ -27,6 +29,7 @@ export default function HomePage() {
   const [criteriaPdf, setCriteriaPdf] = useState<File | null>(null);
   const [criteriaPages, setCriteriaPages] = useState("");
   const [validation, setValidation] = useState("");
+  const [selectionIssues, setSelectionIssues] = useState<FileIssue[]>([]);
   const step = result && phase === "completed" ? 3 : busy ? 2 : 1;
   const tables = result ? csvArtifacts(result).filter((file) => result.archive_files?.includes(file.name) ?? file.row_count > 0) : [];
 
@@ -49,15 +52,15 @@ export default function HomePage() {
     const next = [...selected];
     const known = new Set(next.map((file) => file.name.toLowerCase()));
     let size = next.reduce((sum, file) => sum + file.size, 0);
-    let skipped = false;
+    const skipped: FileIssue[] = [];
     for (const file of selection) {
-      if (!/\.(pdf|zip)$/i.test(file.name) || known.has(file.name.toLowerCase())) {
-        skipped = true;
+      let reason = "";
+      if (known.has(file.name.toLowerCase())) reason = "Файл с таким именем уже выбран.";
+      else if (/\.pdf$/i.test(file.name) && file.size > pdfLimit) reason = "Размер PDF превышает 64 МиБ.";
+      else if (next.length >= 100 || size + file.size > uploadLimit) reason = "Превышен лимит загрузки: 100 файлов или 128 МиБ.";
+      if (reason) {
+        skipped.push({ file: file.name, reason });
         continue;
-      }
-      if (next.length >= 100 || size + file.size > uploadLimit) {
-        toast("За одну загрузку можно отправить до 100 файлов общим размером до 128 МиБ.");
-        break;
       }
       next.push(file);
       known.add(file.name.toLowerCase());
@@ -65,13 +68,13 @@ export default function HomePage() {
     }
     setSelected(next);
     setValidation("");
-    if (skipped) toast("Поддерживаются PDF и ZIP с разными именами.");
+    setSelectionIssues(skipped);
   }
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (!selected.length || !(criteriaPdf || criteria.trim())) {
-      setValidation(selected.length ? "Введите критерии или приложите PDF с критериями." : "Выберите хотя бы одну статью или ZIP с публикациями.");
+    if (!selected.length) {
+      setValidation("Выберите хотя бы одну статью или ZIP с публикациями.");
       return;
     }
     const size = selected.reduce((sum, file) => sum + file.size, criteriaPdf?.size ?? 0);
@@ -83,7 +86,9 @@ export default function HomePage() {
     await startProcessing(selected, criteriaPdf ? { pdf: criteriaPdf, pages: criteriaPages.trim() } : criteria.trim());
   }
 
-  const progressTitle = busy ? progressLabels[phase as keyof typeof progressLabels] : "";
+  const activeProgress = phase === "queued" || phase === "running" ? progress : undefined;
+  const progressTitle = busy ? activeProgress?.label || progressLabels[phase as keyof typeof progressLabels] : "";
+  const details = progressDetails(activeProgress);
 
   return (
     <main className="flex-1 px-4 sm:px-6 pt-8 sm:pt-10 pb-16">
@@ -109,7 +114,7 @@ export default function HomePage() {
           </svg>
           <div className="text-center mt-8 sm:mt-10 relative">
             <h1 className="title">Начните с научных статей</h1>
-            <p className="subtitle mt-3">Загрузите PDF или ZIP с публикациями. Введите критерии или приложите PDF с заданием.</p>
+            <p className="subtitle mt-3">Загрузите PDF или ZIP с публикациями. По умолчанию используется схема для солнечных элементов.</p>
           </div>
           <form className="card p-3 sm:p-4 mt-7 relative" onSubmit={submit}>
             <div className={`dropzone text-center px-4 sm:px-8 py-7${drag ? " drag" : ""}`}
@@ -141,10 +146,11 @@ export default function HomePage() {
               </ul>
             )}
 
+            <FileDiagnostics skipped={[...selectionIssues, ...(uploadIssues ?? [])]} outcomes={fileOutcomes} />
             <div className="p-2 sm:px-3 pt-5">
               <div className="flex flex-wrap items-baseline justify-between gap-2">
                 {criteriaPdf ? <h2 className="font-semibold">PDF с критериями</h2>
-                  : <label htmlFor="criteria" className="font-semibold">Критерии извлечения</label>}
+                  : <label htmlFor="criteria" className="font-semibold">Свои критерии (необязательно)</label>}
                 {!criteriaPdf && <div className="flex flex-wrap gap-2">
                   <button type="button" className="text-btn text-sm" onClick={() => {
                     setCriteria("Извлеки PCE и Voc и укажи источники в PDF");
@@ -188,8 +194,14 @@ export default function HomePage() {
                 onChange={(event) => { setCriteria(event.target.value); setValidation(""); }} />}
               <div className="flex flex-wrap justify-between items-center gap-3 mt-3">
                 <div role="status" className="text-sm text-[#8B342C]">
-                  {validation || error}
-                  {error && jobId && <a className="text-btn block mt-1" href={`/dashboard/${jobId}`}>Проверить задание</a>}
+                  {validation && <p>{validation}</p>}
+                  {error && error !== validation && <p>{error}</p>}
+                  {error && jobId && <>
+                    <p className="mt-1 text-[var(--navy-600)]">{selected.length
+                      ? "Для повтора проверьте файлы и критерии и нажмите «Обработать статьи»."
+                      : "Для повтора заново выберите исходные файлы и укажите критерии, если использовали их."}</p>
+                    <a className="text-btn block mt-1" href={`/dashboard/${jobId}`}>Проверить задание</a>
+                  </>}
                 </div>
                 <button className="btn btn-sm ml-auto" type="submit">Обработать статьи</button>
               </div>
@@ -202,6 +214,7 @@ export default function HomePage() {
         <section className="view max-w-3xl mx-auto">
           <div className="text-center mt-10 sm:mt-12">
             <h1 className="title" role="status">{progressTitle}</h1>
+            {details && <p className="subtitle mt-3">{details}</p>}
             {phase === "queued" && <p className="subtitle mt-3">Задания выполняются по одному.</p>}
           </div>
           <div className="card p-5 sm:p-8 mt-8 sm:mt-10">
@@ -218,6 +231,7 @@ export default function HomePage() {
                 </li>
               ))}
             </ul>}
+            <FileDiagnostics skipped={[...selectionIssues, ...(uploadIssues ?? [])]} />
           </div>
         </section>
       )}
@@ -228,6 +242,7 @@ export default function HomePage() {
             <div className="icon-circle mx-auto done-badge" style={{ width: 68, height: 68 }}><CheckIcon size={30} /></div>
             <h1 className="title mt-5">{tables.length ? "Ваши таблицы готовы" : "Заполненных таблиц нет"}</h1>
             <p className="subtitle mt-3">{names.join(", ")}</p>
+            {reuse && <p className="subtitle mt-3">{reuse}</p>}
           </div>
           <div className="card p-6 sm:p-8 mt-8 text-center">
             <h2 className="text-xl sm:text-2xl font-semibold">Таблицы и источники</h2>
@@ -244,10 +259,16 @@ export default function HomePage() {
                 </li>
               ))}
             </ul>}
+            {result.reference_comparison && (
+              <p className="text-sm text-[var(--navy-600)] mt-4">
+                Сверка CSV завершена. <a className="text-btn" href={`/dashboard/${jobId}#referenceHeading`}>Посмотреть итог сверки</a>
+              </p>
+            )}
             {result.warnings.length > 0 && <p className="text-sm text-[var(--navy-600)] mt-4">Замечания модели доступны в дашборде.</p>}
+            <FileDiagnostics skipped={[...selectionIssues, ...(uploadIssues ?? [])]} outcomes={fileOutcomes} />
           </div>
           <div className="text-center mt-8">
-            <button type="button" className="text-btn" onClick={() => { setSelected([]); resetFlow(); }}>Загрузить другие статьи</button>
+            <button type="button" className="text-btn" onClick={() => { setSelected([]); setSelectionIssues([]); resetFlow(); }}>Загрузить другие статьи</button>
           </div>
         </section>
       )}

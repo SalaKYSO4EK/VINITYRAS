@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, useSyncExternalStore, type ReactNode } from "react";
-import { csvArtifacts, getHealth, JOB_ID, statusLabel, submitJob, type CriteriaInput, type Job, type JobStatus, type Result } from "@/lib/api";
+import { csvArtifacts, getHealth, getJob, getResult, JOB_ID, RequestError, statusLabel, submitJob, type CriteriaInput, type FileIssue, type Job, type JobProgress, type JobStatus, type Result } from "@/lib/api";
 import { useJob } from "@/lib/use-job";
 
 type Phase = JobStatus | "idle" | "uploading" | "checking";
@@ -22,6 +22,10 @@ interface AppState {
   jobId: string | null;
   result?: Result;
   error?: string;
+  uploadIssues?: FileIssue[];
+  fileOutcomes?: FileIssue[];
+  progress?: JobProgress;
+  reused?: boolean;
   startProcessing: (files: File[], criteria: CriteriaInput) => Promise<void>;
   resetFlow: () => void;
   history: HistoryEntry[];
@@ -83,9 +87,10 @@ function saveHistory(jobs: HistoryEntry[]) {
   } catch { /* History remains optional when storage is disabled. */ }
 }
 
-function remember(job: Job, result?: Result) {
+function remember(job: Job, result?: Result, existingOnly = false) {
   const history = parseHistory(historySnapshot());
   const previous = history.find((entry) => entry.id === job.job_id);
+  if (existingOnly && !previous) return;
   const entry: HistoryEntry = {
     id: job.job_id,
     files: job.source_files,
@@ -108,7 +113,7 @@ function saveActive(id: string | null) {
 export default function AppProvider({ children }: { children: ReactNode }) {
   const [connection, setConnection] = useState<AppState["connection"]>("checking");
   const [jobId, setJobId] = useState<string | null>(null);
-  const [upload, setUpload] = useState<{ names: string[]; error?: string }>();
+  const [upload, setUpload] = useState<{ names: string[]; error?: string; issues?: FileIssue[] }>();
   const [accountOpen, setAccountOpen] = useState(false);
   const [accountTab, setAccountTab] = useState<HistoryTab>("all");
   const [howOpen, setHowOpen] = useState(false);
@@ -151,8 +156,32 @@ export default function AppProvider({ children }: { children: ReactNode }) {
   }, []);
 
   useEffect(() => {
-    if (job) remember(job, result);
+    if (job) remember(job, result, true);
   }, [job, result]);
+
+  const otherPending = history.filter((entry) => entry.id !== jobId &&
+    (entry.status === "running" || entry.status === "queued")).map((entry) => entry.id).join(",");
+  useEffect(() => {
+    if (!accountOpen || !otherPending) return;
+    const controller = new AbortController();
+    const { signal } = controller;
+    let timer: ReturnType<typeof setTimeout>;
+    async function refresh() {
+      for (const id of otherPending.split(",")) {
+        try {
+          const updated = await getJob(id, signal);
+          const output = updated.status === "completed" ? await getResult(id, signal) : undefined;
+          if (!signal.aborted) remember(updated, output, true);
+        } catch {
+          // Keep the last known state while the server is unavailable.
+        }
+        if (signal.aborted) return;
+      }
+      timer = setTimeout(refresh, 5000);
+    }
+    void refresh();
+    return () => { controller.abort(); clearTimeout(timer); };
+  }, [accountOpen, otherPending]);
 
   async function startProcessing(files: File[], criteria: CriteriaInput) {
     if (busy || uploading.current) return;
@@ -169,14 +198,18 @@ export default function AppProvider({ children }: { children: ReactNode }) {
       setConnection("ready");
       setUpload(undefined);
     } catch (failure) {
-      setUpload({ names: fileNames, error: failure instanceof Error ? failure.message : "Не удалось отправить задание." });
+      setUpload({
+        names: fileNames,
+        error: failure instanceof Error ? failure.message : "Не удалось отправить задание.",
+        issues: failure instanceof RequestError ? failure.fileIssues : undefined,
+      });
     } finally {
       uploading.current = false;
     }
   }
 
   function resetFlow() {
-    if (busy) return;
+    if (uploading.current) return;
     setJobId(null);
     setUpload(undefined);
     saveActive(null);
@@ -203,7 +236,9 @@ export default function AppProvider({ children }: { children: ReactNode }) {
 
   return (
     <AppContext.Provider value={{
-      connection, phase, busy, names, jobId, result, error, startProcessing, resetFlow, history, clearHistory,
+      connection, phase, busy, names, jobId, result, error, progress: job?.progress, reused: job?.reused,
+      uploadIssues: upload?.issues ?? job?.upload_issues, fileOutcomes: result?.file_outcomes ?? job?.file_outcomes,
+      startProcessing, resetFlow, history, clearHistory,
       accountOpen, openAccount, closeAccount, accountTab, setAccountTab, howOpen, setHowOpen,
       toast, toastMsg, toastVisible,
     }}>

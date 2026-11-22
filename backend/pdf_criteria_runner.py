@@ -6,7 +6,6 @@ import importlib.util
 import json
 import sys
 from pathlib import Path
-from unittest.mock import patch
 
 
 class CriteriaPDFError(ValueError):
@@ -48,8 +47,9 @@ def read_criteria(document, name, selection):
 
 def run_with_pdf(runner_path, request_path, out):
     sys.path.insert(0, str(runner_path.parent))
-    from article_analyzer import pdf_lab
     from article_analyzer.inference_job import contain_workers
+    from article_analyzer.job_progress import report_phase
+    from article_analyzer.qwen_api import QwenApiError
     from tools.interpret_criteria import save_json
 
     request = json.loads(request_path.read_text(encoding="utf-8"))
@@ -57,6 +57,7 @@ def run_with_pdf(runner_path, request_path, out):
     document = Path(criteria["path"]).resolve()
     if document != request_path.parent / "criteria.pdf":
         raise CriteriaPDFError("PDF с критериями не найден в задании.")
+    report_phase("read_criteria_pdf")
     source, skipped = read_criteria(document, criteria["name"], criteria.get("pages"))
 
     spec = importlib.util.spec_from_file_location("nexus_packaged_runner", runner_path)
@@ -64,19 +65,20 @@ def run_with_pdf(runner_path, request_path, out):
         raise CriteriaPDFError("Не удалось открыть скрипт запуска пакета модели.")
     runner = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(runner)
-    detect_profile = runner.solar_profile
     contain_workers()
-    # The package compiles criteria through this reader in its per-job process.
-    with patch.object(pdf_lab, "read_source", return_value=source), patch.object(
-        runner, "solar_profile", side_effect=lambda compiled, _text: detect_profile(compiled, source.text())
-    ):
-        runner.run(request_path, out)
+    try:
+        runner.run(request_path, out, criteria_source=source)
+    except QwenApiError as error:
+        return runner.report_qwen_api_error(error)
+    except runner.InputPDFError as error:
+        return runner.report_pdf_input_error(error)
 
     if skipped:
         report = out / "report.json"
         data = json.loads(report.read_text(encoding="utf-8"))
         data["warnings"].append("Страницы критериев без текста пропущены. Номера страниц: " + ", ".join(map(str, skipped)) + ".")
         save_json(report, data)
+    return 0
 
 
 def main():
@@ -86,12 +88,11 @@ def main():
     parser.add_argument("--out", required=True, type=Path)
     args = parser.parse_args()
     try:
-        run_with_pdf(args.runner.resolve(), args.request.resolve(), args.out.resolve())
+        return run_with_pdf(args.runner.resolve(), args.request.resolve(), args.out.resolve())
     except CriteriaPDFError as error:
         args.request.with_name("criteria-error.txt").write_text(str(error), encoding="utf-8")
         print(error, file=sys.stderr)
         return 1
-    return 0
 
 
 if __name__ == "__main__":

@@ -205,11 +205,12 @@ def recover_rows(words, edges, box, caption, number):
     return recovered
 
 
-def merged_tables(page, number):
+def merged_tables(page, number, words=None):
     edges = sorted((e for e in page.horizontal_edges if e["object_type"] == "line"), key=lambda e: e["top"])
     if len(edges) < 12:
         return
-    words = page.extract_words(x_tolerance=1, y_tolerance=2)
+    if words is None:
+        words = page.extract_words(x_tolerance=1, y_tolerance=2)
     for box, caption in full_width_regions(joined_rulings(edges), words, page.height):
         local_edges = [e for e in edges if box[1] - .1 <= e["top"] <= box[3] + .1
                        and e["x0"] >= box[0] - .1 and e["x1"] <= box[2] + .1]

@@ -1,0 +1,849 @@
+﻿publication_id,result_id,device_id,measurement_id,material_id,metric_name,metric_value,metric_unit,aggregation,spread_value,n_devices,time_point,time_unit,raw_value,raw_unit,normalized_value,normalized_unit,result_origin,cited_publication_id,source_page,source_section,source_table,source_figure,source_fragment,extraction_status,duplicate_of,note
+P002,R0001,D001,M001,,Jsc,20.2,mA/cm2,,,,,,20.2,mA cm (cid:1)2,20.2,mA/cm2,primary,,5,,Table 1,,20.2,extracted,,table_header_font_mapping
+P002,R0002,D001,M001,,Voc,1.044,V,,,,,,1.044,V,1.044,V,primary,,5,,Table 1,,1.044,extracted,,table_header
+P002,R0003,D001,M001,,FF,66.00,%,,,,,,0.66,,66.00,%,primary,,5,,Table 1,,0.66,extracted,,dimensionless_convention
+P002,R0004,D001,M001,,PCE,14.0,%,,,,,,14.0,%,14.0,%,primary,,5,,Table 1,,14.0,extracted,,table_header
+P002,R0005,D002,M002,,Jsc,21.0,mA/cm2,,,,,,21.0,mA cm (cid:1)2,21.0,mA/cm2,primary,,5,,Table 1,,21.0,extracted,,table_header_font_mapping
+P002,R0006,D002,M002,,Voc,1.058,V,,,,,,1.058,V,1.058,V,primary,,5,,Table 1,,1.058,extracted,,table_header
+P002,R0007,D002,M002,,FF,68.00,%,,,,,,0.68,,68.00,%,primary,,5,,Table 1,,0.68,extracted,,dimensionless_convention
+P002,R0008,D002,M002,,PCE,15.1,%,,,,,,15.1,%,15.1,%,primary,,5,,Table 1,,15.1,extracted,,table_header
+P002,R0009,D003,M003,,Jsc,22.1,mA/cm2,,,,,,22.1,mA cm (cid:1)2,22.1,mA/cm2,primary,,5,,Table 1,,22.1,extracted,,table_header_font_mapping
+P002,R0010,D003,M003,,Voc,1.061,V,,,,,,1.061,V,1.061,V,primary,,5,,Table 1,,1.061,extracted,,table_header
+P002,R0011,D003,M003,,FF,73.00,%,,,,,,0.73,,73.00,%,primary,,5,,Table 1,,0.73,extracted,,dimensionless_convention
+P002,R0012,D003,M003,,PCE,17.2,%,,,,,,17.2,%,17.2,%,primary,,5,,Table 1,,17.2,extracted,,table_header
+P002,R0013,D004,M004,,Jsc,20.2,mA/cm2,,,,,,20.2,mA cm (cid:1)2,20.2,mA/cm2,primary,,5,,Table 1,,20.2,extracted,,table_header_font_mapping
+P002,R0014,D004,M004,,Voc,0.968,V,,,,,,0.968,V,0.968,V,primary,,5,,Table 1,,0.968,extracted,,table_header
+P002,R0015,D004,M004,,FF,68.00,%,,,,,,0.68,,68.00,%,primary,,5,,Table 1,,0.68,extracted,,dimensionless_convention
+P002,R0016,D004,M004,,PCE,13.2,%,,,,,,13.2,%,13.2,%,primary,,5,,Table 1,,13.2,extracted,,table_header
+P006,R0001,D001,M001,,Jsc,18.31,mA/cm2,,,,,,18.31,mAcm−2,18.31,mA/cm2,primary,,6,,Table 1,,18.31,extracted,,table_header
+P006,R0002,D001,M001,,Voc,0.92,V,,,,,,0.92,V,0.92,V,primary,,6,,Table 1,,0.92,extracted,,table_header
+P006,R0003,D001,M001,,FF,65.00,%,,,,,,0.65,,65.00,%,primary,,6,,Table 1,,0.65,extracted,,dimensionless_convention
+P006,R0004,D001,M001,,PCE,11.02,%,,,,,,11.02,%,11.02,%,primary,,6,,Table 1,,11.02,extracted,,table_header
+P006,R0005,D001,M002,,Jsc_EQE,17.93,mA/cm2,,,,,,17.93,mAcm−2,17.93,mA/cm2,primary,,6,,Table 1,,17.93,extracted,,table_header | jv_pair
+P006,R0006,D001,M003,,Jsc,20.08,mA/cm2,,,,,,20.08,mAcm−2,20.08,mA/cm2,primary,,6,,Table 1,,20.08,extracted,,table_header
+P006,R0007,D001,M003,,Voc,0.97,V,,,,,,0.97,V,0.97,V,primary,,6,,Table 1,,0.97,extracted,,table_header
+P006,R0008,D001,M003,,FF,78.00,%,,,,,,0.78,,78.00,%,primary,,6,,Table 1,,0.78,extracted,,dimensionless_convention
+P006,R0009,D001,M003,,PCE,15.11,%,,,,,,15.11,%,15.11,%,primary,,6,,Table 1,,15.11,extracted,,table_header
+P006,R0010,D002,M004,,Jsc,12.97,mA/cm2,,,,,,12.97,mAcm−2,12.97,mA/cm2,primary,,6,,Table 1,,12.97,extracted,,table_header
+P006,R0011,D002,M004,,Voc,0.87,V,,,,,,0.87,V,0.87,V,primary,,6,,Table 1,,0.87,extracted,,table_header
+P006,R0012,D002,M004,,FF,57.00,%,,,,,,0.57,,57.00,%,primary,,6,,Table 1,,0.57,extracted,,dimensionless_convention
+P006,R0013,D002,M004,,PCE,6.39,%,,,,,,6.39,%,6.39,%,primary,,6,,Table 1,,6.39,extracted,,table_header
+P006,R0014,D002,M005,,Jsc_EQE,14.5,mA/cm2,,,,,,14.5,mAcm−2,14.5,mA/cm2,primary,,6,,Table 1,,14.5,extracted,,table_header | jv_pair
+P006,R0015,D002,M006,,Jsc,13.11,mA/cm2,,,,,,13.11,mAcm−2,13.11,mA/cm2,primary,,6,,Table 1,,13.11,extracted,,table_header
+P006,R0016,D002,M006,,Voc,0.88,V,,,,,,0.88,V,0.88,V,primary,,6,,Table 1,,0.88,extracted,,table_header
+P006,R0017,D002,M006,,FF,66.00,%,,,,,,0.66,,66.00,%,primary,,6,,Table 1,,0.66,extracted,,dimensionless_convention
+P006,R0018,D002,M006,,PCE,7.60,%,,,,,,7.60,%,7.60,%,primary,,6,,Table 1,,7.60,extracted,,table_header
+P006,R0019,D003,M007,,Jsc,23.88,mA/cm2,,,,,,23.88,mAcm−2,23.88,mA/cm2,primary,,6,,Table 1,,23.88,extracted,,table_header
+P006,R0020,D003,M007,,Voc,0.87,V,,,,,,0.87,V,0.87,V,primary,,6,,Table 1,,0.87,extracted,,table_header
+P006,R0021,D003,M007,,FF,70.0,%,,,,,,0.7,,70.0,%,primary,,6,,Table 1,,0.7,extracted,,dimensionless_convention
+P006,R0022,D003,M007,,PCE,14.54,%,,,,,,14.54,%,14.54,%,primary,,6,,Table 1,,14.54,extracted,,table_header
+P006,R0023,D003,M008,,Jsc_EQE,20.88,mA/cm2,,,,,,20.88,mAcm−2,20.88,mA/cm2,primary,,6,,Table 1,,20.88,extracted,,table_header | jv_pair
+P006,R0024,D003,M009,,Jsc,23.86,mA/cm2,,,,,,23.86,mAcm−2,23.86,mA/cm2,primary,,6,,Table 1,,23.86,extracted,,table_header
+P006,R0025,D003,M009,,Voc,0.87,V,,,,,,0.87,V,0.87,V,primary,,6,,Table 1,,0.87,extracted,,table_header
+P006,R0026,D003,M009,,FF,78.00,%,,,,,,0.78,,78.00,%,primary,,6,,Table 1,,0.78,extracted,,dimensionless_convention
+P006,R0027,D003,M009,,PCE,16.19,%,,,,,,16.19,%,16.19,%,primary,,6,,Table 1,,16.19,extracted,,table_header
+P006,R0028,D004,M010,,Jsc,24.28,mA/cm2,,,,,,24.28,mAcm−2,24.28,mA/cm2,primary,,6,,Table 1,,24.28,extracted,,table_header
+P006,R0029,D004,M010,,Voc,0.93,V,,,,,,0.93,V,0.93,V,primary,,6,,Table 1,,0.93,extracted,,table_header
+P006,R0030,D004,M010,,FF,63.00,%,,,,,,0.63,,63.00,%,primary,,6,,Table 1,,0.63,extracted,,dimensionless_convention
+P006,R0031,D004,M010,,PCE,14.23,%,,,,,,14.23,%,14.23,%,primary,,6,,Table 1,,14.23,extracted,,table_header
+P006,R0032,D004,M011,,Jsc_EQE,21.87,mA/cm2,,,,,,21.87,mAcm−2,21.87,mA/cm2,primary,,6,,Table 1,,21.87,extracted,,table_header | jv_pair
+P006,R0033,D004,M012,,Jsc,24.28,mA/cm2,,,,,,24.28,mAcm−2,24.28,mA/cm2,primary,,6,,Table 1,,24.28,extracted,,table_header
+P006,R0034,D004,M012,,Voc,0.93,V,,,,,,0.93,V,0.93,V,primary,,6,,Table 1,,0.93,extracted,,table_header
+P006,R0035,D004,M012,,FF,75.00,%,,,,,,0.75,,75.00,%,primary,,6,,Table 1,,0.75,extracted,,dimensionless_convention
+P006,R0036,D004,M012,,PCE,16.94,%,,,,,,16.94,%,16.94,%,primary,,6,,Table 1,,16.94,extracted,,table_header
+P011,R0001,D001,M001,,Voc,1.06,V,champion,,,,,1.06,V,1.06,V,primary,,6,,Table 1,,1.06,extracted,,table_header
+P011,R0002,D001,M001,,Jsc,20.70,mA/cm2,champion,,,,,20.70,mA cm (cid:1)2,20.70,mA/cm2,primary,,6,,Table 1,,20.70,extracted,,table_header_font_mapping
+P011,R0003,D001,M001,,FF,75.72,%,champion,,,,,75.72,%,75.72,%,primary,,6,,Table 1,,75.72,extracted,,table_header
+P011,R0004,D001,M001,,PCE,16.54,%,champion,,,,,16.54,%,16.54,%,primary,,6,,Table 1,,16.54,extracted,,table_header
+P011,R0005,D001,M002,,Voc,1.12,V,champion,,,,,1.12,V,1.12,V,primary,,6,,Table 1,,1.12,extracted,,table_header
+P011,R0006,D001,M002,,Jsc,20.54,mA/cm2,champion,,,,,20.54,mA cm (cid:1)2,20.54,mA/cm2,primary,,6,,Table 1,,20.54,extracted,,table_header_font_mapping
+P011,R0007,D001,M002,,FF,75.85,%,champion,,,,,75.85,%,75.85,%,primary,,6,,Table 1,,75.85,extracted,,table_header
+P011,R0008,D001,M002,,PCE,17.31,%,champion,,,,,17.31,%,17.31,%,primary,,6,,Table 1,,17.31,extracted,,table_header
+P011,R0009,D002,M003,,Voc,1.17,V,champion,,,,,1.17,V,1.17,V,primary,,6,,Table 1,,1.17,extracted,,table_header
+P011,R0010,D002,M003,,Jsc,21.11,mA/cm2,champion,,,,,21.11,mA cm (cid:1)2,21.11,mA/cm2,primary,,6,,Table 1,,21.11,extracted,,table_header_font_mapping
+P011,R0011,D002,M003,,FF,75.81,%,champion,,,,,75.81,%,75.81,%,primary,,6,,Table 1,,75.81,extracted,,table_header
+P011,R0012,D002,M003,,PCE,18.72,%,champion,,,,,18.72,%,18.72,%,primary,,6,,Table 1,,18.72,extracted,,table_header
+P011,R0013,D002,M004,,Voc,1.18,V,champion,,,,,1.18,V,1.18,V,primary,,6,,Table 1,,1.18,extracted,,table_header
+P011,R0014,D002,M004,,Jsc,21.23,mA/cm2,champion,,,,,21.23,mA cm (cid:1)2,21.23,mA/cm2,primary,,6,,Table 1,,21.23,extracted,,table_header_font_mapping
+P011,R0015,D002,M004,,FF,77.45,%,champion,,,,,77.45,%,77.45,%,primary,,6,,Table 1,,77.45,extracted,,table_header
+P011,R0016,D002,M004,,PCE,19.40,%,champion,,,,,19.40,%,19.40,%,primary,,6,,Table 1,,19.40,extracted,,table_header
+P011,R0017,D003,M005,,Voc,1.18,V,champion,,,,,1.18,V,1.18,V,primary,,6,,Table 1,,1.18,extracted,,table_header
+P011,R0018,D003,M005,,Jsc,21.38,mA/cm2,champion,,,,,21.38,mA cm (cid:1)2,21.38,mA/cm2,primary,,6,,Table 1,,21.38,extracted,,table_header_font_mapping
+P011,R0019,D003,M005,,FF,80.05,%,champion,,,,,80.05,%,80.05,%,primary,,6,,Table 1,,80.05,extracted,,table_header
+P011,R0020,D003,M005,,PCE,20.17,%,champion,,,,,20.17,%,20.17,%,primary,,6,,Table 1,,20.17,extracted,,table_header
+P011,R0021,D003,M006,,Voc,1.18,V,champion,,,,,1.18,V,1.18,V,primary,,6,,Table 1,,1.18,extracted,,table_header
+P011,R0022,D003,M006,,Jsc,21.51,mA/cm2,champion,,,,,21.51,mA cm (cid:1)2,21.51,mA/cm2,primary,,6,,Table 1,,21.51,extracted,,table_header_font_mapping
+P011,R0023,D003,M006,,FF,80.69,%,champion,,,,,80.69,%,80.69,%,primary,,6,,Table 1,,80.69,extracted,,table_header
+P011,R0024,D003,M006,,PCE,20.48,%,champion,,,,,20.48,%,20.48,%,primary,,6,,Table 1,,20.48,extracted,,table_header
+P011,R0025,D004,M007,,Voc,1.20,V,champion,,,,,1.20,V,1.20,V,primary,,6,,Table 1,,1.20,extracted,,table_header
+P011,R0026,D004,M007,,Jsc,23.51,mA/cm2,champion,,,,,23.51,mA cm (cid:1)2,23.51,mA/cm2,primary,,6,,Table 1,,23.51,extracted,,table_header_font_mapping
+P011,R0027,D004,M007,,FF,82.75,%,champion,,,,,82.75,%,82.75,%,primary,,6,,Table 1,,82.75,extracted,,table_header
+P011,R0028,D004,M007,,PCE,23.32,%,champion,,,,,23.32,%,23.32,%,primary,,6,,Table 1,,23.32,extracted,,table_header
+P011,R0029,D004,M008,,Voc,1.20,V,champion,,,,,1.20,V,1.20,V,primary,,6,,Table 1,,1.20,extracted,,table_header
+P011,R0030,D004,M008,,Jsc,23.66,mA/cm2,champion,,,,,23.66,mA cm (cid:1)2,23.66,mA/cm2,primary,,6,,Table 1,,23.66,extracted,,table_header_font_mapping
+P011,R0031,D004,M008,,FF,82.96,%,champion,,,,,82.96,%,82.96,%,primary,,6,,Table 1,,82.96,extracted,,table_header
+P011,R0032,D004,M008,,PCE,23.53,%,champion,,,,,23.53,%,23.53,%,primary,,6,,Table 1,,23.53,extracted,,table_header
+P013,R0001,D001,M001,,Jsc,18.63,mA/cm2,,,,,,18.63,mA/cm2,18.63,mA/cm2,primary,,7,,TABLE 2,,18.63,extracted,,table_header
+P013,R0002,D001,M001,,Voc,0.7235,V,,,,,,723.5,mV,0.7235,V,primary,,7,,TABLE 2,,723.5,extracted,,table_header
+P013,R0003,D001,M001,,FF,56.39,%,,,,,,56.39,%,56.39,%,primary,,7,,TABLE 2,,56.39,extracted,,table_header
+P013,R0004,D002,M002,,Jsc,19.87,mA/cm2,,,,,,19.87,mA/cm2,19.87,mA/cm2,primary,,7,,TABLE 2,,19.87,extracted,,table_header
+P013,R0005,D002,M002,,Voc,0.7466,V,,,,,,746.6,mV,0.7466,V,primary,,7,,TABLE 2,,746.6,extracted,,table_header
+P013,R0006,D002,M002,,FF,58.26,%,,,,,,58.26,%,58.26,%,primary,,7,,TABLE 2,,58.26,extracted,,table_header
+P013,R0007,D003,M003,,Jsc,21.29,mA/cm2,,,,,,21.29,mA/cm2,21.29,mA/cm2,primary,,7,,TABLE 2,,21.29,extracted,,table_header
+P013,R0008,D003,M003,,Voc,0.7430,V,,,,,,743.0,mV,0.7430,V,primary,,7,,TABLE 2,,743.0,extracted,,table_header
+P013,R0009,D003,M003,,FF,59.58,%,,,,,,59.58,%,59.58,%,primary,,7,,TABLE 2,,59.58,extracted,,table_header
+P014,R0001,D001,M001,,Voc,0.767,V,champion,,,,,0.767,V,0.767,V,primary,,8,,Table 2,,0.767,extracted,,table_header
+P014,R0002,D001,M001,,Jsc,21.36,mA/cm2,champion,,,,,21.36,mAcm−2,21.36,mA/cm2,primary,,8,,Table 2,,21.36,extracted,,table_header
+P014,R0003,D001,M001,,FF,58.62,%,champion,,,,,58.62,%,58.62,%,primary,,8,,Table 2,,58.62,extracted,,table_header
+P014,R0004,D001,M001,,PCE,9.59,%,champion,,,,,9.59,%,9.59,%,primary,,8,,Table 2,,9.59,extracted,,table_header
+P014,R0005,D001,M002,,Voc,0.741,V,mean,0.017,20,,,0.741,V,0.741,V,primary,,8,,Table 2,,0.741,extracted,,table_header
+P014,R0006,D001,M002,,Jsc,19.9,mA/cm2,mean,1.4,20,,,19.9,mAcm−2,19.9,mA/cm2,primary,,8,,Table 2,,19.9,extracted,,table_header
+P014,R0007,D001,M002,,FF,55.4,%,mean,2.3,20,,,55.4,%,55.4,%,primary,,8,,Table 2,,55.4,extracted,,table_header
+P014,R0008,D001,M002,,PCE,8.2,%,mean,0.8,20,,,8.2,%,8.2,%,primary,,8,,Table 2,,8.2,extracted,,table_header
+P014,R0009,D002,M003,,Voc,0.825,V,champion,,,,,0.825,V,0.825,V,primary,,8,,Table 2,,0.825,extracted,,table_header
+P014,R0010,D002,M003,,Jsc,22.15,mA/cm2,champion,,,,,22.15,mAcm−2,22.15,mA/cm2,primary,,8,,Table 2,,22.15,extracted,,table_header
+P014,R0011,D002,M003,,FF,64.22,%,champion,,,,,64.22,%,64.22,%,primary,,8,,Table 2,,64.22,extracted,,table_header
+P014,R0012,D002,M003,,PCE,12.76,%,champion,,,,,12.76,%,12.76,%,primary,,8,,Table 2,,12.76,extracted,,table_header
+P014,R0013,D002,M004,,Voc,0.797,V,mean,0.022,20,,,0.797,V,0.797,V,primary,,8,,Table 2,,0.797,extracted,,table_header
+P014,R0014,D002,M004,,Jsc,22.2,mA/cm2,mean,0.3,20,,,22.2,mAcm−2,22.2,mA/cm2,primary,,8,,Table 2,,22.2,extracted,,table_header
+P014,R0015,D002,M004,,FF,67.8,%,mean,1.6,20,,,67.8,%,67.8,%,primary,,8,,Table 2,,67.8,extracted,,table_header
+P014,R0016,D002,M004,,PCE,12.3,%,mean,0.2,20,,,12.3,%,12.3,%,primary,,8,,Table 2,,12.3,extracted,,table_header
+P014,R0017,D003,M005,,Voc,0.751,V,champion,,,,,0.751,V,0.751,V,primary,,8,,Table 2,,0.751,extracted,,table_header
+P014,R0018,D003,M005,,Jsc,22.95,mA/cm2,champion,,,,,22.95,mAcm−2,22.95,mA/cm2,primary,,8,,Table 2,,22.95,extracted,,table_header
+P014,R0019,D003,M005,,FF,70.25,%,champion,,,,,70.25,%,70.25,%,primary,,8,,Table 2,,70.25,extracted,,table_header
+P014,R0020,D003,M005,,PCE,12.11,%,champion,,,,,12.11,%,12.11,%,primary,,8,,Table 2,,12.11,extracted,,table_header
+P014,R0021,D003,M006,,Voc,0.757,V,mean,0.015,20,,,0.757,V,0.757,V,primary,,8,,Table 2,,0.757,extracted,,table_header
+P014,R0022,D003,M006,,Jsc,22.5,mA/cm2,mean,0.3,20,,,22.5,mAcm−2,22.5,mA/cm2,primary,,8,,Table 2,,22.5,extracted,,table_header
+P014,R0023,D003,M006,,FF,69.3,%,mean,1.1,20,,,69.3,%,69.3,%,primary,,8,,Table 2,,69.3,extracted,,table_header
+P014,R0024,D003,M006,,PCE,11.8,%,mean,0.1,20,,,11.8,%,11.8,%,primary,,8,,Table 2,,11.8,extracted,,table_header
+P014,R0025,D004,M007,,Voc,0.778,V,champion,,,,,0.778,V,0.778,V,primary,,8,,Table 2,,0.778,extracted,,table_header
+P014,R0026,D004,M007,,Jsc,22.28,mA/cm2,champion,,,,,22.28,mAcm−2,22.28,mA/cm2,primary,,8,,Table 2,,22.28,extracted,,table_header
+P014,R0027,D004,M007,,FF,63.66,%,champion,,,,,63.66,%,63.66,%,primary,,8,,Table 2,,63.66,extracted,,table_header
+P014,R0028,D004,M007,,PCE,11.04,%,champion,,,,,11.04,%,11.04,%,primary,,8,,Table 2,,11.04,extracted,,table_header
+P014,R0029,D004,M008,,Voc,0.761,V,mean,0.015,20,,,0.761,V,0.761,V,primary,,8,,Table 2,,0.761,extracted,,table_header
+P014,R0030,D004,M008,,Jsc,22.1,mA/cm2,mean,0.3,20,,,22.1,mAcm−2,22.1,mA/cm2,primary,,8,,Table 2,,22.1,extracted,,table_header
+P014,R0031,D004,M008,,FF,62.0,%,mean,1.4,20,,,62.0,%,62.0,%,primary,,8,,Table 2,,62.0,extracted,,table_header
+P014,R0032,D004,M008,,PCE,10.5,%,mean,0.2,20,,,10.5,%,10.5,%,primary,,8,,Table 2,,10.5,extracted,,table_header
+P014,R0033,D005,M009,,Voc,0.783,V,champion,,,,,0.783,V,0.783,V,primary,,8,,Table 2,,0.783,extracted,,table_header
+P014,R0034,D005,M009,,Jsc,22.22,mA/cm2,champion,,,,,22.22,mAcm−2,22.22,mA/cm2,primary,,8,,Table 2,,22.22,extracted,,table_header
+P014,R0035,D005,M009,,FF,68.65,%,champion,,,,,68.65,%,68.65,%,primary,,8,,Table 2,,68.65,extracted,,table_header
+P014,R0036,D005,M009,,PCE,11.94,%,champion,,,,,11.94,%,11.94,%,primary,,8,,Table 2,,11.94,extracted,,table_header
+P014,R0037,D005,M010,,Voc,0.756,V,mean,0.012,20,,,0.756,V,0.756,V,primary,,8,,Table 2,,0.756,extracted,,table_header
+P014,R0038,D005,M010,,Jsc,22.3,mA/cm2,mean,0.4,20,,,22.3,mAcm−2,22.3,mA/cm2,primary,,8,,Table 2,,22.3,extracted,,table_header
+P014,R0039,D005,M010,,FF,66.7,%,mean,1.6,20,,,66.7,%,66.7,%,primary,,8,,Table 2,,66.7,extracted,,table_header
+P014,R0040,D005,M010,,PCE,11.2,%,mean,0.3,20,,,11.2,%,11.2,%,primary,,8,,Table 2,,11.2,extracted,,table_header
+P014,R0041,D006,M011,,Voc,0.808,V,champion,,,,,0.808,V,0.808,V,primary,,8,,Table 2,,0.808,extracted,,table_header
+P014,R0042,D006,M011,,Jsc,22.06,mA/cm2,champion,,,,,22.06,mAcm−2,22.06,mA/cm2,primary,,8,,Table 2,,22.06,extracted,,table_header
+P014,R0043,D006,M011,,FF,69.37,%,champion,,,,,69.37,%,69.37,%,primary,,8,,Table 2,,69.37,extracted,,table_header
+P014,R0044,D006,M011,,PCE,12.36,%,champion,,,,,12.36,%,12.36,%,primary,,8,,Table 2,,12.36,extracted,,table_header
+P014,R0045,D006,M012,,Voc,0.778,V,mean,0.028,20,,,0.778,V,0.778,V,primary,,8,,Table 2,,0.778,extracted,,table_header
+P014,R0046,D006,M012,,Jsc,21.9,mA/cm2,mean,0.3,20,,,21.9,mAcm−2,21.9,mA/cm2,primary,,8,,Table 2,,21.9,extracted,,table_header
+P014,R0047,D006,M012,,FF,68.7,%,mean,1.3,20,,,68.7,%,68.7,%,primary,,8,,Table 2,,68.7,extracted,,table_header
+P014,R0048,D006,M012,,PCE,11.7,%,mean,0.3,20,,,11.7,%,11.7,%,primary,,8,,Table 2,,11.7,extracted,,table_header
+P014,R0049,D007,M013,,Voc,0.801,V,champion,,,,,0.801,V,0.801,V,primary,,8,,Table 2,,0.801,extracted,,table_header
+P014,R0050,D007,M013,,Jsc,22.46,mA/cm2,champion,,,,,22.46,mAcm−2,22.46,mA/cm2,primary,,8,,Table 2,,22.46,extracted,,table_header
+P014,R0051,D007,M013,,FF,68.33,%,champion,,,,,68.33,%,68.33,%,primary,,8,,Table 2,,68.33,extracted,,table_header
+P014,R0052,D007,M013,,PCE,12.29,%,champion,,,,,12.29,%,12.29,%,primary,,8,,Table 2,,12.29,extracted,,table_header
+P014,R0053,D007,M014,,Voc,0.765,V,mean,0.025,20,,,0.765,V,0.765,V,primary,,8,,Table 2,,0.765,extracted,,table_header
+P014,R0054,D007,M014,,Jsc,22.6,mA/cm2,mean,0.3,20,,,22.6,mAcm−2,22.6,mA/cm2,primary,,8,,Table 2,,22.6,extracted,,table_header
+P014,R0055,D007,M014,,FF,67.7,%,mean,1.2,20,,,67.7,%,67.7,%,primary,,8,,Table 2,,67.7,extracted,,table_header
+P014,R0056,D007,M014,,PCE,11.7,%,mean,0.3,20,,,11.7,%,11.7,%,primary,,8,,Table 2,,11.7,extracted,,table_header
+P014,R0057,D008,M015,,Voc,0.826,V,champion,,,,,0.826,V,0.826,V,primary,,8,,Table 2,,0.826,extracted,,table_header
+P014,R0058,D008,M015,,Jsc,23.15,mA/cm2,champion,,,,,23.15,mAcm−2,23.15,mA/cm2,primary,,8,,Table 2,,23.15,extracted,,table_header
+P014,R0059,D008,M015,,FF,70.54,%,champion,,,,,70.54,%,70.54,%,primary,,8,,Table 2,,70.54,extracted,,table_header
+P014,R0060,D008,M015,,PCE,13.49,%,champion,,,,,13.49,%,13.49,%,primary,,8,,Table 2,,13.49,extracted,,table_header
+P014,R0061,D008,M016,,Voc,0.821,V,mean,0.005,20,,,0.821,V,0.821,V,primary,,8,,Table 2,,0.821,extracted,,table_header
+P014,R0062,D008,M016,,Jsc,22.77,mA/cm2,mean,0.4,20,,,22.77,mAcm−2,22.77,mA/cm2,primary,,8,,Table 2,,22.77,extracted,,table_header
+P014,R0063,D008,M016,,FF,69.29,%,mean,1.3,20,,,69.29,%,69.29,%,primary,,8,,Table 2,,69.29,extracted,,table_header
+P014,R0064,D008,M016,,PCE,12.9,%,mean,0.4,20,,,12.9,%,12.9,%,primary,,8,,Table 2,,12.9,extracted,,table_header
+P014,R0065,D009,M017,,Voc,0.800,V,champion,,,,,0.800,V,0.800,V,primary,,8,,Table 2,,0.800,extracted,,table_header
+P014,R0066,D009,M017,,Jsc,23.69,mA/cm2,champion,,,,,23.69,mAcm−2,23.69,mA/cm2,primary,,8,,Table 2,,23.69,extracted,,table_header
+P014,R0067,D009,M017,,FF,67.10,%,champion,,,,,67.10,%,67.10,%,primary,,8,,Table 2,,67.10,extracted,,table_header
+P014,R0068,D009,M017,,PCE,12.717,%,champion,,,,,12.717,%,12.717,%,primary,,8,,Table 2,,12.717,extracted,,table_header
+P014,R0069,D009,M018,,Voc,0.786,V,mean,0.011,20,,,0.786,V,0.786,V,primary,,8,,Table 2,,0.786,extracted,,table_header
+P014,R0070,D009,M018,,Jsc,23.0,mA/cm2,mean,0.5,20,,,23.0,mAcm−2,23.0,mA/cm2,primary,,8,,Table 2,,23.0,extracted,,table_header
+P014,R0071,D009,M018,,FF,65.2,%,mean,1.0,20,,,65.2,%,65.2,%,primary,,8,,Table 2,,65.2,extracted,,table_header
+P014,R0072,D009,M018,,PCE,11.8,%,mean,0.3,20,,,11.8,%,11.8,%,primary,,8,,Table 2,,11.8,extracted,,table_header
+P014,R0073,D010,M019,,Voc,0.793,V,champion,,,,,0.793,V,0.793,V,primary,,8,,Table 2,,0.793,extracted,,table_header
+P014,R0074,D010,M019,,Jsc,23.13,mA/cm2,champion,,,,,23.13,mAcm−2,23.13,mA/cm2,primary,,8,,Table 2,,23.13,extracted,,table_header
+P014,R0075,D010,M019,,FF,66.01,%,champion,,,,,66.01,%,66.01,%,primary,,8,,Table 2,,66.01,extracted,,table_header
+P014,R0076,D010,M019,,PCE,12.11,%,champion,,,,,12.11,%,12.11,%,primary,,8,,Table 2,,12.11,extracted,,table_header
+P014,R0077,D010,M020,,Voc,0.784,V,mean,0.007,20,,,0.784,V,0.784,V,primary,,8,,Table 2,,0.784,extracted,,table_header
+P014,R0078,D010,M020,,Jsc,23.2,mA/cm2,mean,0.2,20,,,23.2,mAcm−2,23.2,mA/cm2,primary,,8,,Table 2,,23.2,extracted,,table_header
+P014,R0079,D010,M020,,FF,63.2,%,mean,1.2,20,,,63.2,%,63.2,%,primary,,8,,Table 2,,63.2,extracted,,table_header
+P014,R0080,D010,M020,,PCE,11.5,%,mean,0.2,20,,,11.5,%,11.5,%,primary,,8,,Table 2,,11.5,extracted,,table_header
+P019,R0001,D001,M001,,Jsc,14.0,mA/cm2,,,,,,14.0,mA/cm2,14.0,mA/cm2,primary,,8,,Table 1,,14.0,extracted,,table_header
+P019,R0002,D001,M001,,Voc,0.67,V,,,,,,0.67,V,0.67,V,primary,,8,,Table 1,,0.67,extracted,,table_header
+P019,R0003,D001,M001,,FF,66.0,%,,,,,,66.0,%,66.0,%,primary,,8,,Table 1,,66.0,extracted,,table_header
+P019,R0004,D002,M002,,Jsc,14.9,mA/cm2,,,,,,14.9,mA/cm2,14.9,mA/cm2,primary,,8,,Table 1,,14.9,extracted,,table_header
+P019,R0005,D002,M002,,Voc,0.75,V,,,,,,0.75,V,0.75,V,primary,,8,,Table 1,,0.75,extracted,,table_header
+P019,R0006,D002,M002,,FF,67.0,%,,,,,,67.0,%,67.0,%,primary,,8,,Table 1,,67.0,extracted,,table_header
+P019,R0007,D003,M003,,Jsc,15.3,mA/cm2,,,,,,15.3,mA/cm2,15.3,mA/cm2,primary,,8,,Table 1,,15.3,extracted,,table_header
+P019,R0008,D003,M003,,Voc,0.77,V,,,,,,0.77,V,0.77,V,primary,,8,,Table 1,,0.77,extracted,,table_header
+P019,R0009,D003,M003,,FF,70.0,%,,,,,,70.0,%,70.0,%,primary,,8,,Table 1,,70.0,extracted,,table_header
+P019,R0010,D004,M004,,Jsc,13.1,mA/cm2,,,,,,13.1,mA/cm2,13.1,mA/cm2,primary,,8,,Table 1,,13.1,extracted,,table_header
+P019,R0011,D004,M004,,Voc,0.63,V,,,,,,0.63,V,0.63,V,primary,,8,,Table 1,,0.63,extracted,,table_header
+P019,R0012,D004,M004,,FF,65.0,%,,,,,,65.0,%,65.0,%,primary,,8,,Table 1,,65.0,extracted,,table_header
+P034,R0001,D001,M001,,Jsc,23.71,mA/cm2,,,,,,23.71,mA/cm2,23.71,mA/cm2,primary,,10,,Table 2,,23.71,extracted,,table_header
+P034,R0002,D001,M001,,Voc,0.44,V,,,,,,0.44,V,0.44,V,primary,,10,,Table 2,,0.44,extracted,,table_header
+P034,R0003,D001,M001,,FF,44.00,%,,,,,,0.44,,44.00,%,primary,,10,,Table 2,,0.44,extracted,,dimensionless_convention
+P034,R0004,D001,M001,,PCE,4.57,%,,,,,,4.57,%,4.57,%,primary,,10,,Table 2,,4.57,extracted,,table_header
+P034,R0005,D002,M002,,Jsc,18.78,mA/cm2,,,,,,18.78,mA/cm2,18.78,mA/cm2,primary,,10,,Table 2,,18.78,extracted,,table_header
+P034,R0006,D002,M002,,Voc,0.37,V,,,,,,0.37,V,0.37,V,primary,,10,,Table 2,,0.37,extracted,,table_header
+P034,R0007,D002,M002,,FF,34.00,%,,,,,,0.34,,34.00,%,primary,,10,,Table 2,,0.34,extracted,,dimensionless_convention
+P034,R0008,D002,M002,,PCE,2.35,%,,,,,,2.35,%,2.35,%,primary,,10,,Table 2,,2.35,extracted,,table_header
+P034,R0009,D003,M003,,Jsc,25.00,mA/cm2,,,,,,25.00,mA/cm2,25.00,mA/cm2,primary,,10,,Table 2,,25.00,extracted,,table_header
+P034,R0010,D003,M003,,Voc,0.39,V,,,,,,0.39,V,0.39,V,primary,,10,,Table 2,,0.39,extracted,,table_header
+P034,R0011,D003,M003,,FF,52.00,%,,,,,,0.52,,52.00,%,primary,,10,,Table 2,,0.52,extracted,,dimensionless_convention
+P034,R0012,D003,M003,,PCE,5.05,%,,,,,,5.05,%,5.05,%,primary,,10,,Table 2,,5.05,extracted,,table_header
+P034,R0013,D004,M004,,Jsc,20.87,mA/cm2,,,,,,20.87,mA/cm2,20.87,mA/cm2,primary,,10,,Table 2,,20.87,extracted,,table_header
+P034,R0014,D004,M004,,Voc,0.33,V,,,,,,0.33,V,0.33,V,primary,,10,,Table 2,,0.33,extracted,,table_header
+P034,R0015,D004,M004,,FF,46.00,%,,,,,,0.46,,46.00,%,primary,,10,,Table 2,,0.46,extracted,,dimensionless_convention
+P034,R0016,D004,M004,,PCE,3.13,%,,,,,,3.13,%,3.13,%,primary,,10,,Table 2,,3.13,extracted,,table_header
+P034,R0017,D005,M005,,Jsc,25.00,mA/cm2,,,,,,25.00,mA/cm2,25.00,mA/cm2,primary,,11,,Table 3,,25.00,extracted,,table_header
+P034,R0018,D005,M005,,Voc,0.39,V,,,,,,0.39,V,0.39,V,primary,,11,,Table 3,,0.39,extracted,,table_header
+P034,R0019,D005,M005,,FF,52.00,%,,,,,,0.52,,52.00,%,primary,,11,,Table 3,,0.52,extracted,,dimensionless_convention
+P034,R0020,D005,M005,,PCE,5.05,%,,,,,,5.05,%,5.05,%,primary,,11,,Table 3,,5.05,extracted,,table_header
+P034,R0021,D006,M006,,Jsc,20.87,mA/cm2,,,,,,20.87,mA/cm2,20.87,mA/cm2,primary,,11,,Table 3,,20.87,extracted,,table_header
+P034,R0022,D006,M006,,Voc,0.33,V,,,,,,0.33,V,0.33,V,primary,,11,,Table 3,,0.33,extracted,,table_header
+P034,R0023,D006,M006,,FF,46.00,%,,,,,,0.46,,46.00,%,primary,,11,,Table 3,,0.46,extracted,,dimensionless_convention
+P034,R0024,D006,M006,,PCE,3.13,%,,,,,,3.13,%,3.13,%,primary,,11,,Table 3,,3.13,extracted,,table_header
+P034,R0025,D007,M007,,Jsc,21.90,mA/cm2,,,,,,21.90,mA/cm2,21.90,mA/cm2,primary,,11,,Table 3,,21.90,extracted,,table_header
+P034,R0026,D007,M007,,Voc,0.63,V,,,,,,0.63,V,0.63,V,primary,,11,,Table 3,,0.63,extracted,,table_header
+P034,R0027,D007,M007,,FF,49.00,%,,,,,,0.49,,49.00,%,primary,,11,,Table 3,,0.49,extracted,,dimensionless_convention
+P034,R0028,D007,M007,,PCE,6.92,%,,,,,,6.92,%,6.92,%,primary,,11,,Table 3,,6.92,extracted,,table_header
+P034,R0029,D006,M008,,Jsc,20.72,mA/cm2,,,,,,20.72,mA/cm2,20.72,mA/cm2,primary,,11,,Table 3,,20.72,extracted,,table_header
+P034,R0030,D006,M008,,Voc,0.64,V,,,,,,0.64,V,0.64,V,primary,,11,,Table 3,,0.64,extracted,,table_header
+P034,R0031,D006,M008,,FF,47.00,%,,,,,,0.47,,47.00,%,primary,,11,,Table 3,,0.47,extracted,,dimensionless_convention
+P034,R0032,D006,M008,,PCE,6.25,%,,,,,,6.25,%,6.25,%,primary,,11,,Table 3,,6.25,extracted,,table_header
+P035,R0001,D001,M001,,Voc,0.34,V,mean,,,,,0.34,V,0.34,V,primary,,3,,Table 1,,0.34,extracted,,table_header
+P035,R0002,D001,M001,,FF,65.0,%,mean,,,,,65.0,%,65.0,%,primary,,3,,Table 1,,65.0,extracted,,table_header
+P035,R0003,D002,M002,,Voc,0.78,V,mean,,,,,0.78,V,0.78,V,primary,,3,,Table 1,,0.78,extracted,,table_header
+P035,R0004,D002,M002,,FF,65.7,%,mean,,,,,65.7,%,65.7,%,primary,,3,,Table 1,,65.7,extracted,,table_header
+P035,R0005,D003,M003,,Voc,0.78,V,,,,,,0.78,V,0.78,V,primary,,5,,Table 2,,0.78,extracted,,table_header
+P037,R0001,D001,M001,,PCE,10.64,%,mean,2.21,12,,,10.64,%,10.64,%,primary,,7,,Table 1,,10.64,extracted,,table_header
+P037,R0002,D001,M001,,Voc,0.99,V,mean,0.11,12,,,0.99,V,0.99,V,primary,,7,,Table 1,,0.99,extracted,,table_header
+P037,R0003,D001,M001,,Jsc,20.06,mA/cm2,mean,0.20,12,,,20.06,mA/cm2,20.06,mA/cm2,primary,,7,,Table 1,,20.06,extracted,,table_header
+P037,R0004,D001,M001,,FF,53.00,%,mean,7.00,12,,,0.53,,53.00,%,primary,,7,,Table 1,,0.53,extracted,,dimensionless_convention
+P037,R0005,D001,M002,,PCE,12.60,%,champion,,,,,12.60,%,12.60,%,primary,,7,,Table 1,,12.60,extracted,,table_header
+P037,R0006,D001,M002,,Voc,1.04,V,champion,,,,,1.04,V,1.04,V,primary,,7,,Table 1,,1.04,extracted,,table_header
+P037,R0007,D001,M002,,Jsc,19.83,mA/cm2,champion,,,,,19.83,mA/cm2,19.83,mA/cm2,primary,,7,,Table 1,,19.83,extracted,,table_header
+P037,R0008,D001,M002,,FF,61.00,%,champion,,,,,0.61,,61.00,%,primary,,7,,Table 1,,0.61,extracted,,dimensionless_convention
+P037,R0009,D002,M003,,PCE,10.97,%,mean,0.84,12,,,10.97,%,10.97,%,primary,,7,,Table 1,,10.97,extracted,,table_header
+P037,R0010,D002,M003,,Voc,1.01,V,mean,0.01,12,,,1.01,V,1.01,V,primary,,7,,Table 1,,1.01,extracted,,table_header
+P037,R0011,D002,M003,,Jsc,18.83,mA/cm2,mean,0.26,12,,,18.83,mA/cm2,18.83,mA/cm2,primary,,7,,Table 1,,18.83,extracted,,table_header
+P037,R0012,D002,M003,,FF,57.00,%,mean,4.00,12,,,0.57,,57.00,%,primary,,7,,Table 1,,0.57,extracted,,dimensionless_convention
+P037,R0013,D002,M004,,PCE,11.94,%,champion,,,,,11.94,%,11.94,%,primary,,7,,Table 1,,11.94,extracted,,table_header
+P037,R0014,D002,M004,,Voc,1.04,V,champion,,,,,1.04,V,1.04,V,primary,,7,,Table 1,,1.04,extracted,,table_header
+P037,R0015,D002,M004,,Jsc,18.95,mA/cm2,champion,,,,,18.95,mA/cm2,18.95,mA/cm2,primary,,7,,Table 1,,18.95,extracted,,table_header
+P037,R0016,D002,M004,,FF,61.00,%,champion,,,,,0.61,,61.00,%,primary,,7,,Table 1,,0.61,extracted,,dimensionless_convention
+P037,R0017,D003,M005,,PCE,11.26,%,mean,0.49,12,,,11.26,%,11.26,%,primary,,7,,Table 1,,11.26,extracted,,table_header
+P037,R0018,D003,M005,,Voc,1.02,V,mean,0.01,12,,,1.02,V,1.02,V,primary,,7,,Table 1,,1.02,extracted,,table_header
+P037,R0019,D003,M005,,Jsc,19.30,mA/cm2,mean,0.36,12,,,19.30,mA/cm2,19.30,mA/cm2,primary,,7,,Table 1,,19.30,extracted,,table_header
+P037,R0020,D003,M005,,FF,57.00,%,mean,1.00,12,,,0.57,,57.00,%,primary,,7,,Table 1,,0.57,extracted,,dimensionless_convention
+P037,R0021,D003,M006,,PCE,12.42,%,champion,,,,,12.42,%,12.42,%,primary,,7,,Table 1,,12.42,extracted,,table_header
+P037,R0022,D003,M006,,Voc,1.05,V,champion,,,,,1.05,V,1.05,V,primary,,7,,Table 1,,1.05,extracted,,table_header
+P037,R0023,D003,M006,,Jsc,19.63,mA/cm2,champion,,,,,19.63,mA/cm2,19.63,mA/cm2,primary,,7,,Table 1,,19.63,extracted,,table_header
+P037,R0024,D003,M006,,FF,60.00,%,champion,,,,,0.60,,60.00,%,primary,,7,,Table 1,,0.60,extracted,,dimensionless_convention
+P037,R0025,D004,M007,,PCE,9.54,%,mean,1.07,12,,,9.54,%,9.54,%,primary,,7,,Table 1,,9.54,extracted,,table_header
+P037,R0026,D004,M007,,Voc,1.05,V,mean,0.05,12,,,1.05,V,1.05,V,primary,,7,,Table 1,,1.05,extracted,,table_header
+P037,R0027,D004,M007,,Jsc,17.08,mA/cm2,mean,0.57,12,,,17.08,mA/cm2,17.08,mA/cm2,primary,,7,,Table 1,,17.08,extracted,,table_header
+P037,R0028,D004,M007,,FF,53.00,%,mean,3.00,12,,,0.53,,53.00,%,primary,,7,,Table 1,,0.53,extracted,,dimensionless_convention
+P037,R0029,D004,M008,,PCE,10.76,%,champion,,,,,10.76,%,10.76,%,primary,,7,,Table 1,,10.76,extracted,,table_header
+P037,R0030,D004,M008,,Voc,1.08,V,champion,,,,,1.08,V,1.08,V,primary,,7,,Table 1,,1.08,extracted,,table_header
+P037,R0031,D004,M008,,Jsc,17.48,mA/cm2,champion,,,,,17.48,mA/cm2,17.48,mA/cm2,primary,,7,,Table 1,,17.48,extracted,,table_header
+P037,R0032,D004,M008,,FF,57.00,%,champion,,,,,0.57,,57.00,%,primary,,7,,Table 1,,0.57,extracted,,dimensionless_convention
+P037,R0033,D005,M009,,PCE,11.25,%,mean,1.30,12,,,11.25,%,11.25,%,primary,,7,,Table 1,,11.25,extracted,,table_header
+P037,R0034,D005,M009,,Voc,1.06,V,mean,0.07,12,,,1.06,V,1.06,V,primary,,7,,Table 1,,1.06,extracted,,table_header
+P037,R0035,D005,M009,,Jsc,18.99,mA/cm2,mean,0.63,12,,,18.99,mA/cm2,18.99,mA/cm2,primary,,7,,Table 1,,18.99,extracted,,table_header
+P037,R0036,D005,M009,,FF,56.00,%,mean,3.00,12,,,0.56,,56.00,%,primary,,7,,Table 1,,0.56,extracted,,dimensionless_convention
+P037,R0037,D005,M010,,PCE,12.41,%,champion,,,,,12.41,%,12.41,%,primary,,7,,Table 1,,12.41,extracted,,table_header
+P037,R0038,D005,M010,,Voc,1.08,V,champion,,,,,1.08,V,1.08,V,primary,,7,,Table 1,,1.08,extracted,,table_header
+P037,R0039,D005,M010,,Jsc,20.06,mA/cm2,champion,,,,,20.06,mA/cm2,20.06,mA/cm2,primary,,7,,Table 1,,20.06,extracted,,table_header
+P037,R0040,D005,M010,,FF,57.00,%,champion,,,,,0.57,,57.00,%,primary,,7,,Table 1,,0.57,extracted,,dimensionless_convention
+P037,R0041,D006,M011,,PCE,9.81,%,mean,1.34,9,,,9.81,%,9.81,%,primary,,8,,Table 2,,9.81,extracted,,table_header
+P037,R0042,D006,M011,,Voc,1.03,V,mean,0.02,9,,,1.03,V,1.03,V,primary,,8,,Table 2,,1.03,extracted,,table_header
+P037,R0043,D006,M011,,Jsc,17.51,mA/cm2,mean,1.05,9,,,17.51,mA/cm2,17.51,mA/cm2,primary,,8,,Table 2,,17.51,extracted,,table_header
+P037,R0044,D006,M011,,FF,54.00,%,mean,3.00,9,,,0.54,,54.00,%,primary,,8,,Table 2,,0.54,extracted,,dimensionless_convention
+P037,R0045,D006,M012,,PCE,12.04,%,champion,,,,,12.04,%,12.04,%,primary,,8,,Table 2,,12.04,extracted,,table_header
+P037,R0046,D006,M012,,Voc,1.07,V,champion,,,,,1.07,V,1.07,V,primary,,8,,Table 2,,1.07,extracted,,table_header
+P037,R0047,D006,M012,,Jsc,18.99,mA/cm2,champion,,,,,18.99,mA/cm2,18.99,mA/cm2,primary,,8,,Table 2,,18.99,extracted,,table_header
+P037,R0048,D006,M012,,FF,59.00,%,champion,,,,,0.59,,59.00,%,primary,,8,,Table 2,,0.59,extracted,,dimensionless_convention
+P037,R0049,D007,M013,,PCE,10.33,%,mean,1.28,9,,,10.33,%,10.33,%,primary,,8,,Table 2,,10.33,extracted,,table_header
+P037,R0050,D007,M013,,Voc,1.04,V,mean,0.03,9,,,1.04,V,1.04,V,primary,,8,,Table 2,,1.04,extracted,,table_header
+P037,R0051,D007,M013,,Jsc,18.06,mA/cm2,mean,1.00,9,,,18.06,mA/cm2,18.06,mA/cm2,primary,,8,,Table 2,,18.06,extracted,,table_header
+P037,R0052,D007,M013,,FF,55.00,%,mean,5.00,9,,,0.55,,55.00,%,primary,,8,,Table 2,,0.55,extracted,,dimensionless_convention
+P037,R0053,D007,M014,,PCE,11.98,%,champion,,,,,11.98,%,11.98,%,primary,,8,,Table 2,,11.98,extracted,,table_header
+P037,R0054,D007,M014,,Voc,1.07,V,champion,,,,,1.07,V,1.07,V,primary,,8,,Table 2,,1.07,extracted,,table_header
+P037,R0055,D007,M014,,Jsc,17.79,mA/cm2,champion,,,,,17.79,mA/cm2,17.79,mA/cm2,primary,,8,,Table 2,,17.79,extracted,,table_header
+P037,R0056,D007,M014,,FF,63.00,%,champion,,,,,0.63,,63.00,%,primary,,8,,Table 2,,0.63,extracted,,dimensionless_convention
+P037,R0057,D008,M015,,PCE,12.75,%,mean,0.97,9,,,12.75,%,12.75,%,primary,,8,,Table 2,,12.75,extracted,,table_header
+P037,R0058,D008,M015,,Voc,1.07,V,mean,0.01,9,,,1.07,V,1.07,V,primary,,8,,Table 2,,1.07,extracted,,table_header
+P037,R0059,D008,M015,,Jsc,18.77,mA/cm2,mean,0.84,9,,,18.77,mA/cm2,18.77,mA/cm2,primary,,8,,Table 2,,18.77,extracted,,table_header
+P037,R0060,D008,M015,,FF,63.00,%,mean,3.00,9,,,0.63,,63.00,%,primary,,8,,Table 2,,0.63,extracted,,dimensionless_convention
+P037,R0061,D008,M016,,PCE,14.56,%,champion,,,,,14.56,%,14.56,%,primary,,8,,Table 2,,14.56,extracted,,table_header
+P037,R0062,D008,M016,,Voc,1.08,V,champion,,,,,1.08,V,1.08,V,primary,,8,,Table 2,,1.08,extracted,,table_header
+P037,R0063,D008,M016,,Jsc,20.16,mA/cm2,champion,,,,,20.16,mA/cm2,20.16,mA/cm2,primary,,8,,Table 2,,20.16,extracted,,table_header
+P037,R0064,D008,M016,,FF,67.00,%,champion,,,,,0.67,,67.00,%,primary,,8,,Table 2,,0.67,extracted,,dimensionless_convention
+P037,R0065,D009,M017,,PCE,13.31,%,mean,0.65,5,,,13.31,%,13.31,%,primary,,11,,Table 3,,13.31,extracted,,table_header
+P037,R0066,D009,M017,,Voc,1.11,V,mean,0.02,5,,,1.11,V,1.11,V,primary,,11,,Table 3,,1.11,extracted,,table_header
+P037,R0067,D009,M017,,Jsc,20.33,mA/cm2,mean,0.30,5,,,20.33,mA/cm2,20.33,mA/cm2,primary,,11,,Table 3,,20.33,extracted,,table_header
+P037,R0068,D009,M017,,FF,59.00,%,mean,3.00,5,,,0.59,,59.00,%,primary,,11,,Table 3,,0.59,extracted,,dimensionless_convention
+P037,R0069,D009,M018,,PCE,8.54,%,mean,0.90,5,,,8.54,%,8.54,%,primary,,11,,Table 3,,8.54,extracted,,table_header
+P037,R0070,D009,M018,,Voc,1.03,V,mean,0.03,5,,,1.03,V,1.03,V,primary,,11,,Table 3,,1.03,extracted,,table_header
+P037,R0071,D009,M018,,Jsc,20.06,mA/cm2,mean,0.32,5,,,20.06,mA/cm2,20.06,mA/cm2,primary,,11,,Table 3,,20.06,extracted,,table_header
+P037,R0072,D009,M018,,FF,41.00,%,mean,3.00,5,,,0.41,,41.00,%,primary,,11,,Table 3,,0.41,extracted,,dimensionless_convention
+P037,R0073,D009,M019,,PCE,14.46,%,champion,,,,,14.46,%,14.46,%,primary,,11,,Table 3,,14.46,extracted,,table_header
+P037,R0074,D009,M019,,Voc,1.12,V,champion,,,,,1.12,V,1.12,V,primary,,11,,Table 3,,1.12,extracted,,table_header
+P037,R0075,D009,M019,,Jsc,20.38,mA/cm2,champion,,,,,20.38,mA/cm2,20.38,mA/cm2,primary,,11,,Table 3,,20.38,extracted,,table_header
+P037,R0076,D009,M019,,FF,63.00,%,champion,,,,,0.63,,63.00,%,primary,,11,,Table 3,,0.63,extracted,,dimensionless_convention
+P037,R0077,D010,M020,,PCE,14.37,%,mean,0.70,5,,,14.37,%,14.37,%,primary,,11,,Table 3,,14.37,extracted,,table_header
+P037,R0078,D010,M020,,Voc,1.11,V,mean,0.01,5,,,1.11,V,1.11,V,primary,,11,,Table 3,,1.11,extracted,,table_header
+P037,R0079,D010,M020,,Jsc,21.00,mA/cm2,mean,0.25,5,,,21.00,mA/cm2,21.00,mA/cm2,primary,,11,,Table 3,,21.00,extracted,,table_header
+P037,R0080,D010,M020,,FF,62.00,%,mean,3.00,5,,,0.62,,62.00,%,primary,,11,,Table 3,,0.62,extracted,,dimensionless_convention
+P037,R0081,D010,M021,,PCE,11.39,%,mean,0.26,5,,,11.39,%,11.39,%,primary,,11,,Table 3,,11.39,extracted,,table_header
+P037,R0082,D010,M021,,Voc,1.06,V,mean,0.02,5,,,1.06,V,1.06,V,primary,,11,,Table 3,,1.06,extracted,,table_header
+P037,R0083,D010,M021,,Jsc,21.10,mA/cm2,mean,0.19,5,,,21.10,mA/cm2,21.10,mA/cm2,primary,,11,,Table 3,,21.10,extracted,,table_header
+P037,R0084,D010,M021,,FF,51.00,%,mean,1.00,5,,,0.51,,51.00,%,primary,,11,,Table 3,,0.51,extracted,,dimensionless_convention
+P037,R0085,D010,M022,,PCE,15.23,%,champion,,,,,15.23,%,15.23,%,primary,,11,,Table 3,,15.23,extracted,,table_header
+P037,R0086,D010,M022,,Voc,1.10,V,champion,,,,,1.10,V,1.10,V,primary,,11,,Table 3,,1.10,extracted,,table_header
+P037,R0087,D010,M022,,Jsc,21.09,mA/cm2,champion,,,,,21.09,mA/cm2,21.09,mA/cm2,primary,,11,,Table 3,,21.09,extracted,,table_header
+P037,R0088,D010,M022,,FF,65.00,%,champion,,,,,0.65,,65.00,%,primary,,11,,Table 3,,0.65,extracted,,dimensionless_convention
+P037,R0089,D011,M023,,PCE,15.34,%,mean,0.70,5,,,15.34,%,15.34,%,primary,,11,,Table 3,,15.34,extracted,,table_header
+P037,R0090,D011,M023,,Voc,1.11,V,mean,0.00,5,,,1.11,V,1.11,V,primary,,11,,Table 3,,1.11,extracted,,table_header
+P037,R0091,D011,M023,,Jsc,21.11,mA/cm2,mean,0.17,5,,,21.11,mA/cm2,21.11,mA/cm2,primary,,11,,Table 3,,21.11,extracted,,table_header
+P037,R0092,D011,M023,,FF,66.00,%,mean,3.00,5,,,0.66,,66.00,%,primary,,11,,Table 3,,0.66,extracted,,dimensionless_convention
+P037,R0093,D011,M024,,PCE,11.73,%,mean,0.61,5,,,11.73,%,11.73,%,primary,,11,,Table 3,,11.73,extracted,,table_header
+P037,R0094,D011,M024,,Voc,1.05,V,mean,0.02,5,,,1.05,V,1.05,V,primary,,11,,Table 3,,1.05,extracted,,table_header
+P037,R0095,D011,M024,,Jsc,21.09,mA/cm2,mean,0.16,5,,,21.09,mA/cm2,21.09,mA/cm2,primary,,11,,Table 3,,21.09,extracted,,table_header
+P037,R0096,D011,M024,,FF,53.00,%,mean,3.00,5,,,0.53,,53.00,%,primary,,11,,Table 3,,0.53,extracted,,dimensionless_convention
+P037,R0097,D011,M025,,PCE,15.73,%,champion,,,,,15.73,%,15.73,%,primary,,11,,Table 3,,15.73,extracted,,table_header
+P037,R0098,D011,M025,,Voc,1.10,V,champion,,,,,1.10,V,1.10,V,primary,,11,,Table 3,,1.10,extracted,,table_header
+P037,R0099,D011,M025,,Jsc,20.99,mA/cm2,champion,,,,,20.99,mA/cm2,20.99,mA/cm2,primary,,11,,Table 3,,20.99,extracted,,table_header
+P037,R0100,D011,M025,,FF,68.00,%,champion,,,,,0.68,,68.00,%,primary,,11,,Table 3,,0.68,extracted,,dimensionless_convention
+P037,R0101,D012,M026,,PCE,15.07,%,mean,0.45,5,,,15.07,%,15.07,%,primary,,11,,Table 3,,15.07,extracted,,table_header
+P037,R0102,D012,M026,,Voc,1.11,V,mean,0.00,5,,,1.11,V,1.11,V,primary,,11,,Table 3,,1.11,extracted,,table_header
+P037,R0103,D012,M026,,Jsc,20.94,mA/cm2,mean,0.39,5,,,20.94,mA/cm2,20.94,mA/cm2,primary,,11,,Table 3,,20.94,extracted,,table_header
+P037,R0104,D012,M026,,FF,65.00,%,mean,1.00,5,,,0.65,,65.00,%,primary,,11,,Table 3,,0.65,extracted,,dimensionless_convention
+P037,R0105,D012,M027,,PCE,12.05,%,mean,0.42,5,,,12.05,%,12.05,%,primary,,11,,Table 3,,12.05,extracted,,table_header
+P037,R0106,D012,M027,,Voc,1.06,V,mean,0.01,5,,,1.06,V,1.06,V,primary,,11,,Table 3,,1.06,extracted,,table_header
+P037,R0107,D012,M027,,Jsc,20.98,mA/cm2,mean,0.38,5,,,20.98,mA/cm2,20.98,mA/cm2,primary,,11,,Table 3,,20.98,extracted,,table_header
+P037,R0108,D012,M027,,FF,54.00,%,mean,2.00,5,,,0.54,,54.00,%,primary,,11,,Table 3,,0.54,extracted,,dimensionless_convention
+P037,R0109,D012,M028,,PCE,15.86,%,champion,,,,,15.86,%,15.86,%,primary,,11,,Table 3,,15.86,extracted,,table_header
+P037,R0110,D012,M028,,Voc,1.11,V,champion,,,,,1.11,V,1.11,V,primary,,11,,Table 3,,1.11,extracted,,table_header
+P037,R0111,D012,M028,,Jsc,21.36,mA/cm2,champion,,,,,21.36,mA/cm2,21.36,mA/cm2,primary,,11,,Table 3,,21.36,extracted,,table_header
+P037,R0112,D012,M028,,FF,67.00,%,champion,,,,,0.67,,67.00,%,primary,,11,,Table 3,,0.67,extracted,,dimensionless_convention
+P037,R0113,D013,M029,,PCE,13.93,%,mean,0.72,5,,,13.93,%,13.93,%,primary,,11,,Table 3,,13.93,extracted,,table_header
+P037,R0114,D013,M029,,Voc,1.10,V,mean,0.01,5,,,1.10,V,1.10,V,primary,,11,,Table 3,,1.10,extracted,,table_header
+P037,R0115,D013,M029,,Jsc,20.62,mA/cm2,mean,0.25,5,,,20.62,mA/cm2,20.62,mA/cm2,primary,,11,,Table 3,,20.62,extracted,,table_header
+P037,R0116,D013,M029,,FF,61.00,%,mean,3.00,5,,,0.61,,61.00,%,primary,,11,,Table 3,,0.61,extracted,,dimensionless_convention
+P037,R0117,D013,M030,,PCE,11.12,%,mean,0.69,5,,,11.12,%,11.12,%,primary,,11,,Table 3,,11.12,extracted,,table_header
+P037,R0118,D013,M030,,Voc,1.06,V,mean,0.02,5,,,1.06,V,1.06,V,primary,,11,,Table 3,,1.06,extracted,,table_header
+P037,R0119,D013,M030,,Jsc,20.64,mA/cm2,mean,0.12,5,,,20.64,mA/cm2,20.64,mA/cm2,primary,,11,,Table 3,,20.64,extracted,,table_header
+P037,R0120,D013,M030,,FF,51.00,%,mean,2.00,5,,,0.51,,51.00,%,primary,,11,,Table 3,,0.51,extracted,,dimensionless_convention
+P037,R0121,D013,M031,,PCE,14.80,%,champion,,,,,14.80,%,14.80,%,primary,,11,,Table 3,,14.80,extracted,,table_header
+P037,R0122,D013,M031,,Voc,1.11,V,champion,,,,,1.11,V,1.11,V,primary,,11,,Table 3,,1.11,extracted,,table_header
+P037,R0123,D013,M031,,Jsc,20.99,mA/cm2,champion,,,,,20.99,mA/cm2,20.99,mA/cm2,primary,,11,,Table 3,,20.99,extracted,,table_header
+P037,R0124,D013,M031,,FF,64.00,%,champion,,,,,0.64,,64.00,%,primary,,11,,Table 3,,0.64,extracted,,dimensionless_convention
+P037,R0125,D014,M032,,PCE,16.61,%,mean,0.70,14,,,16.61,%,16.61,%,primary,,13,,Table 5,,16.61,extracted,,table_header
+P037,R0126,D014,M032,,Voc,1.10,V,mean,0.01,14,,,1.10,V,1.10,V,primary,,13,,Table 5,,1.10,extracted,,table_header
+P037,R0127,D014,M032,,Jsc,20.85,mA/cm2,mean,0.26,14,,,20.85,mA/cm2,20.85,mA/cm2,primary,,13,,Table 5,,20.85,extracted,,table_header
+P037,R0128,D014,M032,,FF,73.00,%,mean,2.00,14,,,0.73,,73.00,%,primary,,13,,Table 5,,0.73,extracted,,dimensionless_convention
+P037,R0129,D014,M033,,PCE,13.93,%,mean,0.66,14,,,13.93,%,13.93,%,primary,,13,,Table 5,,13.93,extracted,,table_header
+P037,R0130,D014,M033,,Voc,1.02,V,mean,0.01,14,,,1.02,V,1.02,V,primary,,13,,Table 5,,1.02,extracted,,table_header
+P037,R0131,D014,M033,,Jsc,21.01,mA/cm2,mean,0.24,14,,,21.01,mA/cm2,21.01,mA/cm2,primary,,13,,Table 5,,21.01,extracted,,table_header
+P037,R0132,D014,M033,,FF,65.00,%,mean,3.00,14,,,0.65,,65.00,%,primary,,13,,Table 5,,0.65,extracted,,dimensionless_convention
+P037,R0133,D014,M034,,PCE,17.37,%,champion,,,,,17.37,%,17.37,%,primary,,13,,Table 5,,17.37,extracted,,table_header
+P037,R0134,D014,M034,,Voc,1.10,V,champion,,,,,1.10,V,1.10,V,primary,,13,,Table 5,,1.10,extracted,,table_header
+P037,R0135,D014,M034,,Jsc,21.13,mA/cm2,champion,,,,,21.13,mA/cm2,21.13,mA/cm2,primary,,13,,Table 5,,21.13,extracted,,table_header
+P037,R0136,D014,M034,,FF,75.00,%,champion,,,,,0.75,,75.00,%,primary,,13,,Table 5,,0.75,extracted,,dimensionless_convention
+P037,R0137,D015,M035,,PCE,15.57,%,mean,0.66,7,,,15.57,%,15.57,%,primary,,13,,Table 5,,15.57,extracted,,table_header
+P037,R0138,D015,M035,,Voc,1.06,V,mean,0.00,7,,,1.06,V,1.06,V,primary,,13,,Table 5,,1.06,extracted,,table_header
+P037,R0139,D015,M035,,Jsc,20.42,mA/cm2,mean,0.36,7,,,20.42,mA/cm2,20.42,mA/cm2,primary,,13,,Table 5,,20.42,extracted,,table_header
+P037,R0140,D015,M035,,FF,72.00,%,mean,2.00,7,,,0.72,,72.00,%,primary,,13,,Table 5,,0.72,extracted,,dimensionless_convention
+P037,R0141,D015,M036,,PCE,12.29,%,mean,0.45,7,,,12.29,%,12.29,%,primary,,13,,Table 5,,12.29,extracted,,table_header
+P037,R0142,D015,M036,,Voc,0.94,V,mean,0.01,7,,,0.94,V,0.94,V,primary,,13,,Table 5,,0.94,extracted,,table_header
+P037,R0143,D015,M036,,Jsc,20.42,mA/cm2,mean,0.45,7,,,20.42,mA/cm2,20.42,mA/cm2,primary,,13,,Table 5,,20.42,extracted,,table_header
+P037,R0144,D015,M036,,FF,64.00,%,mean,2.00,7,,,0.64,,64.00,%,primary,,13,,Table 5,,0.64,extracted,,dimensionless_convention
+P037,R0145,D015,M037,,PCE,16.53,%,champion,,,,,16.53,%,16.53,%,primary,,13,,Table 5,,16.53,extracted,,table_header
+P037,R0146,D015,M037,,Voc,1.06,V,champion,,,,,1.06,V,1.06,V,primary,,13,,Table 5,,1.06,extracted,,table_header
+P037,R0147,D015,M037,,Jsc,20.96,mA/cm2,champion,,,,,20.96,mA/cm2,20.96,mA/cm2,primary,,13,,Table 5,,20.96,extracted,,table_header
+P037,R0148,D015,M037,,FF,74.00,%,champion,,,,,0.74,,74.00,%,primary,,13,,Table 5,,0.74,extracted,,dimensionless_convention
+P037,R0149,D016,M038,,PCE,11.30,%,mean,0.77,8,,,11.30,%,11.30,%,primary,,13,,Table 5,,11.30,extracted,,table_header
+P037,R0150,D016,M038,,Voc,0.95,V,mean,0.03,8,,,0.95,V,0.95,V,primary,,13,,Table 5,,0.95,extracted,,table_header
+P037,R0151,D016,M038,,Jsc,18.81,mA/cm2,mean,0.46,8,,,18.81,mA/cm2,18.81,mA/cm2,primary,,13,,Table 5,,18.81,extracted,,table_header
+P037,R0152,D016,M038,,FF,63.00,%,mean,3.00,8,,,0.63,,63.00,%,primary,,13,,Table 5,,0.63,extracted,,dimensionless_convention
+P037,R0153,D016,M039,,PCE,9.85,%,mean,0.48,8,,,9.85,%,9.85,%,primary,,13,,Table 5,,9.85,extracted,,table_header
+P037,R0154,D016,M039,,Voc,0.85,V,mean,0.02,8,,,0.85,V,0.85,V,primary,,13,,Table 5,,0.85,extracted,,table_header
+P037,R0155,D016,M039,,Jsc,18.73,mA/cm2,mean,0.56,8,,,18.73,mA/cm2,18.73,mA/cm2,primary,,13,,Table 5,,18.73,extracted,,table_header
+P037,R0156,D016,M039,,FF,62.00,%,mean,3.00,8,,,0.62,,62.00,%,primary,,13,,Table 5,,0.62,extracted,,dimensionless_convention
+P037,R0157,D016,M040,,PCE,12.59,%,champion,,,,,12.59,%,12.59,%,primary,,13,,Table 5,,12.59,extracted,,table_header
+P037,R0158,D016,M040,,Voc,0.99,V,champion,,,,,0.99,V,0.99,V,primary,,13,,Table 5,,0.99,extracted,,table_header
+P037,R0159,D016,M040,,Jsc,19.58,mA/cm2,champion,,,,,19.58,mA/cm2,19.58,mA/cm2,primary,,13,,Table 5,,19.58,extracted,,table_header
+P037,R0160,D016,M040,,FF,65.00,%,champion,,,,,0.65,,65.00,%,primary,,13,,Table 5,,0.65,extracted,,dimensionless_convention
+P037,R0161,D017,M041,,PCE,10.32,%,mean,0.81,7,,,10.32,%,10.32,%,primary,,13,,Table 5,,10.32,extracted,,table_header
+P037,R0162,D017,M041,,Voc,0.91,V,mean,0.04,7,,,0.91,V,0.91,V,primary,,13,,Table 5,,0.91,extracted,,table_header
+P037,R0163,D017,M041,,Jsc,17.82,mA/cm2,mean,0.45,7,,,17.82,mA/cm2,17.82,mA/cm2,primary,,13,,Table 5,,17.82,extracted,,table_header
+P037,R0164,D017,M041,,FF,64.00,%,mean,5.00,7,,,0.64,,64.00,%,primary,,13,,Table 5,,0.64,extracted,,dimensionless_convention
+P037,R0165,D017,M042,,PCE,9.73,%,mean,0.63,7,,,9.73,%,9.73,%,primary,,13,,Table 5,,9.73,extracted,,table_header
+P037,R0166,D017,M042,,Voc,0.85,V,mean,0.03,7,,,0.85,V,0.85,V,primary,,13,,Table 5,,0.85,extracted,,table_header
+P037,R0167,D017,M042,,Jsc,17.72,mA/cm2,mean,0.52,7,,,17.72,mA/cm2,17.72,mA/cm2,primary,,13,,Table 5,,17.72,extracted,,table_header
+P037,R0168,D017,M042,,FF,65.00,%,mean,4.00,7,,,0.65,,65.00,%,primary,,13,,Table 5,,0.65,extracted,,dimensionless_convention
+P037,R0169,D017,M043,,PCE,11.70,%,champion,,,,,11.70,%,11.70,%,primary,,13,,Table 5,,11.70,extracted,,table_header
+P037,R0170,D017,M043,,Voc,0.94,V,champion,,,,,0.94,V,0.94,V,primary,,13,,Table 5,,0.94,extracted,,table_header
+P037,R0171,D017,M043,,Jsc,18.25,mA/cm2,champion,,,,,18.25,mA/cm2,18.25,mA/cm2,primary,,13,,Table 5,,18.25,extracted,,table_header
+P037,R0172,D017,M043,,FF,68.00,%,champion,,,,,0.68,,68.00,%,primary,,13,,Table 5,,0.68,extracted,,dimensionless_convention
+P047,R0001,D001,M001,,Voc,0.800,V,,,,,,800,mV,0.800,V,primary,,4,,Table 1,,800,extracted,,table_header
+P047,R0002,D001,M001,,FF,43.9,%,,,,,,43.9,%,43.9,%,primary,,4,,Table 1,,43.9,extracted,,table_header
+P047,R0003,D001,M001,,PCE,5.7,%,,,,,,5.7,%,5.7,%,primary,,4,,Table 1,,5.7,extracted,,table_header
+P047,R0004,D002,M002,,Voc,0.850,V,,,,,,850,mV,0.850,V,primary,,4,,Table 1,,850,extracted,,table_header
+P047,R0005,D002,M002,,FF,40.0,%,,,,,,40.0,%,40.0,%,primary,,4,,Table 1,,40.0,extracted,,table_header
+P047,R0006,D002,M002,,PCE,8.9,%,,,,,,8.9,%,8.9,%,primary,,4,,Table 1,,8.9,extracted,,table_header
+P047,R0007,D003,M003,,Voc,0.820,V,,,,,,820,mV,0.820,V,primary,,4,,Table 1,,820,extracted,,table_header
+P047,R0008,D003,M003,,FF,45.0,%,,,,,,45.0,%,45.0,%,primary,,4,,Table 1,,45.0,extracted,,table_header
+P047,R0009,D003,M003,,PCE,6.4,%,,,,,,6.4,%,6.4,%,primary,,4,,Table 1,,6.4,extracted,,table_header
+P047,R0010,D004,M004,,Voc,0.860,V,,,,,,860,mV,0.860,V,primary,,4,,Table 1,,860,extracted,,table_header
+P047,R0011,D004,M004,,FF,41.2,%,,,,,,41.2,%,41.2,%,primary,,4,,Table 1,,41.2,extracted,,table_header
+P047,R0012,D004,M004,,PCE,8.8,%,,,,,,8.8,%,8.8,%,primary,,4,,Table 1,,8.8,extracted,,table_header
+P056,R0001,D001,M001,,Voc,0.58,V,,,,,,0.58,V,0.58,V,primary,,6,,Table 1,,0.58,extracted,,table_header
+P056,R0002,D001,M001,,Jsc,14.61,mA/cm2,,,,,,14.61,mA cm−2,14.61,mA/cm2,primary,,6,,Table 1,,14.61,extracted,,table_header
+P056,R0003,D001,M001,,FF,42.28,%,,,,,,42.28,%,42.28,%,primary,,6,,Table 1,,42.28,extracted,,table_header
+P056,R0004,D001,M001,,PCE,3.58,%,,,,,,3.58,%,3.58,%,primary,,6,,Table 1,,3.58,extracted,,table_header
+P056,R0005,D002,M002,,Voc,0.67,V,,,,,,0.67,V,0.67,V,primary,,6,,Table 1,,0.67,extracted,,table_header
+P056,R0006,D002,M002,,Jsc,20.32,mA/cm2,,,,,,20.32,mA cm−2,20.32,mA/cm2,primary,,6,,Table 1,,20.32,extracted,,table_header
+P056,R0007,D002,M002,,FF,36.87,%,,,,,,36.87,%,36.87,%,primary,,6,,Table 1,,36.87,extracted,,table_header
+P056,R0008,D002,M002,,PCE,5.00,%,,,,,,5.00,%,5.00,%,primary,,6,,Table 1,,5.00,extracted,,table_header
+P056,R0009,D003,M003,,Voc,0.68,V,,,,,,0.68,V,0.68,V,primary,,6,,Table 1,,0.68,extracted,,table_header
+P056,R0010,D003,M003,,Jsc,21.06,mA/cm2,,,,,,21.06,mA cm−2,21.06,mA/cm2,primary,,6,,Table 1,,21.06,extracted,,table_header
+P056,R0011,D003,M003,,FF,37.40,%,,,,,,37.40,%,37.40,%,primary,,6,,Table 1,,37.40,extracted,,table_header
+P056,R0012,D003,M003,,PCE,5.41,%,,,,,,5.41,%,5.41,%,primary,,6,,Table 1,,5.41,extracted,,table_header
+P056,R0013,D004,M004,,Voc,0.70,V,,,,,,0.70,V,0.70,V,primary,,6,,Table 1,,0.70,extracted,,table_header
+P056,R0014,D004,M004,,Jsc,21.54,mA/cm2,,,,,,21.54,mA cm−2,21.54,mA/cm2,primary,,6,,Table 1,,21.54,extracted,,table_header
+P056,R0015,D004,M004,,FF,35.38,%,,,,,,35.38,%,35.38,%,primary,,6,,Table 1,,35.38,extracted,,table_header
+P056,R0016,D004,M004,,PCE,5.29,%,,,,,,5.29,%,5.29,%,primary,,6,,Table 1,,5.29,extracted,,table_header
+P056,R0017,D005,M005,,Voc,0.71,V,,,,,,0.71,V,0.71,V,primary,,6,,Table 1,,0.71,extracted,,table_header
+P056,R0018,D005,M005,,Jsc,19.26,mA/cm2,,,,,,19.26,mA cm−2,19.26,mA/cm2,primary,,6,,Table 1,,19.26,extracted,,table_header
+P056,R0019,D005,M005,,FF,39.26,%,,,,,,39.26,%,39.26,%,primary,,6,,Table 1,,39.26,extracted,,table_header
+P056,R0020,D005,M005,,PCE,5.40,%,,,,,,5.40,%,5.40,%,primary,,6,,Table 1,,5.40,extracted,,table_header
+P056,R0021,D006,M006,,Voc,0.69,V,,,,,,0.69,V,0.69,V,primary,,6,,Table 1,,0.69,extracted,,table_header
+P056,R0022,D006,M006,,Jsc,22.33,mA/cm2,,,,,,22.33,mA cm−2,22.33,mA/cm2,primary,,6,,Table 1,,22.33,extracted,,table_header
+P056,R0023,D006,M006,,FF,37.17,%,,,,,,37.17,%,37.17,%,primary,,6,,Table 1,,37.17,extracted,,table_header
+P056,R0024,D006,M006,,PCE,5.70,%,,,,,,5.70,%,5.70,%,primary,,6,,Table 1,,5.70,extracted,,table_header
+P056,R0025,D007,M007,,Voc,0.60,V,,,,,,0.60,V,0.60,V,primary,,6,,Table 1,,0.60,extracted,,table_header
+P056,R0026,D007,M007,,Jsc,19.35,mA/cm2,,,,,,19.35,mA cm−2,19.35,mA/cm2,primary,,6,,Table 1,,19.35,extracted,,table_header
+P056,R0027,D007,M007,,FF,36.44,%,,,,,,36.44,%,36.44,%,primary,,6,,Table 1,,36.44,extracted,,table_header
+P056,R0028,D007,M007,,PCE,4.25,%,,,,,,4.25,%,4.25,%,primary,,6,,Table 1,,4.25,extracted,,table_header
+P056,R0029,D008,M008,,Voc,0.62,V,,,,,,0.62,V,0.62,V,primary,,6,,Table 1,,0.62,extracted,,table_header
+P056,R0030,D008,M008,,Jsc,15.41,mA/cm2,,,,,,15.41,mA cm−2,15.41,mA/cm2,primary,,6,,Table 1,,15.41,extracted,,table_header
+P056,R0031,D008,M008,,FF,55.96,%,,,,,,55.96,%,55.96,%,primary,,6,,Table 1,,55.96,extracted,,table_header
+P056,R0032,D008,M008,,PCE,5.34,%,,,,,,5.34,%,5.34,%,primary,,6,,Table 1,,5.34,extracted,,table_header
+P056,R0033,D009,M009,,Voc,0.68,V,,,,,,0.68,V,0.68,V,primary,,6,,Table 1,,0.68,extracted,,table_header
+P056,R0034,D009,M009,,Jsc,21.47,mA/cm2,,,,,,21.47,mA cm−2,21.47,mA/cm2,primary,,6,,Table 1,,21.47,extracted,,table_header
+P056,R0035,D009,M009,,FF,47.81,%,,,,,,47.81,%,47.81,%,primary,,6,,Table 1,,47.81,extracted,,table_header
+P056,R0036,D009,M009,,PCE,6.95,%,,,,,,6.95,%,6.95,%,primary,,6,,Table 1,,6.95,extracted,,table_header
+P060,R0001,D001,M001,,Jsc,21.7,mA/cm2,champion,,,,,21.7,mA cm−2,21.7,mA/cm2,primary,,5,,Table 1,,21.7,extracted,,table_header
+P060,R0002,D001,M001,,Voc,1.06,V,champion,,,,,1.06,V,1.06,V,primary,,5,,Table 1,,1.06,extracted,,table_header
+P060,R0003,D001,M001,,PCE,18.3,%,champion,,,,,18.3,%,18.3,%,primary,,5,,Table 1,,18.3,extracted,,table_header
+P060,R0004,D001,M001,,FF,80.00,%,champion,,,,,0.80,,80.00,%,primary,,5,,Table 1,,0.80,extracted,,dimensionless_convention
+P060,R0005,D002,M002,,Jsc,21.1,mA/cm2,mean,0.2,,,,21.1,mA cm−2,21.1,mA/cm2,primary,,5,,Table 1,,21.1,extracted,,table_header
+P060,R0006,D002,M002,,Voc,1.07,V,mean,0.02,,,,1.07,V,1.07,V,primary,,5,,Table 1,,1.07,extracted,,table_header
+P060,R0007,D002,M002,,PCE,17.0,%,mean,0.3,,,,17.0,%,17.0,%,primary,,5,,Table 1,,17.0,extracted,,table_header
+P060,R0008,D002,M002,,FF,76.00,%,mean,4.00,,,,0.76,,76.00,%,primary,,5,,Table 1,,0.76,extracted,,dimensionless_convention
+P060,R0009,D003,M003,,Jsc,22.2,mA/cm2,champion,,,,,22.2,mA cm−2,22.2,mA/cm2,primary,,5,,Table 1,,22.2,extracted,,table_header
+P060,R0010,D003,M003,,Voc,1.06,V,champion,,,,,1.06,V,1.06,V,primary,,5,,Table 1,,1.06,extracted,,table_header
+P060,R0011,D003,M003,,PCE,19.3,%,champion,,,,,19.3,%,19.3,%,primary,,5,,Table 1,,19.3,extracted,,table_header
+P060,R0012,D003,M003,,FF,82.00,%,champion,,,,,0.82,,82.00,%,primary,,5,,Table 1,,0.82,extracted,,dimensionless_convention
+P060,R0013,D004,M004,,Jsc,21.8,mA/cm2,mean,0.1,,,,21.8,mA cm−2,21.8,mA/cm2,primary,,5,,Table 1,,21.8,extracted,,table_header
+P060,R0014,D004,M004,,Voc,1.07,V,mean,0.02,,,,1.07,V,1.07,V,primary,,5,,Table 1,,1.07,extracted,,table_header
+P060,R0015,D004,M004,,PCE,18.5,%,mean,0.1,,,,18.5,%,18.5,%,primary,,5,,Table 1,,18.5,extracted,,table_header
+P060,R0016,D004,M004,,FF,80.00,%,mean,2.00,,,,0.80,,80.00,%,primary,,5,,Table 1,,0.80,extracted,,dimensionless_convention
+P067,R0001,D001,M001,,Voc,0.2047,V,,,,,,204.7,mV,0.2047,V,primary,,5,,Table 1,,204.7,extracted,,table_header
+P067,R0002,D001,M001,,Jsc,16.15,mA/cm2,,,,,,16.15,mA/cm2,16.15,mA/cm2,primary,,5,,Table 1,,16.15,extracted,,table_header
+P067,R0003,D001,M001,,FF,48.45,%,,,,,,48.45,%,48.45,%,primary,,5,,Table 1,,48.45,extracted,,table_header
+P067,R0004,D001,M001,,PCE,1.60,%,,,,,,1.60,%,1.60,%,primary,,5,,Table 1,,1.60,extracted,,table_header
+P067,R0005,D002,M002,,Voc,0.3462,V,,,,,,346.2,mV,0.3462,V,primary,,5,,Table 1,,346.2,extracted,,table_header
+P067,R0006,D002,M002,,Jsc,17.88,mA/cm2,,,,,,17.88,mA/cm2,17.88,mA/cm2,primary,,5,,Table 1,,17.88,extracted,,table_header
+P067,R0007,D002,M002,,FF,37.23,%,,,,,,37.23,%,37.23,%,primary,,5,,Table 1,,37.23,extracted,,table_header
+P067,R0008,D002,M002,,PCE,2.30,%,,,,,,2.30,%,2.30,%,primary,,5,,Table 1,,2.30,extracted,,table_header
+P067,R0009,D003,M003,,Voc,0.4396,V,,,,,,439.6,mV,0.4396,V,primary,,5,,Table 1,,439.6,extracted,,table_header
+P067,R0010,D003,M003,,Jsc,19.04,mA/cm2,,,,,,19.04,mA/cm2,19.04,mA/cm2,primary,,5,,Table 1,,19.04,extracted,,table_header
+P067,R0011,D003,M003,,FF,55.93,%,,,,,,55.93,%,55.93,%,primary,,5,,Table 1,,55.93,extracted,,table_header
+P067,R0012,D003,M003,,PCE,4.68,%,,,,,,4.68,%,4.68,%,primary,,5,,Table 1,,4.68,extracted,,table_header
+P067,R0013,D004,M004,,Voc,0.3823,V,,,,,,382.3,mV,0.3823,V,primary,,5,,Table 1,,382.3,extracted,,table_header
+P067,R0014,D004,M004,,Jsc,16.77,mA/cm2,,,,,,16.77,mA/cm2,16.77,mA/cm2,primary,,5,,Table 1,,16.77,extracted,,table_header
+P067,R0015,D004,M004,,FF,40.02,%,,,,,,40.02,%,40.02,%,primary,,5,,Table 1,,40.02,extracted,,table_header
+P067,R0016,D004,M004,,PCE,2.57,%,,,,,,2.57,%,2.57,%,primary,,5,,Table 1,,2.57,extracted,,table_header
+P067,R0017,D005,M005,,Voc,0.5539,V,,,,,,553.9,mV,0.5539,V,primary,,8,,Table 2,,553.9,extracted,,table_header
+P067,R0018,D005,M005,,Jsc,19.40,mA/cm2,,,,,,19.40,mA/cm2,19.40,mA/cm2,primary,,8,,Table 2,,19.40,extracted,,table_header
+P067,R0019,D005,M005,,FF,54.53,%,,,,,,54.53,%,54.53,%,primary,,8,,Table 2,,54.53,extracted,,table_header
+P067,R0020,D005,M005,,PCE,5.86,%,,,,,,5.86,%,5.86,%,primary,,8,,Table 2,,5.86,extracted,,table_header
+P067,R0021,D006,M006,,Voc,0.6083,V,,,,,,608.3,mV,0.6083,V,primary,,8,,Table 2,,608.3,extracted,,table_header
+P067,R0022,D006,M006,,Jsc,21.77,mA/cm2,,,,,,21.77,mA/cm2,21.77,mA/cm2,primary,,8,,Table 2,,21.77,extracted,,table_header
+P067,R0023,D006,M006,,FF,56.90,%,,,,,,56.90,%,56.90,%,primary,,8,,Table 2,,56.90,extracted,,table_header
+P067,R0024,D006,M006,,PCE,7.53,%,,,,,,7.53,%,7.53,%,primary,,8,,Table 2,,7.53,extracted,,table_header
+P070,R0001,D001,M001,,PCE,4.8,%,,,,,,4.8,%,4.8,%,primary,,7,,Table 2,,4.8,extracted,,table_header
+P070,R0002,D001,M001,,Voc,0.322,V,,,,,,0.322,V,0.322,V,primary,,7,,Table 2,,0.322,extracted,,table_header
+P070,R0003,D001,M001,,FF,46.3,%,,,,,,46.3,%,46.3,%,primary,,7,,Table 2,,46.3,extracted,,table_header
+P070,R0004,D002,M002,,PCE,5.6,%,,,,,,5.6,%,5.6,%,primary,,7,,Table 2,,5.6,extracted,,table_header
+P070,R0005,D002,M002,,Voc,0.360,V,,,,,,0.360,V,0.360,V,primary,,7,,Table 2,,0.360,extracted,,table_header
+P070,R0006,D002,M002,,FF,46.0,%,,,,,,46.0,%,46.0,%,primary,,7,,Table 2,,46.0,extracted,,table_header
+P070,R0007,D003,M003,,PCE,6.3,%,,,,,,6.3,%,6.3,%,primary,,7,,Table 2,,6.3,extracted,,table_header
+P070,R0008,D003,M003,,Voc,0.366,V,,,,,,0.366,V,0.366,V,primary,,7,,Table 2,,0.366,extracted,,table_header
+P070,R0009,D003,M003,,FF,52.6,%,,,,,,52.6,%,52.6,%,primary,,7,,Table 2,,52.6,extracted,,table_header
+P070,R0010,D004,M004,,PCE,0,%,,,,,,0,%,0,%,primary,,7,,Table 2,,0,extracted,,table_header
+P070,R0011,D004,M004,,Voc,0.018,V,,,,,,0.018,V,0.018,V,primary,,7,,Table 2,,0.018,extracted,,table_header
+P070,R0012,D004,M004,,FF,21.0,%,,,,,,21.0,%,21.0,%,primary,,7,,Table 2,,21.0,extracted,,table_header
+P073,R0001,D001,M001,,Voc,555.9,V,,,,,,555.9,V,555.9,V,primary,,11,,Table2,,555.9,extracted,,table_header
+P073,R0002,D001,M001,,FF,59.87,%,,,,,,59.87,%,59.87,%,primary,,11,,Table2,,59.87,extracted,,table_header
+P073,R0003,D001,M001,,PCE,10.58,%,,,,,,10.58,%,10.58,%,primary,,11,,Table2,,10.58,extracted,,table_header
+P073,R0004,D002,M002,,Voc,568.4,V,,,,,,568.4,V,568.4,V,primary,,11,,Table2,,568.4,extracted,,table_header
+P073,R0005,D002,M002,,FF,75.48,%,,,,,,75.48,%,75.48,%,primary,,11,,Table2,,75.48,extracted,,table_header
+P073,R0006,D002,M002,,PCE,14.43,%,,,,,,14.43,%,14.43,%,primary,,11,,Table2,,14.43,extracted,,table_header
+P073,R0007,D003,M003,,Voc,583.9,V,,,,,,583.9,V,583.9,V,primary,,11,,Table2,,583.9,extracted,,table_header
+P073,R0008,D003,M003,,FF,76.72,%,,,,,,76.72,%,76.72,%,primary,,11,,Table2,,76.72,extracted,,table_header
+P073,R0009,D003,M003,,PCE,16.19,%,,,,,,16.19,%,16.19,%,primary,,11,,Table2,,16.19,extracted,,table_header
+P073,R0010,D004,M004,,Voc,584.1,V,,,,,,584.1,V,584.1,V,primary,,11,,Table2,,584.1,extracted,,table_header
+P073,R0011,D004,M004,,FF,71.69,%,,,,,,71.69,%,71.69,%,primary,,11,,Table2,,71.69,extracted,,table_header
+P073,R0012,D004,M004,,PCE,14.77,%,,,,,,14.77,%,14.77,%,primary,,11,,Table2,,14.77,extracted,,table_header
+P078,R0001,D001,M001,MA0001,Voc,0.87,V,mean,0.04,,,,0.87,V,0.87,V,primary,,7,,Table 2,,0.87,extracted,,table_header
+P078,R0002,D001,M001,MA0001,Jsc,18.99,mA/cm2,mean,1.04,,,,18.99,mA cm (cid:4)2,18.99,mA/cm2,primary,,7,,Table 2,,18.99,extracted,,table_header_font_mapping
+P078,R0003,D001,M001,MA0001,FF,52.81,%,mean,4.79,,,,52.81,%,52.81,%,primary,,7,,Table 2,,52.81,extracted,,table_header
+P078,R0004,D001,M001,MA0001,PCE,8.71,%,mean,1.24,,,,8.71,%,8.71,%,primary,,7,,Table 2,,8.71,extracted,,table_header
+P078,R0005,D001,M002,MA0001,PCE,10.36,%,champion,,,,,10.36,%,10.36,%,primary,,7,,Table 2,,10.36,extracted,,table_header
+P078,R0006,D002,M003,MA0001,Voc,0.89,V,mean,0.02,,,,0.89,V,0.89,V,primary,,7,,Table 2,,0.89,extracted,,table_header
+P078,R0007,D002,M003,MA0001,Jsc,19.73,mA/cm2,mean,0.92,,,,19.73,mA cm (cid:4)2,19.73,mA/cm2,primary,,7,,Table 2,,19.73,extracted,,table_header_font_mapping
+P078,R0008,D002,M003,MA0001,FF,52.71,%,mean,3.48,,,,52.71,%,52.71,%,primary,,7,,Table 2,,52.71,extracted,,table_header
+P078,R0009,D002,M003,MA0001,PCE,9.32,%,mean,0.68,,,,9.32,%,9.32,%,primary,,7,,Table 2,,9.32,extracted,,table_header
+P078,R0010,D002,M004,MA0001,PCE,10.36,%,champion,,,,,10.36,%,10.36,%,primary,,7,,Table 2,,10.36,extracted,,table_header
+P078,R0011,D003,M005,MA0001,Voc,0.92,V,mean,0.04,,,,0.92,V,0.92,V,primary,,7,,Table 2,,0.92,extracted,,table_header
+P078,R0012,D003,M005,MA0001,Jsc,18.98,mA/cm2,mean,1.53,,,,18.98,mA cm (cid:4)2,18.98,mA/cm2,primary,,7,,Table 2,,18.98,extracted,,table_header_font_mapping
+P078,R0013,D003,M005,MA0001,FF,54.78,%,mean,2.39,,,,54.78,%,54.78,%,primary,,7,,Table 2,,54.78,extracted,,table_header
+P078,R0014,D003,M005,MA0001,PCE,9.55,%,mean,0.88,,,,9.55,%,9.55,%,primary,,7,,Table 2,,9.55,extracted,,table_header
+P078,R0015,D003,M006,MA0001,PCE,10.63,%,champion,,,,,10.63,%,10.63,%,primary,,7,,Table 2,,10.63,extracted,,table_header
+P078,R0016,D004,M007,MA0001,Voc,0.91,V,mean,0.03,,,,0.91,V,0.91,V,primary,,7,,Table 2,,0.91,extracted,,table_header
+P078,R0017,D004,M007,MA0001,Jsc,20.13,mA/cm2,mean,0.17,,,,20.13,mA cm (cid:4)2,20.13,mA/cm2,primary,,7,,Table 2,,20.13,extracted,,table_header_font_mapping
+P078,R0018,D004,M007,MA0001,FF,56.20,%,mean,0.47,,,,56.20,%,56.20,%,primary,,7,,Table 2,,56.20,extracted,,table_header
+P078,R0019,D004,M007,MA0001,PCE,10.33,%,mean,0.27,,,,10.33,%,10.33,%,primary,,7,,Table 2,,10.33,extracted,,table_header
+P078,R0020,D004,M008,MA0001,PCE,10.64,%,champion,,,,,10.64,%,10.64,%,primary,,7,,Table 2,,10.64,extracted,,table_header
+P078,R0021,D005,M009,MA0001,Voc,0.89,V,mean,0.03,,,,0.89,V,0.89,V,primary,,7,,Table 2,,0.89,extracted,,table_header
+P078,R0022,D005,M009,MA0001,Jsc,20.79,mA/cm2,mean,1.04,,,,20.79,mA cm (cid:4)2,20.79,mA/cm2,primary,,7,,Table 2,,20.79,extracted,,table_header_font_mapping
+P078,R0023,D005,M009,MA0001,FF,59.18,%,mean,2.98,,,,59.18,%,59.18,%,primary,,7,,Table 2,,59.18,extracted,,table_header
+P078,R0024,D005,M009,MA0001,PCE,10.90,%,mean,0.63,,,,10.90,%,10.90,%,primary,,7,,Table 2,,10.90,extracted,,table_header
+P078,R0025,D005,M010,MA0001,PCE,11.74,%,champion,,,,,11.74,%,11.74,%,primary,,7,,Table 2,,11.74,extracted,,table_header
+P078,R0026,D006,M011,MA0001,Voc,0.92,V,mean,0.04,,,,0.92,V,0.92,V,primary,,7,,Table 2,,0.92,extracted,,table_header
+P078,R0027,D006,M011,MA0001,Jsc,20.60,mA/cm2,mean,0.48,,,,20.60,mA cm (cid:4)2,20.60,mA/cm2,primary,,7,,Table 2,,20.60,extracted,,table_header_font_mapping
+P078,R0028,D006,M011,MA0001,FF,54.62,%,mean,3.51,,,,54.62,%,54.62,%,primary,,7,,Table 2,,54.62,extracted,,table_header
+P078,R0029,D006,M011,MA0001,PCE,10.35,%,mean,0.79,,,,10.35,%,10.35,%,primary,,7,,Table 2,,10.35,extracted,,table_header
+P078,R0030,D006,M012,MA0001,PCE,11.00,%,champion,,,,,11.00,%,11.00,%,primary,,7,,Table 2,,11.00,extracted,,table_header
+P083,R0001,D001,M001,MA0001,Voc,0.562,V,mean,,4,,,0.562,V,0.562,V,primary,,6,,Table 2,,0.562,extracted,,"table_header | Среднее по 4 приборам, стр. 6"
+P083,R0002,D001,M001,MA0001,Jsc,9.64,mA/cm2,mean,,4,,,9.64,mA/cm2,9.64,mA/cm2,primary,,6,,Table 2,,9.64,extracted,,"table_header | Среднее по 4 приборам, стр. 6"
+P083,R0003,D001,M001,MA0001,FF,45.62,%,mean,,4,,,45.62,%,45.62,%,primary,,6,,Table 2,,45.62,extracted,,"table_header | Среднее по 4 приборам, стр. 6"
+P083,R0004,D001,M001,MA0001,PCE,2.48,%,mean,,4,,,2.48,%,2.48,%,primary,,6,,Table 2,,2.48,extracted,,"table_header | Среднее по 4 приборам, стр. 6"
+P083,R0005,D002,M002,MA0001,Voc,0.49,V,mean,,4,,,0.49,V,0.49,V,primary,,6,,Table 2,,0.49,extracted,,"table_header | Среднее по 4 приборам, стр. 6"
+P083,R0006,D002,M002,MA0001,Jsc,12.97,mA/cm2,mean,,4,,,12.97,mA/cm2,12.97,mA/cm2,primary,,6,,Table 2,,12.97,extracted,,"table_header | Среднее по 4 приборам, стр. 6"
+P083,R0007,D002,M002,MA0001,FF,47.49,%,mean,,4,,,47.49,%,47.49,%,primary,,6,,Table 2,,47.49,extracted,,"table_header | Среднее по 4 приборам, стр. 6"
+P083,R0008,D002,M002,MA0001,PCE,3.08,%,mean,,4,,,3.08,%,3.08,%,primary,,6,,Table 2,,3.08,extracted,,"table_header | Среднее по 4 приборам, стр. 6"
+P083,R0009,D003,M003,MA0001,Voc,0.598,V,mean,,4,,,0.598,V,0.598,V,primary,,6,,Table 2,,0.598,extracted,,"table_header | Среднее по 4 приборам, стр. 6"
+P083,R0010,D003,M003,MA0001,Jsc,12.35,mA/cm2,mean,,4,,,12.35,mA/cm2,12.35,mA/cm2,primary,,6,,Table 2,,12.35,extracted,,"table_header | Среднее по 4 приборам, стр. 6"
+P083,R0011,D003,M003,MA0001,FF,52.18,%,mean,,4,,,52.18,%,52.18,%,primary,,6,,Table 2,,52.18,extracted,,"table_header | Среднее по 4 приборам, стр. 6"
+P083,R0012,D003,M003,MA0001,PCE,3.85,%,mean,,4,,,3.85,%,3.85,%,primary,,6,,Table 2,,3.85,extracted,,"table_header | Среднее по 4 приборам, стр. 6"
+P083,R0013,D004,M004,MA0001,Voc,0.556,V,,,,,,0.556,V,0.556,V,primary,,7,,Table 3,,0.556,extracted,,table_header
+P083,R0014,D004,M004,MA0001,Jsc,8.55,mA/cm2,,,,,,8.55,mA/cm2,8.55,mA/cm2,primary,,7,,Table 3,,8.55,extracted,,table_header
+P083,R0015,D004,M004,MA0001,FF,50.25,%,,,,,,50.25,%,50.25,%,primary,,7,,Table 3,,50.25,extracted,,table_header
+P083,R0016,D004,M004,MA0001,PCE,2.39,%,,,,,,2.39,%,2.39,%,primary,,7,,Table 3,,2.39,extracted,,table_header
+P083,R0017,D005,M005,MA0001,Voc,0.454,V,,,,,,0.454,V,0.454,V,primary,,7,,Table 3,,0.454,extracted,,table_header
+P083,R0018,D005,M005,MA0001,Jsc,14.14,mA/cm2,,,,,,14.14,mA/cm2,14.14,mA/cm2,primary,,7,,Table 3,,14.14,extracted,,table_header
+P083,R0019,D005,M005,MA0001,FF,43.43,%,,,,,,43.43,%,43.43,%,primary,,7,,Table 3,,43.43,extracted,,table_header
+P083,R0020,D005,M005,MA0001,PCE,2.78,%,,,,,,2.78,%,2.78,%,primary,,7,,Table 3,,2.78,extracted,,table_header
+P083,R0021,D006,M006,MA0001,Voc,0.628,V,,,,,,0.628,V,0.628,V,primary,,7,,Table 3,,0.628,extracted,,table_header
+P083,R0022,D006,M006,MA0001,Jsc,12.79,mA/cm2,,,,,,12.79,mA/cm2,12.79,mA/cm2,primary,,7,,Table 3,,12.79,extracted,,table_header
+P083,R0023,D006,M006,MA0001,FF,53.4,%,,,,,,53.4,%,53.4,%,primary,,7,,Table 3,,53.4,extracted,,table_header
+P083,R0024,D006,M006,MA0001,PCE,4.31,%,,,,,,4.31,%,4.31,%,primary,,7,,Table 3,,4.31,extracted,,table_header
+P083,R0025,D007,M007,MA0001,Voc,0.442,V,,,,,,0.442,V,0.442,V,primary,,7,,Table 3,,0.442,extracted,,table_header
+P083,R0026,D007,M007,MA0001,Jsc,14.86,mA/cm2,,,,,,14.86,mA/cm2,14.86,mA/cm2,primary,,7,,Table 3,,14.86,extracted,,table_header
+P083,R0027,D007,M007,MA0001,FF,44.46,%,,,,,,44.46,%,44.46,%,primary,,7,,Table 3,,44.46,extracted,,table_header
+P083,R0028,D007,M007,MA0001,PCE,2.95,%,,,,,,2.95,%,2.95,%,primary,,7,,Table 3,,2.95,extracted,,table_header
+P001,T0001,D0001,M0001,MA0001,PCE,0.55,%,,,,,,0.55,%,0.55,%,primary,,7,,,,As fabricated Al/Al-ZnO/i-ZnO/CdS/CZTS/ Mo foil device shows 0.55% power conversion efficiency Fig. 5 SEM cross-sectional image of fabricated CZTS solar cell Fig. 6 J-V characteristics of fabricated CZT,extracted,,
+P004,T0001,D0001,,,PCE,3.9,%,champion,,,,,3.9,%,3.9,%,primary,,1,,,,The best solar cells show an efficiency of 3.9% with an open- circuit voltage of 876 mV and a short-circuit current density of 11.4 mA/cm2.,extracted,,
+P005,T0001,D0001,,,PCE,6.02,%,champion,,,,,6.02,%,6.02,%,primary,,8,,,,"layer led to a champion PCE of 6.02% on an FTO substrate, with improvement in all device metrics with respect to the ZnCl2−CZTSSe-based devices.",extracted,,
+P013,T0010,D0004,,,PCE,10.53,%,champion,,,,,10.53,%,10.53,%,primary,,8,,,,A champion Cd‐ free CZTS solar cell was obtained with an efficiency of 10.53% with ARC coating.,extracted,,
+P016,T0001,D0001,,,PCE,9.19,%,,,,,,9.19,%,9.19,%,primary,,1,,,,iencyofashighas9.19%witha VOC of461mV.,extracted,,
+P019,T0013,D0005,,MA0001,PCE,8.3,%,champion,,,,,8.3,%,8.3,%,primary,,1,,,,approximately 8.3% with an optimized device structure of Al/ITO/ZnO/CdS/CIGS/Mo.,extracted,,
+P024,T0001,D0001,,MA0001,PCE,8.12,%,,,,,,8.12,%,8.12,%,primary,,1,,,,"2 ETLdeliversan8.12%powerconversioneﬃciency(𝜼),the highestTiO2/Sb2Se3 devicereportedto-date.Thisisachievedbyasubstantial reductioninseriesresistance,drivenb",extracted,,
+P027,T0001,D0001,,,PCE,9.4,%,champion,,,,,9.4,%,9.4,%,primary,,2,,,,"resulting in a champion 9.4% PCE, which is, to the best of our knowledge, the highest PCE reported for a PSC based on a low-n 2 eV band gap LDP.",extracted,,
+P029,T0001,D0001,,,PCE,10.12,%,,,,,,10.12,%,10.12,%,primary,,3,,,,"taneously, the certiﬁed PCE of 10.12% (activearea:0.2025cm2)fortheLi&Naco-dopedﬂexibleCZTSSe solarcellhasbeenachieved(FigureS2,SupportingInformation), which is certiﬁed by N",extracted,,
+P033,T0001,D0001,,,PCE,14.21,%,champion,,,,,14.21,%,14.21,%,primary,,1,,,,"The optimized device based on the NiOx nanoﬂakes showed the highest efﬁciency of 14.21% and a small hysteresis, which outperformed the NiOx thin ﬁlm as the HTL.",extracted,,
+P035,T0006,D0004,,,PCE,14.3,%,champion,,,,,14.3,%,14.3,%,primary,,4,,,,"c andJsc,butthedoubletreatmentsamplerecordedthehighest efficiencyof14.3%duetothecompensationeffectofeachparam- eter.Fig.3,showstheEQEdatatocomparetheresultsoftheJSC value.ThisEQEdatacanbeusedassupportdataforc",extracted,,
+P039,T0001,D0001,,,PCE,4.9,%,champion,,,,,4.9,%,4.9,%,primary,,6,,,,e- ters with a record efficiency of 4.9% (Table 1).,extracted,,
+P041,T0001,D0001,,,PCE,20.41,%,champion,,,,,20.41,%,20.41,%,primary,,2,,,,A maximum efﬁciency of 20.41% coupled with ultrahigh Voc of 1.15 V was achieved with MAPbI3-based PSCs.,extracted,,
+P042,T0001,D0001,,,PCE,25.22,%,champion,,,,,25.22,%,25.22,%,primary,,8,,,,"a result, the champion device incorporating the MOF achieved an impressive PCE of 25.22%, significantly outperforming the control devices.",extracted,,
+P044,T0001,D0001,,,PCE,1.3,%,,,,,,1.3,%,1.3,%,primary,,15,,,,"ormance of the fabricated cell was used (1.3% power conversion efficiency, 3-year lifetime, Poland irradiance ~1200 kWh·m−2·yr−1, PR = 0.75).",extracted,,
+P049,T0001,D0001,,MA0001,PCE,6.88,%,,,,,,6.88,%,6.88,%,primary,,2,,,,"chieveda PCE of6.88%,and Jsc of32.44mAcm−2. 2.ExperimentalSection 2.1.DeviceFabrication All devices in this work were fabricated with an FTO/TiO2/Sb2Se3/P3H",extracted,,
+P050,T0001,D0001,,,PCE,4.08,%,champion,,,,,4.08,%,4.08,%,primary,,5,,,,eratures had a maximum PCE of 4.08% and a Voc of 576 mV (Figure S2 and Table S1).,extracted,,
+P050,T0002,D0002,,,PCE,10.4,%,champion,,,,,10.4,%,10.4,%,primary,,12,,,,"highest PCE of 10.4% was achieved at an optimal sulfurization temperature of 680°C, attributed to enhanced crystallinity, uni- form Cd distribution, and sup",extracted,,
+P051,T0001,D0001,,,PCE,23.03,%,champion,,,,,23.03,%,23.03,%,primary,,1,,,,"Furthermore, a champion power conversion efficiency of 23.03% is obtained since perovskite is no longer damaged by TBP during device preparation.",extracted,,
+P051,T0002,D0002,,,PCE,21.16,%,,,,,,21.16,%,21.16,%,primary,,9,,,,"S4, the device with TBP delivers a high PCE of 21.16%.",extracted,,
+P052,T0001,D0001,,,PCE,7.40,%,champion,,,,,7.40,%,7.40,%,primary,,2,,,,"As a result, a champion device withhighlycompetitivePCEof7.40%wasachieved,aminimum VOC deﬁcitof0.647VcontributedtoarecordVOC of0.513Vfor allreportedSb2Se3 solarcells,pavingabrightavenuetobroaden its",extracted,,
+P054,T0001,D0001,,,PCE,22.6,%,,,,,,22.6,%,22.6,%,primary,,2,,,,"n efﬁciency of 22.6% with an expected T80 lifetime of about 4,000 h under continuous 1-sun illumination.",extracted,,
+P054,T0002,D0002,M0001,,PCE,22.2,%,champion,,,,,22.2,%,22.2,%,primary,,7,,,,"The solar cell based on TMPI ﬁlm delivered a short-circuit current density (JSC)of23.5mAcm/C02, an open-circuit voltage (VOC) of 1.125 V, and a ﬁll factor (FF) of 0.838 with a maximum PCE of 22.2% under AM 1.5G irradiation.",extracted,,
+P055,T0001,D0001,,,PCE,2.4,%,champion,,,,,2.4,%,2.4,%,primary,,1,,,,o 344 mV and a maximum efﬁciency of 2.4% was achieved.,extracted,,
+P057,T0001,D0001,,,PCE,11.76,%,champion,,,,,11.76,%,11.76,%,primary,,2,,,,"a high PCE of 11.76% are obtained, which is the highest valueinCZTSSesolarcellspreparedbytheDMF-basedmethod atpresent. 2.ResultsandDiscussions The pre-annea",extracted,,
+P061,T0001,D0001,,,PCE,17.88,%,,,,,,17.88,%,17.88,%,primary,,7,,,,The Passivation device has a PCE of 17.88% with a high V OC of 1.29 V.,extracted,,
+P061,T0002,D0002,,,PCE,15.01,%,,,,,,15.01,%,15.01,%,primary,,8,,,,"On a large-area device of 1 cm 2, a PCE of 15.01% with a high VOC of 1.29 V can be achieved, indicating the potential for scale-up PSCs.",extracted,,
+P066,T0001,D0001,,,PCE,21.66,%,,,,,,21.66,%,21.66,%,primary,,9,,,,tosuperiorPCEof21.66%.,extracted,,
+P068,T0001,D0001,,,PCE,14.1,%,,,,,,14.1,%,14.1,%,primary,,4,,,,"ased on MAPbI3 before NH4I treatment, solar cells achieved performance of an open-circuit voltage (Voc) of 1.04 V, a short- circuit current (Jsc) of 20.7 mA cm−2,aﬁll factor (FF) of 0.65, and a PCE of 14.1%.",extracted,,
+P074,T0001,D0001,,,PCE,16.3,%,champion,,,,,16.3,%,16.3,%,primary,,6,,,,"region in the best ACIGS solar cell sample with RbF-PDT (η ¼ 16.3%, see Figure 2a) that has a composition of GGI ¼ 0.70, AAC ¼ 0.61, and [I]/[III] ¼ 0.96.",extracted,,
+P076,T0001,D0001,,,PCE,19.29,%,champion,,,,,19.29,%,19.29,%,primary,,2,,,,"and PCE (up to 19.29%), followed by PTAA and then CuSCN.",extracted,,
+P077,T0001,D0001,,,PCE,18.49,%,,,,,,18.49,%,18.49,%,primary,,7,,,,he PCE reaches 18.49%.,extracted,,
+P080,T0001,D0001,,,PCE,7.0,%,champion,,,,,7.0,%,7.0,%,primary,,2,,,,The optimal tin-based perovskite solar cell achieved a power conversion efficiency of 7.0%.,extracted,,
+P081,T0001,D0001,M0001,,PCE,16.2,%,,,,,,16.2,%,16.2,%,primary,,2,,,,"The CsFA cells exhibited poor performances with a PCE at 16.2% on the reverse scan (Figure S7a, Supporting Information) and a large hysteresis (Table 1).",extracted,,
+P085,T0001,D0001,,,PCE,17.29,%,champion,,,,,17.29,%,17.29,%,primary,,3,,,,The device fabricated using this technique achieved a champion efficiency of 17.29%.,extracted,,
+P086,T0001,D0001,,,PCE,18.45,%,champion,,,,,18.45,%,18.45,%,primary,,9,,,,"aS2 akes, the champion devices reached a PCE as high as 18.45%, representing +12% PCE improvement compared to reference cells.",extracted,,
+P087,T0001,D0001,,,PCE,16.33,%,,,,,,16.33,%,16.33,%,primary,,7,,,,arkable PCE of 16.33%.,extracted,,
+P090,T0001,D0001,,,PCE,7.04,%,,,,,,7.04,%,7.04,%,primary,,1,,,,iency (PCE) of 7.04% was obtained for CIGS device without K doping.,extracted,,
+P004,T0002,D0001,,,Voc,0.876,V,champion,,,,,876,mV,0.876,V,primary,,1,,,,The best solar cells show an efficiency of 3.9% with an open- circuit voltage of 876 mV and a short-circuit current density of 11.4 mA/cm2.,extracted,,
+P041,T0002,D0001,,,Voc,1.15,V,champion,,,,,1.15,V,1.15,V,primary,,2,,,,m efﬁciency of 20.41% coupled with ultrahigh Voc of 1.15 V was achieved with MAPbI3-based PSCs.,extracted,,
+P050,T0003,D0001,,,Voc,0.576,V,champion,,,,,576,mV,0.576,V,primary,,5,,,,maximum PCE of 4.08% and a Voc of 576 mV (Figure S2 and Table S1).,extracted,,
+P054,T0003,D0002,M0001,,Voc,1.125,V,champion,,,,,1.125,V,1.125,V,primary,,7,,,,"The solar cell based on TMPI ﬁlm delivered a short-circuit current density (JSC)of23.5mAcm/C02, an open-circuit voltage (VOC) of 1.125 V, and a ﬁll factor (FF) of 0.838 with a maximum PCE of 22.2% under AM 1.5G irradiation.",extracted,,
+P057,T0002,D0001,,,Voc,0.501,V,champion,,,,,501,mV,0.501,V,primary,,2,,,,"nhanced Voc of 501 mV and a high PCE of 11.76% are obtained, which is the highest valueinCZTSSesolarcellspreparedbytheDMF-basedmethod atpresent. 2.ResultsandDiscussions The pre-anne",extracted,,
+P061,T0003,D0001,,,Voc,1.29,V,,,,,,1.29,V,1.29,V,primary,,7,,,,The Passivation device has a PCE of 17.88% with a high V OC of 1.29 V.,extracted,,
+P061,T0004,D0003,M0001,,stabilized_PCE,18.56,%,,,,,,18.56,%,18.56,%,primary,,7,,,,"point (MPP), a stabilized PCE of 18.56% is obtained.",extracted,,
+P074,T0002,D0002,,,Voc,0.926,V,,,,,,926,mV,0.926,V,primary,,3,,,,"The highest VOC of 926 mV was reached when applying an RbF-PDT to an absorber with a composition of GGI ¼ 0.74, AAC ¼ 0.45, and [I]/[III] ¼ 0.80 and Eg ¼ 1.44 eV",extracted,,
+P077,T0002,D0001,,,Voc,1.012,V,,,,,,1012,mV,1.012,V,primary,,7,,,,iceisraised to 1012 mV and the PCE reaches 18.49%.,extracted,,
+P048,T0001,D0001,M0001,,Voc,0.87,V,,,,,,0.87,V,0.87,V,primary,,11,,Table 3,,Without ZnO (Forward) 0.87 20.44 70.52 12.54 7.52,extracted,,
+P048,T0002,D0001,M0001,,Jsc,20.44,mA/cm2,,,,,,20.44,mA/cm2,20.44,mA/cm2,primary,,11,,Table 3,,Without ZnO (Forward) 0.87 20.44 70.52 12.54 7.52,extracted,,
+P048,T0003,D0001,M0001,,FF,70.52,%,,,,,,70.52,%,70.52,%,primary,,11,,Table 3,,Without ZnO (Forward) 0.87 20.44 70.52 12.54 7.52,extracted,,
+P048,T0004,D0001,M0001,,PCE,12.54,%,,,,,,12.54,%,12.54,%,primary,,11,,Table 3,,Without ZnO (Forward) 0.87 20.44 70.52 12.54 7.52,extracted,,
+P048,T0005,D0001,M0001,,HI,7.52,%,,,,,,7.52,%,7.52,%,primary,,11,,Table 3,,Without ZnO (Forward) 0.87 20.44 70.52 12.54 7.52,extracted,,
+P048,T0006,D0002,M0002,,Voc,0.88,V,,,,,,0.88,V,0.88,V,primary,,11,,Table 3,,With 20 nm ZnO (Forward) 0.88 22.57 73.61 14.62 4.88,extracted,,
+P048,T0007,D0002,M0002,,Jsc,22.57,mA/cm2,,,,,,22.57,mA/cm2,22.57,mA/cm2,primary,,11,,Table 3,,With 20 nm ZnO (Forward) 0.88 22.57 73.61 14.62 4.88,extracted,,
+P048,T0008,D0002,M0002,,FF,73.61,%,,,,,,73.61,%,73.61,%,primary,,11,,Table 3,,With 20 nm ZnO (Forward) 0.88 22.57 73.61 14.62 4.88,extracted,,
+P048,T0009,D0002,M0002,,PCE,14.62,%,,,,,,14.62,%,14.62,%,primary,,11,,Table 3,,With 20 nm ZnO (Forward) 0.88 22.57 73.61 14.62 4.88,extracted,,
+P048,T0010,D0002,M0002,,HI,4.88,%,,,,,,4.88,%,4.88,%,primary,,11,,Table 3,,With 20 nm ZnO (Forward) 0.88 22.57 73.61 14.62 4.88,extracted,,
+P048,T0011,D0001,M0003,,Voc,0.89,V,,,,,,0.89,V,0.89,V,primary,,11,,Table 3,,Without ZnO (Reverse) 0.89 21.43 71.10 13.56,extracted,,
+P048,T0012,D0001,M0003,,Jsc,21.43,mA/cm2,,,,,,21.43,mA/cm2,21.43,mA/cm2,primary,,11,,Table 3,,Without ZnO (Reverse) 0.89 21.43 71.10 13.56,extracted,,
+P048,T0013,D0001,M0003,,FF,71.10,%,,,,,,71.10,%,71.10,%,primary,,11,,Table 3,,Without ZnO (Reverse) 0.89 21.43 71.10 13.56,extracted,,
+P048,T0014,D0001,M0003,,PCE,13.56,%,,,,,,13.56,%,13.56,%,primary,,11,,Table 3,,Without ZnO (Reverse) 0.89 21.43 71.10 13.56,extracted,,
+P048,T0015,D0002,M0004,,Voc,0.89,V,,,,,,0.89,V,0.89,V,primary,,11,,Table 3,,With 20 nm ZnO (Reverse) 0.89 23.29 74.14 15.37,extracted,,
+P048,T0016,D0002,M0004,,Jsc,23.29,mA/cm2,,,,,,23.29,mA/cm2,23.29,mA/cm2,primary,,11,,Table 3,,With 20 nm ZnO (Reverse) 0.89 23.29 74.14 15.37,extracted,,
+P048,T0017,D0002,M0004,,FF,74.14,%,,,,,,74.14,%,74.14,%,primary,,11,,Table 3,,With 20 nm ZnO (Reverse) 0.89 23.29 74.14 15.37,extracted,,
+P048,T0018,D0002,M0004,,PCE,15.37,%,,,,,,15.37,%,15.37,%,primary,,11,,Table 3,,With 20 nm ZnO (Reverse) 0.89 23.29 74.14 15.37,extracted,,
+P069,T0001,D0001,M0001,,Voc,0.407,V,,,,,,407,mV,0.407,V,primary,,3,,Table 1,,Reference 89 39.8 407 5.1 39 0.80 0.32,extracted,,
+P069,T0002,D0001,M0001,,Jsc,5.1,mA/cm2,,,,,,5.1,mA/cm2,5.1,mA/cm2,primary,,3,,Table 1,,Reference 89 39.8 407 5.1 39 0.80 0.32,extracted,,
+P069,T0003,D0001,M0001,,FF,39,%,,,,,,39,%,39,%,primary,,3,,Table 1,,Reference 89 39.8 407 5.1 39 0.80 0.32,extracted,,
+P069,T0004,D0001,M0001,,PCE,0.80,%,,,,,,0.80,%,0.80,%,primary,,3,,Table 1,,Reference 89 39.8 407 5.1 39 0.80 0.32,extracted,,
+P069,T0005,D0002,M0002,,Voc,0.535,V,,,,,,535,mV,0.535,V,primary,,3,,Table 1,,PEI 89 39.9 535 4.8 45 1.17 0.47,extracted,,
+P069,T0006,D0002,M0002,,Jsc,4.8,mA/cm2,,,,,,4.8,mA/cm2,4.8,mA/cm2,primary,,3,,Table 1,,PEI 89 39.9 535 4.8 45 1.17 0.47,extracted,,
+P069,T0007,D0002,M0002,,FF,45,%,,,,,,45,%,45,%,primary,,3,,Table 1,,PEI 89 39.9 535 4.8 45 1.17 0.47,extracted,,
+P069,T0008,D0002,M0002,,PCE,1.17,%,,,,,,1.17,%,1.17,%,primary,,3,,Table 1,,PEI 89 39.9 535 4.8 45 1.17 0.47,extracted,,
+P069,T0009,D0003,M0003,,Voc,0.591,V,,,,,,591,mV,0.591,V,primary,,3,,Table 1,,PAMAM G1 90 39.4 591 5.5 46 1.51 0.56,extracted,,
+P069,T0010,D0003,M0003,,Jsc,5.5,mA/cm2,,,,,,5.5,mA/cm2,5.5,mA/cm2,primary,,3,,Table 1,,PAMAM G1 90 39.4 591 5.5 46 1.51 0.56,extracted,,
+P069,T0011,D0003,M0003,,FF,46,%,,,,,,46,%,46,%,primary,,3,,Table 1,,PAMAM G1 90 39.4 591 5.5 46 1.51 0.56,extracted,,
+P069,T0012,D0003,M0003,,PCE,1.51,%,,,,,,1.51,%,1.51,%,primary,,3,,Table 1,,PAMAM G1 90 39.4 591 5.5 46 1.51 0.56,extracted,,
+P069,T0013,D0004,M0004,,Voc,0.638,V,,,,,,638,mV,0.638,V,primary,,3,,Table 1,,PAMAM G2 89 39.5 638 4.8 49 1.50 0.59,extracted,,
+P069,T0014,D0004,M0004,,Jsc,4.8,mA/cm2,,,,,,4.8,mA/cm2,4.8,mA/cm2,primary,,3,,Table 1,,PAMAM G2 89 39.5 638 4.8 49 1.50 0.59,extracted,,
+P069,T0015,D0004,M0004,,FF,49,%,,,,,,49,%,49,%,primary,,3,,Table 1,,PAMAM G2 89 39.5 638 4.8 49 1.50 0.59,extracted,,
+P069,T0016,D0004,M0004,,PCE,1.50,%,,,,,,1.50,%,1.50,%,primary,,3,,Table 1,,PAMAM G2 89 39.5 638 4.8 49 1.50 0.59,extracted,,
+P083,T0029,D001,M001,MA0001,Rs,98.45,Ohm*cm2,mean,,4,,,98.45,Ω*cm2,98.45,Ohm*cm2,primary,,6,,Table 2,,untreated 0.562 9.64 45.62 2.48 98.45 1433.64,extracted,,
+P083,T0030,D001,M001,MA0001,Rsh,1433.64,Ohm*cm2,mean,,4,,,1433.64,Ω*cm2,1433.64,Ohm*cm2,primary,,6,,Table 2,,untreated 0.562 9.64 45.62 2.48 98.45 1433.64,extracted,,
+P083,T0031,D002,M002,MA0001,Rs,99.48,Ohm*cm2,mean,,4,,,99.48,Ω*cm2,99.48,Ohm*cm2,primary,,6,,Table 2,,NH4I 0.49 12.97 47.49 3.08 99.48 1424.65,extracted,,
+P083,T0032,D002,M002,MA0001,Rsh,1424.65,Ohm*cm2,mean,,4,,,1424.65,Ω*cm2,1424.65,Ohm*cm2,primary,,6,,Table 2,,NH4I 0.49 12.97 47.49 3.08 99.48 1424.65,extracted,,
+P083,T0033,D003,M003,MA0001,Rs,95.83,Ohm*cm2,mean,,4,,,95.83,Ω*cm2,95.83,Ohm*cm2,primary,,6,,Table 2,,2-iodothiophene 0.598 12.35 52.18 3.85 95.83 2083.33,extracted,,
+P083,T0034,D003,M003,MA0001,Rsh,2083.33,Ohm*cm2,mean,,4,,,2083.33,Ω*cm2,2083.33,Ohm*cm2,primary,,6,,Table 2,,2-iodothiophene 0.598 12.35 52.18 3.85 95.83 2083.33,extracted,,
+P083,T0035,D004,M004,MA0001,Rs,97.48,Ohm*cm2,,,,,,97.48,Ω*cm2,97.48,Ohm*cm2,primary,,7,,Table 3,,150 0.556 8.55 50.25 2.39 97.48 1423.65,extracted,,
+P083,T0036,D004,M004,MA0001,Rsh,1423.65,Ohm*cm2,,,,,,1423.65,Ω*cm2,1423.65,Ohm*cm2,primary,,7,,Table 3,,150 0.556 8.55 50.25 2.39 97.48 1423.65,extracted,,
+P083,T0037,D005,M005,MA0001,Rs,70.79,Ohm*cm2,,,,,,70.79,Ω*cm2,70.79,Ohm*cm2,primary,,7,,Table 3,,200 0.454 14.14 43.43 2.78 70.79 810.59,extracted,,
+P083,T0038,D005,M005,MA0001,Rsh,810.59,Ohm*cm2,,,,,,810.59,Ω*cm2,810.59,Ohm*cm2,primary,,7,,Table 3,,200 0.454 14.14 43.43 2.78 70.79 810.59,extracted,,
+P083,T0039,D006,M006,MA0001,Rs,81.19,Ohm*cm2,,,,,,81.19,Ω*cm2,81.19,Ohm*cm2,primary,,7,,Table 3,,250 0.628 12.79 53.4 4.31 81.19 1397.13,extracted,,
+P083,T0040,D006,M006,MA0001,Rsh,1397.13,Ohm*cm2,,,,,,1397.13,Ω*cm2,1397.13,Ohm*cm2,primary,,7,,Table 3,,250 0.628 12.79 53.4 4.31 81.19 1397.13,extracted,,
+P083,T0041,D007,M007,MA0001,Rs,66.78,Ohm*cm2,,,,,,66.78,Ω*cm2,66.78,Ohm*cm2,primary,,7,,Table 3,,300 0.442 14.86 44.46 2.95 66.78 798.03,extracted,,
+P083,T0042,D007,M007,MA0001,Rsh,798.03,Ohm*cm2,,,,,,798.03,Ω*cm2,798.03,Ohm*cm2,primary,,7,,Table 3,,300 0.442 14.86 44.46 2.95 66.78 798.03,extracted,,
+P015,T0001,D0001,M0001,,PCE,14.1,%,,0.2,8,,,14.1,%,14.1,%,primary,,5,,Table 1,,Baseline - 50 100 3000 420 10 8 14.1 ± 0.2 24.3 ± 0.4 760 ± 0 76.5 ± 2.1,extracted,,В подписи к таблице указан стандартный разброс (standard deviation).
+P015,T0002,D0001,M0001,,Jsc,24.3,mA/cm2,,0.4,8,,,24.3,mA/cm2,24.3,mA/cm2,primary,,5,,Table 1,,Baseline - 50 100 3000 420 10 8 14.1 ± 0.2 24.3 ± 0.4 760 ± 0 76.5 ± 2.1,extracted,,В подписи к таблице указан стандартный разброс (standard deviation).
+P015,T0003,D0001,M0001,,Voc,0.76,V,,0,8,,,760,mV,0.76,V,primary,,5,,Table 1,,Baseline - 50 100 3000 420 10 8 14.1 ± 0.2 24.3 ± 0.4 760 ± 0 76.5 ± 2.1,extracted,,В подписи к таблице указан стандартный разброс (standard deviation).
+P015,T0004,D0001,M0001,,FF,76.5,%,,2.1,8,,,76.5,%,76.5,%,primary,,5,,Table 1,,Baseline - 50 100 3000 420 10 8 14.1 ± 0.2 24.3 ± 0.4 760 ± 0 76.5 ± 2.1,extracted,,В подписи к таблице указан стандартный разброс (standard deviation).
+P015,T0005,D0002,M0002,,PCE,1.4,%,,0.4,3,,,1.4,%,1.4,%,primary,,5,,Table 1,,a 50 50 100 3000 - - 3 1.4 ± 0.4 9.4 ± 1.6 500 ± 10 28.9 ± 3.0,extracted,,В подписи к таблице указан стандартный разброс (standard deviation).
+P015,T0006,D0002,M0002,,Jsc,9.4,mA/cm2,,1.6,3,,,9.4,mA/cm2,9.4,mA/cm2,primary,,5,,Table 1,,a 50 50 100 3000 - - 3 1.4 ± 0.4 9.4 ± 1.6 500 ± 10 28.9 ± 3.0,extracted,,В подписи к таблице указан стандартный разброс (standard deviation).
+P015,T0007,D0002,M0002,,Voc,0.5,V,,0.01,3,,,500,mV,0.5,V,primary,,5,,Table 1,,a 50 50 100 3000 - - 3 1.4 ± 0.4 9.4 ± 1.6 500 ± 10 28.9 ± 3.0,extracted,,В подписи к таблице указан стандартный разброс (standard deviation).
+P015,T0008,D0002,M0002,,FF,28.9,%,,3.0,3,,,28.9,%,28.9,%,primary,,5,,Table 1,,a 50 50 100 3000 - - 3 1.4 ± 0.4 9.4 ± 1.6 500 ± 10 28.9 ± 3.0,extracted,,В подписи к таблице указан стандартный разброс (standard deviation).
+P015,T0009,D0003,M0003,,PCE,6.3,%,,2.7,3,,,6.3,%,6.3,%,primary,,5,,Table 1,,b 50 50 100 3000 420 10 3 6.3 ± 2.7 23.1 ± 3.5 610 ± 10 38.3 ± 11.7,extracted,,В подписи к таблице указан стандартный разброс (standard deviation).
+P015,T0010,D0003,M0003,,Jsc,23.1,mA/cm2,,3.5,3,,,23.1,mA/cm2,23.1,mA/cm2,primary,,5,,Table 1,,b 50 50 100 3000 420 10 3 6.3 ± 2.7 23.1 ± 3.5 610 ± 10 38.3 ± 11.7,extracted,,В подписи к таблице указан стандартный разброс (standard deviation).
+P015,T0011,D0003,M0003,,Voc,0.61,V,,0.01,3,,,610,mV,0.61,V,primary,,5,,Table 1,,b 50 50 100 3000 420 10 3 6.3 ± 2.7 23.1 ± 3.5 610 ± 10 38.3 ± 11.7,extracted,,В подписи к таблице указан стандартный разброс (standard deviation).
+P015,T0012,D0003,M0003,,FF,38.3,%,,11.7,3,,,38.3,%,38.3,%,primary,,5,,Table 1,,b 50 50 100 3000 420 10 3 6.3 ± 2.7 23.1 ± 3.5 610 ± 10 38.3 ± 11.7,extracted,,В подписи к таблице указан стандартный разброс (standard deviation).
+P015,T0013,D0004,M0004,,PCE,9.7,%,,1.6,8,,,9.7,%,9.7,%,primary,,5,,Table 1,,c 50 50 100 3000 440 10 8 9.7 ± 1.6 25.5 ± 0.8 700 ± 10 54.3 ± 8.0,extracted,,В подписи к таблице указан стандартный разброс (standard deviation).
+P015,T0014,D0004,M0004,,Jsc,25.5,mA/cm2,,0.8,8,,,25.5,mA/cm2,25.5,mA/cm2,primary,,5,,Table 1,,c 50 50 100 3000 440 10 8 9.7 ± 1.6 25.5 ± 0.8 700 ± 10 54.3 ± 8.0,extracted,,В подписи к таблице указан стандартный разброс (standard deviation).
+P015,T0015,D0004,M0004,,Voc,0.7,V,,0.01,8,,,700,mV,0.7,V,primary,,5,,Table 1,,c 50 50 100 3000 440 10 8 9.7 ± 1.6 25.5 ± 0.8 700 ± 10 54.3 ± 8.0,extracted,,В подписи к таблице указан стандартный разброс (standard deviation).
+P015,T0016,D0004,M0004,,FF,54.3,%,,8.0,8,,,54.3,%,54.3,%,primary,,5,,Table 1,,c 50 50 100 3000 440 10 8 9.7 ± 1.6 25.5 ± 0.8 700 ± 10 54.3 ± 8.0,extracted,,В подписи к таблице указан стандартный разброс (standard deviation).
+P015,T0017,D0005,M0005,,PCE,14.3,%,,0.4,12,,,14.3,%,14.3,%,primary,,5,,Table 1,,d 100 50 100 3000 440 10 12 14.3 ± 0.4 24.1 ± 0.6 824 ± 10 71.8 ± 1.7,extracted,,В подписи к таблице указан стандартный разброс (standard deviation).
+P015,T0018,D0005,M0005,,Jsc,24.1,mA/cm2,,0.6,12,,,24.1,mA/cm2,24.1,mA/cm2,primary,,5,,Table 1,,d 100 50 100 3000 440 10 12 14.3 ± 0.4 24.1 ± 0.6 824 ± 10 71.8 ± 1.7,extracted,,В подписи к таблице указан стандартный разброс (standard deviation).
+P015,T0019,D0005,M0005,,Voc,0.824,V,,0.01,12,,,824,mV,0.824,V,primary,,5,,Table 1,,d 100 50 100 3000 440 10 12 14.3 ± 0.4 24.1 ± 0.6 824 ± 10 71.8 ± 1.7,extracted,,В подписи к таблице указан стандартный разброс (standard deviation).
+P015,T0020,D0005,M0005,,FF,71.8,%,,1.7,12,,,71.8,%,71.8,%,primary,,5,,Table 1,,d 100 50 100 3000 440 10 12 14.3 ± 0.4 24.1 ± 0.6 824 ± 10 71.8 ± 1.7,extracted,,В подписи к таблице указан стандартный разброс (standard deviation).
+P036,T0001,D0001,M0001,,Voc,0.788,V,,,,,,788,mV,0.788,V,primary,,4,,Table 2,,S0 60 80 788 3.2 69 1.7 1.02,extracted,,
+P036,T0002,D0001,M0001,,Jsc,3.2,mA/cm2,,,,,,3.2,mA/cm2,3.2,mA/cm2,primary,,4,,Table 2,,S0 60 80 788 3.2 69 1.7 1.02,extracted,,
+P036,T0003,D0001,M0001,,FF,69,%,,,,,,69,%,69,%,primary,,4,,Table 2,,S0 60 80 788 3.2 69 1.7 1.02,extracted,,
+P036,T0004,D0001,M0001,,PCE,1.7,%,,,,,,1.7,%,1.7,%,primary,,4,,Table 2,,S0 60 80 788 3.2 69 1.7 1.02,extracted,,
+P036,T0005,D0002,M0002,,Voc,0.799,V,,,,,,799,mV,0.799,V,primary,,4,,Table 2,,S1 58 73 799 4.2 62 2.1 1.22,extracted,,
+P036,T0006,D0002,M0002,,Jsc,4.2,mA/cm2,,,,,,4.2,mA/cm2,4.2,mA/cm2,primary,,4,,Table 2,,S1 58 73 799 4.2 62 2.1 1.22,extracted,,
+P036,T0007,D0002,M0002,,FF,62,%,,,,,,62,%,62,%,primary,,4,,Table 2,,S1 58 73 799 4.2 62 2.1 1.22,extracted,,
+P036,T0008,D0002,M0002,,PCE,2.1,%,,,,,,2.1,%,2.1,%,primary,,4,,Table 2,,S1 58 73 799 4.2 62 2.1 1.22,extracted,,
+P036,T0009,D0003,M0003,,Voc,0.785,V,,,,,,785,mV,0.785,V,primary,,4,,Table 2,,S2 57 68 785 4.9 60 2.3 1.31,extracted,,
+P036,T0010,D0003,M0003,,Jsc,4.9,mA/cm2,,,,,,4.9,mA/cm2,4.9,mA/cm2,primary,,4,,Table 2,,S2 57 68 785 4.9 60 2.3 1.31,extracted,,
+P036,T0011,D0003,M0003,,FF,60,%,,,,,,60,%,60,%,primary,,4,,Table 2,,S2 57 68 785 4.9 60 2.3 1.31,extracted,,
+P036,T0012,D0003,M0003,,PCE,2.3,%,,,,,,2.3,%,2.3,%,primary,,4,,Table 2,,S2 57 68 785 4.9 60 2.3 1.31,extracted,,
+P036,T0013,D0004,M0004,,Voc,0.808,V,,,,,,808,mV,0.808,V,primary,,4,,Table 2,,S3 54 62 808 5.2 58 2.5 1.33,extracted,,
+P036,T0014,D0004,M0004,,Jsc,5.2,mA/cm2,,,,,,5.2,mA/cm2,5.2,mA/cm2,primary,,4,,Table 2,,S3 54 62 808 5.2 58 2.5 1.33,extracted,,
+P036,T0015,D0004,M0004,,FF,58,%,,,,,,58,%,58,%,primary,,4,,Table 2,,S3 54 62 808 5.2 58 2.5 1.33,extracted,,
+P036,T0016,D0004,M0004,,PCE,2.5,%,,,,,,2.5,%,2.5,%,primary,,4,,Table 2,,S3 54 62 808 5.2 58 2.5 1.33,extracted,,
+P036,T0017,D0005,M0005,,Voc,0.808,V,,,,,,808,mV,0.808,V,primary,,4,,Table 2,,S4 47 59 808 5.4 59 2.6 1.21,extracted,,
+P036,T0018,D0005,M0005,,Jsc,5.4,mA/cm2,,,,,,5.4,mA/cm2,5.4,mA/cm2,primary,,4,,Table 2,,S4 47 59 808 5.4 59 2.6 1.21,extracted,,
+P036,T0019,D0005,M0005,,FF,59,%,,,,,,59,%,59,%,primary,,4,,Table 2,,S4 47 59 808 5.4 59 2.6 1.21,extracted,,
+P036,T0020,D0005,M0005,,PCE,2.6,%,,,,,,2.6,%,2.6,%,primary,,4,,Table 2,,S4 47 59 808 5.4 59 2.6 1.21,extracted,,
+P036,T0021,D0006,M0006,,Voc,0.811,V,,,,,,811,mV,0.811,V,primary,,4,,Table 2,,S5 43 47 811 6.1 59 2.9 1.25,extracted,,
+P036,T0022,D0006,M0006,,Jsc,6.1,mA/cm2,,,,,,6.1,mA/cm2,6.1,mA/cm2,primary,,4,,Table 2,,S5 43 47 811 6.1 59 2.9 1.25,extracted,,
+P036,T0023,D0006,M0006,,FF,59,%,,,,,,59,%,59,%,primary,,4,,Table 2,,S5 43 47 811 6.1 59 2.9 1.25,extracted,,
+P036,T0024,D0006,M0006,,PCE,2.9,%,,,,,,2.9,%,2.9,%,primary,,4,,Table 2,,S5 43 47 811 6.1 59 2.9 1.25,extracted,,
+P036,T0025,D0007,M0007,,Voc,0.817,V,,,,,,817,mV,0.817,V,primary,,4,,Table 2,,S6 28 29 817 8.6 58 4.1 1.13,extracted,,
+P036,T0026,D0007,M0007,,Jsc,8.6,mA/cm2,,,,,,8.6,mA/cm2,8.6,mA/cm2,primary,,4,,Table 2,,S6 28 29 817 8.6 58 4.1 1.13,extracted,,
+P036,T0027,D0007,M0007,,FF,58,%,,,,,,58,%,58,%,primary,,4,,Table 2,,S6 28 29 817 8.6 58 4.1 1.13,extracted,,
+P036,T0028,D0007,M0007,,PCE,4.1,%,,,,,,4.1,%,4.1,%,primary,,4,,Table 2,,S6 28 29 817 8.6 58 4.1 1.13,extracted,,
+P046,T0001,D0001,M0001,,Voc,0.858,V,champion,,,,,858,mV,0.858,V,primary,,5,,TABLE 3,,"This work, No RbF 1.00 0.50 1.05 Thin 1.47 858 74.4 23.0 14.7",extracted,,
+P046,T0002,D0001,M0001,,FF,74.4,%,champion,,,,,74.4,%,74.4,%,primary,,5,,TABLE 3,,"This work, No RbF 1.00 0.50 1.05 Thin 1.47 858 74.4 23.0 14.7",extracted,,
+P046,T0003,D0001,M0001,,Jsc_EQE,23.0,mA/cm2,champion,,,,,23.0,mA/cm2,23.0,mA/cm2,primary,,5,,TABLE 3,,"This work, No RbF 1.00 0.50 1.05 Thin 1.47 858 74.4 23.0 14.7",extracted,,
+P046,T0004,D0001,M0001,,PCE,14.7,%,champion,,,,,14.7,%,14.7,%,primary,,5,,TABLE 3,,"This work, No RbF 1.00 0.50 1.05 Thin 1.47 858 74.4 23.0 14.7",extracted,,"В заголовке ηqe. КПД рассчитан с током Jsc,qe из EQE."
+P046,T0005,D0002,M0002,,Voc,0.851,V,champion,,,,,851,mV,0.851,V,primary,,5,,TABLE 3,,"This work, No RbF 1.00 0.50 1.05 Std 1.47 851 73.1 20.9 13.0",extracted,,
+P046,T0006,D0002,M0002,,FF,73.1,%,champion,,,,,73.1,%,73.1,%,primary,,5,,TABLE 3,,"This work, No RbF 1.00 0.50 1.05 Std 1.47 851 73.1 20.9 13.0",extracted,,
+P046,T0007,D0002,M0002,,Jsc_EQE,20.9,mA/cm2,champion,,,,,20.9,mA/cm2,20.9,mA/cm2,primary,,5,,TABLE 3,,"This work, No RbF 1.00 0.50 1.05 Std 1.47 851 73.1 20.9 13.0",extracted,,
+P046,T0008,D0002,M0002,,PCE,13.0,%,champion,,,,,13.0,%,13.0,%,primary,,5,,TABLE 3,,"This work, No RbF 1.00 0.50 1.05 Std 1.47 851 73.1 20.9 13.0",extracted,,"В заголовке ηqe. КПД рассчитан с током Jsc,qe из EQE."
+P046,T0009,,,,Voc,0.854,V,champion,,,,,854,mV,0.854,V,cited,[49],5,,TABLE 3,,"Best cell from [49], No RbF 0.81 0.59 1.00 Std 1.46 854 77.1 21.5 14.2",extracted,,
+P046,T0010,,,,FF,77.1,%,champion,,,,,77.1,%,77.1,%,cited,[49],5,,TABLE 3,,"Best cell from [49], No RbF 0.81 0.59 1.00 Std 1.46 854 77.1 21.5 14.2",extracted,,
+P046,T0011,,,,Jsc_EQE,21.5,mA/cm2,champion,,,,,21.5,mA/cm2,21.5,mA/cm2,cited,[49],5,,TABLE 3,,"Best cell from [49], No RbF 0.81 0.59 1.00 Std 1.46 854 77.1 21.5 14.2",extracted,,
+P046,T0012,,,,PCE,14.2,%,champion,,,,,14.2,%,14.2,%,cited,[49],5,,TABLE 3,,"Best cell from [49], No RbF 0.81 0.59 1.00 Std 1.46 854 77.1 21.5 14.2",extracted,,"В заголовке ηqe. КПД рассчитан с током Jsc,qe из EQE."
+P068,T0002,D0001,M0001,,Voc,1.04,V,mean,0.1,30,,,1.04,V,1.04,V,primary,,4,,Table 1,,before treatment 1.04 ± 0.1 19.6 ± 2.0 0.63 ± 0.3 12.8 ± 2.1,extracted,,
+P068,T0003,D0001,M0001,,Jsc,19.6,mA/cm2,mean,2.0,30,,,19.6,mA/cm2,19.6,mA/cm2,primary,,4,,Table 1,,before treatment 1.04 ± 0.1 19.6 ± 2.0 0.63 ± 0.3 12.8 ± 2.1,extracted,,
+P068,T0004,D0001,M0001,,FF,63.00,%,mean,30.0,30,,,0.63,,63.00,%,primary,,4,,Table 1,,before treatment 1.04 ± 0.1 19.6 ± 2.0 0.63 ± 0.3 12.8 ± 2.1,extracted,,Безразмерный FF переведён в проценты вместе с разбросом.
+P068,T0005,D0001,M0001,,PCE,12.8,%,mean,2.1,30,,,12.8,%,12.8,%,primary,,4,,Table 1,,before treatment 1.04 ± 0.1 19.6 ± 2.0 0.63 ± 0.3 12.8 ± 2.1,extracted,,
+P068,T0006,D0002,M0002,,Voc,1.04,V,mean,0.1,30,,,1.04,V,1.04,V,primary,,4,,Table 1,,after NH4I treatment 1.04 ± 0.1 22.5 ± 1.8 0.76 ± 0.3 18.8 ± 2.0,extracted,,
+P068,T0007,D0002,M0002,,Jsc,22.5,mA/cm2,mean,1.8,30,,,22.5,mA/cm2,22.5,mA/cm2,primary,,4,,Table 1,,after NH4I treatment 1.04 ± 0.1 22.5 ± 1.8 0.76 ± 0.3 18.8 ± 2.0,extracted,,
+P068,T0008,D0002,M0002,,FF,76.00,%,mean,30.0,30,,,0.76,,76.00,%,primary,,4,,Table 1,,after NH4I treatment 1.04 ± 0.1 22.5 ± 1.8 0.76 ± 0.3 18.8 ± 2.0,extracted,,Безразмерный FF переведён в проценты вместе с разбросом.
+P068,T0009,D0002,M0002,,PCE,18.8,%,mean,2.0,30,,,18.8,%,18.8,%,primary,,4,,Table 1,,after NH4I treatment 1.04 ± 0.1 22.5 ± 1.8 0.76 ± 0.3 18.8 ± 2.0,extracted,,
+P017,T0001,D0001,M0001,,Voc,0.341,V,mean,,9,,,341,mV,0.341,V,primary,,2,,Table 1,,H: CZTSSe−CdS 341 (355) 31.8 (34.1) 54.5 (60.7) 5.90 (7.03),extracted,,
+P017,T0002,D0001,M0001,,Jsc,31.8,mA/cm2,mean,,9,,,31.8,mA/cm2,31.8,mA/cm2,primary,,2,,Table 1,,H: CZTSSe−CdS 341 (355) 31.8 (34.1) 54.5 (60.7) 5.90 (7.03),extracted,,
+P017,T0003,D0001,M0001,,FF,54.5,%,mean,,9,,,54.5,%,54.5,%,primary,,2,,Table 1,,H: CZTSSe−CdS 341 (355) 31.8 (34.1) 54.5 (60.7) 5.90 (7.03),extracted,,
+P017,T0004,D0001,M0001,,PCE,5.90,%,mean,,9,,,5.90,%,5.90,%,primary,,2,,Table 1,,H: CZTSSe−CdS 341 (355) 31.8 (34.1) 54.5 (60.7) 5.90 (7.03),extracted,,
+P017,T0005,D0001,M0002,,Voc,0.355,V,champion,,,,,355,mV,0.355,V,primary,,2,,Table 1,,H: CZTSSe−CdS 341 (355) 31.8 (34.1) 54.5 (60.7) 5.90 (7.03),extracted,,
+P017,T0006,D0001,M0002,,Jsc,34.1,mA/cm2,champion,,,,,34.1,mA/cm2,34.1,mA/cm2,primary,,2,,Table 1,,H: CZTSSe−CdS 341 (355) 31.8 (34.1) 54.5 (60.7) 5.90 (7.03),extracted,,
+P017,T0007,D0001,M0002,,FF,60.7,%,champion,,,,,60.7,%,60.7,%,primary,,2,,Table 1,,H: CZTSSe−CdS 341 (355) 31.8 (34.1) 54.5 (60.7) 5.90 (7.03),extracted,,
+P017,T0008,D0001,M0002,,PCE,7.03,%,champion,,,,,7.03,%,7.03,%,primary,,2,,Table 1,,H: CZTSSe−CdS 341 (355) 31.8 (34.1) 54.5 (60.7) 5.90 (7.03),extracted,,
+P017,T0009,D0002,M0003,,Voc,0.31,V,mean,,9,,,310,mV,0.31,V,primary,,2,,Table 1,,D: CZTSSe−In2S3− CdS 310 (335) 32.0 (35.4) 49.6 (52.9) 4.87 (6.00),extracted,,
+P017,T0010,D0002,M0003,,Jsc,32.0,mA/cm2,mean,,9,,,32.0,mA/cm2,32.0,mA/cm2,primary,,2,,Table 1,,D: CZTSSe−In2S3− CdS 310 (335) 32.0 (35.4) 49.6 (52.9) 4.87 (6.00),extracted,,
+P017,T0011,D0002,M0003,,FF,49.6,%,mean,,9,,,49.6,%,49.6,%,primary,,2,,Table 1,,D: CZTSSe−In2S3− CdS 310 (335) 32.0 (35.4) 49.6 (52.9) 4.87 (6.00),extracted,,
+P017,T0012,D0002,M0003,,PCE,4.87,%,mean,,9,,,4.87,%,4.87,%,primary,,2,,Table 1,,D: CZTSSe−In2S3− CdS 310 (335) 32.0 (35.4) 49.6 (52.9) 4.87 (6.00),extracted,,
+P017,T0013,D0002,M0004,,Voc,0.335,V,champion,,,,,335,mV,0.335,V,primary,,2,,Table 1,,D: CZTSSe−In2S3− CdS 310 (335) 32.0 (35.4) 49.6 (52.9) 4.87 (6.00),extracted,,
+P017,T0014,D0002,M0004,,Jsc,35.4,mA/cm2,champion,,,,,35.4,mA/cm2,35.4,mA/cm2,primary,,2,,Table 1,,D: CZTSSe−In2S3− CdS 310 (335) 32.0 (35.4) 49.6 (52.9) 4.87 (6.00),extracted,,
+P017,T0015,D0002,M0004,,FF,52.9,%,champion,,,,,52.9,%,52.9,%,primary,,2,,Table 1,,D: CZTSSe−In2S3− CdS 310 (335) 32.0 (35.4) 49.6 (52.9) 4.87 (6.00),extracted,,
+P017,T0016,D0002,M0004,,PCE,6.00,%,champion,,,,,6.00,%,6.00,%,primary,,2,,Table 1,,D: CZTSSe−In2S3− CdS 310 (335) 32.0 (35.4) 49.6 (52.9) 4.87 (6.00),extracted,,
+P017,T0017,D0003,M0005,,Voc,0.353,V,mean,,9,,,353,mV,0.353,V,primary,,2,,Table 1,,E: CZTSSe−CdS− In2S3 353 (372) 34.7 (36.7) 53.7 (57.5) 6.58 (7.75),extracted,,
+P017,T0018,D0003,M0005,,Jsc,34.7,mA/cm2,mean,,9,,,34.7,mA/cm2,34.7,mA/cm2,primary,,2,,Table 1,,E: CZTSSe−CdS− In2S3 353 (372) 34.7 (36.7) 53.7 (57.5) 6.58 (7.75),extracted,,
+P017,T0019,D0003,M0005,,FF,53.7,%,mean,,9,,,53.7,%,53.7,%,primary,,2,,Table 1,,E: CZTSSe−CdS− In2S3 353 (372) 34.7 (36.7) 53.7 (57.5) 6.58 (7.75),extracted,,
+P017,T0020,D0003,M0005,,PCE,6.58,%,mean,,9,,,6.58,%,6.58,%,primary,,2,,Table 1,,E: CZTSSe−CdS− In2S3 353 (372) 34.7 (36.7) 53.7 (57.5) 6.58 (7.75),extracted,,
+P017,T0021,D0003,M0006,,Voc,0.372,V,champion,,,,,372,mV,0.372,V,primary,,2,,Table 1,,E: CZTSSe−CdS− In2S3 353 (372) 34.7 (36.7) 53.7 (57.5) 6.58 (7.75),extracted,,
+P017,T0022,D0003,M0006,,Jsc,36.7,mA/cm2,champion,,,,,36.7,mA/cm2,36.7,mA/cm2,primary,,2,,Table 1,,E: CZTSSe−CdS− In2S3 353 (372) 34.7 (36.7) 53.7 (57.5) 6.58 (7.75),extracted,,
+P017,T0023,D0003,M0006,,FF,57.5,%,champion,,,,,57.5,%,57.5,%,primary,,2,,Table 1,,E: CZTSSe−CdS− In2S3 353 (372) 34.7 (36.7) 53.7 (57.5) 6.58 (7.75),extracted,,
+P017,T0024,D0003,M0006,,PCE,7.75,%,champion,,,,,7.75,%,7.75,%,primary,,2,,Table 1,,E: CZTSSe−CdS− In2S3 353 (372) 34.7 (36.7) 53.7 (57.5) 6.58 (7.75),extracted,,
+P028,T0001,D0001,M0001,,PCE,12.1,%,mean,,15,,,12.1,%,12.1,%,primary,,8,,Table 3,,O1 15.1 12.1 22.6 20.1 1030 1025 64.7 58.7 1.20 1.25,extracted,,
+P028,T0002,D0001,M0001,,Jsc,20.1,mA/cm2,mean,,15,,,20.1,mA/cm2,20.1,mA/cm2,primary,,8,,Table 3,,O1 15.1 12.1 22.6 20.1 1030 1025 64.7 58.7 1.20 1.25,extracted,,
+P028,T0003,D0001,M0001,,Voc,1.025,V,mean,,15,,,1025,mV,1.025,V,primary,,8,,Table 3,,O1 15.1 12.1 22.6 20.1 1030 1025 64.7 58.7 1.20 1.25,extracted,,
+P028,T0004,D0001,M0001,,FF,58.7,%,mean,,15,,,58.7,%,58.7,%,primary,,8,,Table 3,,O1 15.1 12.1 22.6 20.1 1030 1025 64.7 58.7 1.20 1.25,extracted,,
+P028,T0005,D0001,,,PCE_reverse_to_forward_ratio,1.25,ratio,mean,,15,,,1.25,,1.25,ratio,primary,,8,,Table 3,,O1 15.1 12.1 22.6 20.1 1030 1025 64.7 58.7 1.20 1.25,extracted,,Авторы определяют H-index как PCE при обратном / PCE при прямом сканировании.
+P028,T0006,D0001,M0002,,PCE,15.1,%,champion,,,,,15.1,%,15.1,%,primary,,8,,Table 3,,O1 15.1 12.1 22.6 20.1 1030 1025 64.7 58.7 1.20 1.25,extracted,,
+P028,T0007,D0001,M0002,,Jsc,22.6,mA/cm2,champion,,,,,22.6,mA/cm2,22.6,mA/cm2,primary,,8,,Table 3,,O1 15.1 12.1 22.6 20.1 1030 1025 64.7 58.7 1.20 1.25,extracted,,
+P028,T0008,D0001,M0002,,Voc,1.03,V,champion,,,,,1030,mV,1.03,V,primary,,8,,Table 3,,O1 15.1 12.1 22.6 20.1 1030 1025 64.7 58.7 1.20 1.25,extracted,,
+P028,T0009,D0001,M0002,,FF,64.7,%,champion,,,,,64.7,%,64.7,%,primary,,8,,Table 3,,O1 15.1 12.1 22.6 20.1 1030 1025 64.7 58.7 1.20 1.25,extracted,,
+P028,T0010,D0001,,,PCE_reverse_to_forward_ratio,1.20,ratio,champion,,,,,1.20,,1.20,ratio,primary,,8,,Table 3,,O1 15.1 12.1 22.6 20.1 1030 1025 64.7 58.7 1.20 1.25,extracted,,Авторы определяют H-index как PCE при обратном / PCE при прямом сканировании.
+P028,T0011,D0002,M0003,,PCE,8.7,%,mean,,15,,,8.7,%,8.7,%,primary,,8,,Table 3,,O2 11.4 8.7 21.8 17.9 970 961 53.8 51.0 1.41 1.44,extracted,,
+P028,T0012,D0002,M0003,,Jsc,17.9,mA/cm2,mean,,15,,,17.9,mA/cm2,17.9,mA/cm2,primary,,8,,Table 3,,O2 11.4 8.7 21.8 17.9 970 961 53.8 51.0 1.41 1.44,extracted,,
+P028,T0013,D0002,M0003,,Voc,0.961,V,mean,,15,,,961,mV,0.961,V,primary,,8,,Table 3,,O2 11.4 8.7 21.8 17.9 970 961 53.8 51.0 1.41 1.44,extracted,,
+P028,T0014,D0002,M0003,,FF,51.0,%,mean,,15,,,51.0,%,51.0,%,primary,,8,,Table 3,,O2 11.4 8.7 21.8 17.9 970 961 53.8 51.0 1.41 1.44,extracted,,
+P028,T0015,D0002,,,PCE_reverse_to_forward_ratio,1.44,ratio,mean,,15,,,1.44,,1.44,ratio,primary,,8,,Table 3,,O2 11.4 8.7 21.8 17.9 970 961 53.8 51.0 1.41 1.44,extracted,,Авторы определяют H-index как PCE при обратном / PCE при прямом сканировании.
+P028,T0016,D0002,M0004,,PCE,11.4,%,champion,,,,,11.4,%,11.4,%,primary,,8,,Table 3,,O2 11.4 8.7 21.8 17.9 970 961 53.8 51.0 1.41 1.44,extracted,,
+P028,T0017,D0002,M0004,,Jsc,21.8,mA/cm2,champion,,,,,21.8,mA/cm2,21.8,mA/cm2,primary,,8,,Table 3,,O2 11.4 8.7 21.8 17.9 970 961 53.8 51.0 1.41 1.44,extracted,,
+P028,T0018,D0002,M0004,,Voc,0.97,V,champion,,,,,970,mV,0.97,V,primary,,8,,Table 3,,O2 11.4 8.7 21.8 17.9 970 961 53.8 51.0 1.41 1.44,extracted,,
+P028,T0019,D0002,M0004,,FF,53.8,%,champion,,,,,53.8,%,53.8,%,primary,,8,,Table 3,,O2 11.4 8.7 21.8 17.9 970 961 53.8 51.0 1.41 1.44,extracted,,
+P028,T0020,D0002,,,PCE_reverse_to_forward_ratio,1.41,ratio,champion,,,,,1.41,,1.41,ratio,primary,,8,,Table 3,,O2 11.4 8.7 21.8 17.9 970 961 53.8 51.0 1.41 1.44,extracted,,Авторы определяют H-index как PCE при обратном / PCE при прямом сканировании.
+P082,T0001,D0001,M0001,,PCE,8.52,%,champion,,,,,8.52,%,8.52,%,primary,,3,,Table 1,,h-CdS-55-cell 8.52 (7.17) 387.36 39.39 55.86,extracted,,"На стр. 2 PDF указано, что h-CdS-x-cell — лучший по КПД прибор своей группы."
+P082,T0002,D0001,M0001,,Voc,0.38736,V,champion,,,,,387.36,mV,0.38736,V,primary,,3,,Table 1,,h-CdS-55-cell 8.52 (7.17) 387.36 39.39 55.86,extracted,,"На стр. 2 PDF указано, что h-CdS-x-cell — лучший по КПД прибор своей группы."
+P082,T0003,D0001,M0001,,Jsc,39.39,mA/cm2,champion,,,,,39.39,mA/cm2,39.39,mA/cm2,primary,,3,,Table 1,,h-CdS-55-cell 8.52 (7.17) 387.36 39.39 55.86,extracted,,"На стр. 2 PDF указано, что h-CdS-x-cell — лучший по КПД прибор своей группы."
+P082,T0004,D0001,M0001,,FF,55.86,%,champion,,,,,55.86,%,55.86,%,primary,,3,,Table 1,,h-CdS-55-cell 8.52 (7.17) 387.36 39.39 55.86,extracted,,"На стр. 2 PDF указано, что h-CdS-x-cell — лучший по КПД прибор своей группы."
+P082,T0005,D0001,M0002,,PCE,7.17,%,mean,,,,,7.17,%,7.17,%,primary,,3,,Table 1,,h-CdS-55-cell 8.52 (7.17) 387.36 39.39 55.86,extracted,,Подпись: средние значения КПД даны в скобках.
+P082,T0006,D0002,M0003,,PCE,10.36,%,champion,,,,,10.36,%,10.36,%,primary,,3,,Table 1,,h-CdS-60-cell 10.36 (9.57) 432.42 37.05 64.68,extracted,,"На стр. 2 PDF указано, что h-CdS-x-cell — лучший по КПД прибор своей группы."
+P082,T0007,D0002,M0003,,Voc,0.43242,V,champion,,,,,432.42,mV,0.43242,V,primary,,3,,Table 1,,h-CdS-60-cell 10.36 (9.57) 432.42 37.05 64.68,extracted,,"На стр. 2 PDF указано, что h-CdS-x-cell — лучший по КПД прибор своей группы."
+P082,T0008,D0002,M0003,,Jsc,37.05,mA/cm2,champion,,,,,37.05,mA/cm2,37.05,mA/cm2,primary,,3,,Table 1,,h-CdS-60-cell 10.36 (9.57) 432.42 37.05 64.68,extracted,,"На стр. 2 PDF указано, что h-CdS-x-cell — лучший по КПД прибор своей группы."
+P082,T0009,D0002,M0003,,FF,64.68,%,champion,,,,,64.68,%,64.68,%,primary,,3,,Table 1,,h-CdS-60-cell 10.36 (9.57) 432.42 37.05 64.68,extracted,,"На стр. 2 PDF указано, что h-CdS-x-cell — лучший по КПД прибор своей группы."
+P082,T0010,D0002,M0004,,PCE,9.57,%,mean,,,,,9.57,%,9.57,%,primary,,3,,Table 1,,h-CdS-60-cell 10.36 (9.57) 432.42 37.05 64.68,extracted,,Подпись: средние значения КПД даны в скобках.
+P082,T0011,D0003,M0005,,PCE,9.75,%,champion,,,,,9.75,%,9.75,%,primary,,3,,Table 1,,h-CdS-65-cell 9.75 (8.40) 429.97 38.13 59.47,extracted,,"На стр. 2 PDF указано, что h-CdS-x-cell — лучший по КПД прибор своей группы."
+P082,T0012,D0003,M0005,,Voc,0.42997,V,champion,,,,,429.97,mV,0.42997,V,primary,,3,,Table 1,,h-CdS-65-cell 9.75 (8.40) 429.97 38.13 59.47,extracted,,"На стр. 2 PDF указано, что h-CdS-x-cell — лучший по КПД прибор своей группы."
+P082,T0013,D0003,M0005,,Jsc,38.13,mA/cm2,champion,,,,,38.13,mA/cm2,38.13,mA/cm2,primary,,3,,Table 1,,h-CdS-65-cell 9.75 (8.40) 429.97 38.13 59.47,extracted,,"На стр. 2 PDF указано, что h-CdS-x-cell — лучший по КПД прибор своей группы."
+P082,T0014,D0003,M0005,,FF,59.47,%,champion,,,,,59.47,%,59.47,%,primary,,3,,Table 1,,h-CdS-65-cell 9.75 (8.40) 429.97 38.13 59.47,extracted,,"На стр. 2 PDF указано, что h-CdS-x-cell — лучший по КПД прибор своей группы."
+P082,T0015,D0003,M0006,,PCE,8.40,%,mean,,,,,8.40,%,8.40,%,primary,,3,,Table 1,,h-CdS-65-cell 9.75 (8.40) 429.97 38.13 59.47,extracted,,Подпись: средние значения КПД даны в скобках.
+P082,T0016,D0004,M0007,,PCE,7.98,%,champion,,,,,7.98,%,7.98,%,primary,,3,,Table 1,,h-CdS-70-cell 7.98 (7.31) 391.49 38.71 52.64,extracted,,"На стр. 2 PDF указано, что h-CdS-x-cell — лучший по КПД прибор своей группы."
+P082,T0017,D0004,M0007,,Voc,0.39149,V,champion,,,,,391.49,mV,0.39149,V,primary,,3,,Table 1,,h-CdS-70-cell 7.98 (7.31) 391.49 38.71 52.64,extracted,,"На стр. 2 PDF указано, что h-CdS-x-cell — лучший по КПД прибор своей группы."
+P082,T0018,D0004,M0007,,Jsc,38.71,mA/cm2,champion,,,,,38.71,mA/cm2,38.71,mA/cm2,primary,,3,,Table 1,,h-CdS-70-cell 7.98 (7.31) 391.49 38.71 52.64,extracted,,"На стр. 2 PDF указано, что h-CdS-x-cell — лучший по КПД прибор своей группы."
+P082,T0019,D0004,M0007,,FF,52.64,%,champion,,,,,52.64,%,52.64,%,primary,,3,,Table 1,,h-CdS-70-cell 7.98 (7.31) 391.49 38.71 52.64,extracted,,"На стр. 2 PDF указано, что h-CdS-x-cell — лучший по КПД прибор своей группы."
+P082,T0020,D0004,M0008,,PCE,7.31,%,mean,,,,,7.31,%,7.31,%,primary,,3,,Table 1,,h-CdS-70-cell 7.98 (7.31) 391.49 38.71 52.64,extracted,,Подпись: средние значения КПД даны в скобках.
+P082,T0021,D0005,M0009,,PCE,7.14,%,champion,,,,,7.14,%,7.14,%,primary,,3,,Table 1,,h-CdS-75-cell 7.14 (5.87) 384.24 36.53 50.85,extracted,,"На стр. 2 PDF указано, что h-CdS-x-cell — лучший по КПД прибор своей группы."
+P082,T0022,D0005,M0009,,Voc,0.38424,V,champion,,,,,384.24,mV,0.38424,V,primary,,3,,Table 1,,h-CdS-75-cell 7.14 (5.87) 384.24 36.53 50.85,extracted,,"На стр. 2 PDF указано, что h-CdS-x-cell — лучший по КПД прибор своей группы."
+P082,T0023,D0005,M0009,,Jsc,36.53,mA/cm2,champion,,,,,36.53,mA/cm2,36.53,mA/cm2,primary,,3,,Table 1,,h-CdS-75-cell 7.14 (5.87) 384.24 36.53 50.85,extracted,,"На стр. 2 PDF указано, что h-CdS-x-cell — лучший по КПД прибор своей группы."
+P082,T0024,D0005,M0009,,FF,50.85,%,champion,,,,,50.85,%,50.85,%,primary,,3,,Table 1,,h-CdS-75-cell 7.14 (5.87) 384.24 36.53 50.85,extracted,,"На стр. 2 PDF указано, что h-CdS-x-cell — лучший по КПД прибор своей группы."
+P082,T0025,D0005,M0010,,PCE,5.87,%,mean,,,,,5.87,%,5.87,%,primary,,3,,Table 1,,h-CdS-75-cell 7.14 (5.87) 384.24 36.53 50.85,extracted,,Подпись: средние значения КПД даны в скобках.
+P031,T0001,D0001,M0001,,Voc,0.806,V,,,,,,806,mV,0.806,V,primary,,2,,Table 1,,120 806 28.1 70.7 16.0,extracted,,
+P031,T0002,D0001,M0001,,Jsc,28.1,mA/cm2,,,,,,28.1,mA/cm2,28.1,mA/cm2,primary,,2,,Table 1,,120 806 28.1 70.7 16.0,extracted,,
+P031,T0003,D0001,M0001,,FF,70.7,%,,,,,,70.7,%,70.7,%,primary,,2,,Table 1,,120 806 28.1 70.7 16.0,extracted,,
+P031,T0004,D0001,M0001,,PCE,16.0,%,,,,,,16.0,%,16.0,%,primary,,2,,Table 1,,120 806 28.1 70.7 16.0,extracted,,
+P031,T0005,D0002,M0002,,Voc,0.748,V,,,,,,748,mV,0.748,V,primary,,2,,Table 1,,400 748 9.8 69.8 5.1,extracted,,
+P031,T0006,D0002,M0002,,Jsc,9.8,mA/cm2,,,,,,9.8,mA/cm2,9.8,mA/cm2,primary,,2,,Table 1,,400 748 9.8 69.8 5.1,extracted,,
+P031,T0007,D0002,M0002,,FF,69.8,%,,,,,,69.8,%,69.8,%,primary,,2,,Table 1,,400 748 9.8 69.8 5.1,extracted,,
+P031,T0008,D0002,M0002,,PCE,5.1,%,,,,,,5.1,%,5.1,%,primary,,2,,Table 1,,400 748 9.8 69.8 5.1,extracted,,
+P063,T0001,D0001,M0001,,Jsc,25.9,mA/cm2,champion,,,,,25.9,mA/cm2,25.9,mA/cm2,primary,,5,,Table 3,,SB 25.9 311 44.0 3.5 42.6 180.4,extracted,,Условия указаны в подписи к таблице 3.
+P063,T0002,D0001,M0001,,Voc,0.311,V,champion,,,,,311,mV,0.311,V,primary,,5,,Table 3,,SB 25.9 311 44.0 3.5 42.6 180.4,extracted,,Условия указаны в подписи к таблице 3.
+P063,T0003,D0001,M0001,,FF,44.0,%,champion,,,,,44.0,%,44.0,%,primary,,5,,Table 3,,SB 25.9 311 44.0 3.5 42.6 180.4,extracted,,Условия указаны в подписи к таблице 3.
+P063,T0004,D0001,M0001,,PCE,3.5,%,champion,,,,,3.5,%,3.5,%,primary,,5,,Table 3,,SB 25.9 311 44.0 3.5 42.6 180.4,extracted,,Условия указаны в подписи к таблице 3.
+P063,T0005,D0001,M0001,,Rs,42.6,Ohm*cm2,champion,,,,,42.6,Ω. cm2,42.6,Ohm*cm2,primary,,5,,Table 3,,SB 25.9 311 44.0 3.5 42.6 180.4,extracted,,Условия указаны в подписи к таблице 3.
+P063,T0006,D0001,M0001,,Rsh,180.4,Ohm*cm2,champion,,,,,180.4,Ω. cm2,180.4,Ohm*cm2,primary,,5,,Table 3,,SB 25.9 311 44.0 3.5 42.6 180.4,extracted,,Условия указаны в подписи к таблице 3.
+P063,T0007,D0002,M0002,,Jsc,32.0,mA/cm2,champion,,,,,32.0,mA/cm2,32.0,mA/cm2,primary,,5,,Table 3,,CB 32.0 320 49.0 5.2 28.1 478,extracted,,Условия указаны в подписи к таблице 3.
+P063,T0008,D0002,M0002,,Voc,0.32,V,champion,,,,,320,mV,0.32,V,primary,,5,,Table 3,,CB 32.0 320 49.0 5.2 28.1 478,extracted,,Условия указаны в подписи к таблице 3.
+P063,T0009,D0002,M0002,,FF,49.0,%,champion,,,,,49.0,%,49.0,%,primary,,5,,Table 3,,CB 32.0 320 49.0 5.2 28.1 478,extracted,,Условия указаны в подписи к таблице 3.
+P063,T0010,D0002,M0002,,PCE,5.2,%,champion,,,,,5.2,%,5.2,%,primary,,5,,Table 3,,CB 32.0 320 49.0 5.2 28.1 478,extracted,,Условия указаны в подписи к таблице 3.
+P063,T0011,D0002,M0002,,Rs,28.1,Ohm*cm2,champion,,,,,28.1,Ω. cm2,28.1,Ohm*cm2,primary,,5,,Table 3,,CB 32.0 320 49.0 5.2 28.1 478,extracted,,Условия указаны в подписи к таблице 3.
+P063,T0012,D0002,M0002,,Rsh,478,Ohm*cm2,champion,,,,,478,Ω. cm2,478,Ohm*cm2,primary,,5,,Table 3,,CB 32.0 320 49.0 5.2 28.1 478,extracted,,Условия указаны в подписи к таблице 3.
+P075,T0001,D0001,M0001,,Jsc,3.1,mA/cm2,,,,,,3.1,mA/cm2,3.1,mA/cm2,primary,,6,,Table 1,,1.20 3.1 0.19 0.37 0.22,extracted,,
+P075,T0002,D0001,M0001,,Voc,0.19,V,,,,,,0.19,V,0.19,V,primary,,6,,Table 1,,1.20 3.1 0.19 0.37 0.22,extracted,,
+P075,T0003,D0001,M0001,,FF,37.00,%,,,,,,0.37,,37.00,%,primary,,6,,Table 1,,1.20 3.1 0.19 0.37 0.22,extracted,,Безразмерный FF переведён в проценты.
+P075,T0004,D0001,M0001,,PCE,0.22,%,,,,,,0.22,%,0.22,%,primary,,6,,Table 1,,1.20 3.1 0.19 0.37 0.22,extracted,,
+P075,T0005,D0002,M0002,,Jsc,6.9,mA/cm2,,,,,,6.9,mA/cm2,6.9,mA/cm2,primary,,6,,Table 1,,1.10 6.9 0.24 0.55 0.53,extracted,,
+P075,T0006,D0002,M0002,,Voc,0.24,V,,,,,,0.24,V,0.24,V,primary,,6,,Table 1,,1.10 6.9 0.24 0.55 0.53,extracted,,
+P075,T0007,D0002,M0002,,FF,55.00,%,,,,,,0.55,,55.00,%,primary,,6,,Table 1,,1.10 6.9 0.24 0.55 0.53,extracted,,Безразмерный FF переведён в проценты.
+P075,T0008,D0002,M0002,,PCE,0.53,%,,,,,,0.53,%,0.53,%,primary,,6,,Table 1,,1.10 6.9 0.24 0.55 0.53,extracted,,
+P075,T0009,D0003,M0003,,Jsc,23.9,mA/cm2,,,,,,23.9,mA/cm2,23.9,mA/cm2,primary,,6,,Table 1,,1.00 23.9 0.50 0.66 7.82,extracted,,
+P075,T0010,D0003,M0003,,Voc,0.50,V,,,,,,0.50,V,0.50,V,primary,,6,,Table 1,,1.00 23.9 0.50 0.66 7.82,extracted,,
+P075,T0011,D0003,M0003,,FF,66.00,%,,,,,,0.66,,66.00,%,primary,,6,,Table 1,,1.00 23.9 0.50 0.66 7.82,extracted,,Безразмерный FF переведён в проценты.
+P075,T0012,D0003,M0003,,PCE,7.82,%,,,,,,7.82,%,7.82,%,primary,,6,,Table 1,,1.00 23.9 0.50 0.66 7.82,extracted,,
+P075,T0013,D0004,M0004,,Jsc,23.1,mA/cm2,,,,,,23.1,mA/cm2,23.1,mA/cm2,primary,,6,,Table 1,,0.95 23.1 0.50 0.69 7.99,extracted,,
+P075,T0014,D0004,M0004,,Voc,0.50,V,,,,,,0.50,V,0.50,V,primary,,6,,Table 1,,0.95 23.1 0.50 0.69 7.99,extracted,,
+P075,T0015,D0004,M0004,,FF,69.00,%,,,,,,0.69,,69.00,%,primary,,6,,Table 1,,0.95 23.1 0.50 0.69 7.99,extracted,,Безразмерный FF переведён в проценты.
+P075,T0016,D0004,M0004,,PCE,7.99,%,,,,,,7.99,%,7.99,%,primary,,6,,Table 1,,0.95 23.1 0.50 0.69 7.99,extracted,,
+P075,T0017,D0005,M0005,,Jsc,22.8,mA/cm2,,,,,,22.8,mA/cm2,22.8,mA/cm2,primary,,6,,Table 1,,0.92 22.8 0.50 0.69 7.98,extracted,,
+P075,T0018,D0005,M0005,,Voc,0.50,V,,,,,,0.50,V,0.50,V,primary,,6,,Table 1,,0.92 22.8 0.50 0.69 7.98,extracted,,
+P075,T0019,D0005,M0005,,FF,69.00,%,,,,,,0.69,,69.00,%,primary,,6,,Table 1,,0.92 22.8 0.50 0.69 7.98,extracted,,Безразмерный FF переведён в проценты.
+P075,T0020,D0005,M0005,,PCE,7.98,%,,,,,,7.98,%,7.98,%,primary,,6,,Table 1,,0.92 22.8 0.50 0.69 7.98,extracted,,
+P075,T0021,D0006,M0006,,Jsc,20.5,mA/cm2,,,,,,20.5,mA/cm2,20.5,mA/cm2,primary,,6,,Table 1,,0.85 20.5 0.52 0.52 5.57,extracted,,
+P075,T0022,D0006,M0006,,Voc,0.52,V,,,,,,0.52,V,0.52,V,primary,,6,,Table 1,,0.85 20.5 0.52 0.52 5.57,extracted,,
+P075,T0023,D0006,M0006,,FF,52.00,%,,,,,,0.52,,52.00,%,primary,,6,,Table 1,,0.85 20.5 0.52 0.52 5.57,extracted,,Безразмерный FF переведён в проценты.
+P075,T0024,D0006,M0006,,PCE,5.57,%,,,,,,5.57,%,5.57,%,primary,,6,,Table 1,,0.85 20.5 0.52 0.52 5.57,extracted,,
+P075,T0025,D0007,M0007,,Jsc,16.3,mA/cm2,,,,,,16.3,mA/cm2,16.3,mA/cm2,primary,,6,,Table 1,,0.80 16.3 0.53 0.40 3.34,extracted,,
+P075,T0026,D0007,M0007,,Voc,0.53,V,,,,,,0.53,V,0.53,V,primary,,6,,Table 1,,0.80 16.3 0.53 0.40 3.34,extracted,,
+P075,T0027,D0007,M0007,,FF,40.00,%,,,,,,0.40,,40.00,%,primary,,6,,Table 1,,0.80 16.3 0.53 0.40 3.34,extracted,,Безразмерный FF переведён в проценты.
+P075,T0028,D0007,M0007,,PCE,3.34,%,,,,,,3.34,%,3.34,%,primary,,6,,Table 1,,0.80 16.3 0.53 0.40 3.34,extracted,,
+P075,T0029,D0008,M0008,,Jsc,14.2,mA/cm2,,,,,,14.2,mA/cm2,14.2,mA/cm2,primary,,6,,Table 1,,0.70 14.2 0.53 0.40 3.00,extracted,,
+P075,T0030,D0008,M0008,,Voc,0.53,V,,,,,,0.53,V,0.53,V,primary,,6,,Table 1,,0.70 14.2 0.53 0.40 3.00,extracted,,
+P075,T0031,D0008,M0008,,FF,40.00,%,,,,,,0.40,,40.00,%,primary,,6,,Table 1,,0.70 14.2 0.53 0.40 3.00,extracted,,Безразмерный FF переведён в проценты.
+P075,T0032,D0008,M0008,,PCE,3.00,%,,,,,,3.00,%,3.00,%,primary,,6,,Table 1,,0.70 14.2 0.53 0.40 3.00,extracted,,

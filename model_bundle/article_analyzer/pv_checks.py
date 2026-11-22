@@ -123,11 +123,14 @@ def table_context(entry):
         elif preferred:
             resolved[key] = preferred[0]
     raw_direction = entry["condition"]
-    direction = {"forward": "forward", "reverse": "reverse"}.get(raw_direction.casefold(), "")
+    direction_key = re.sub(r"\s+", "", raw_direction.casefold()).replace("–", "-").replace("−", "-")
+    direction = {"forward": "forward", "reverse": "reverse", "fb-sc": "reverse", "sc-fb": "forward"}.get(direction_key, "")
+    observed_direction = entry["sources"].get("direction")
+    direction_source = dict(observed_direction, page=entry["page"]) if observed_direction else None
     module = next((dict(source, page=entry["page"]) for _, source in fragments if MODULE.search(source["text"])), None)
     return {"scan_direction": direction, "scan_direction_raw": raw_direction,
             "module_source": module,
-            "scan_direction_source": entry["sources"].get("direction"), "ambiguities": ambiguous, **resolved}
+            "scan_direction_source": direction_source, "ambiguities": ambiguous, **resolved}
 
 
 def input_record(record):
