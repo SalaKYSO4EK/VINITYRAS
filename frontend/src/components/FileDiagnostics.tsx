@@ -1,9 +1,10 @@
 import type { FileIssue } from "@/lib/api";
 
 export default function FileDiagnostics({ skipped = [], outcomes = [] }: { skipped?: FileIssue[]; outcomes?: FileIssue[] }) {
+  const problems = outcomes.filter(({ status }) => status === "processing_limited" || status === "unreadable");
   return <>
     <FileList title="Файлы, пропущенные при загрузке" entries={skipped} />
-    <FileList title="Результат по файлам" entries={outcomes} />
+    <FileList title="Файлы, которые требуют внимания" entries={problems} />
   </>;
 }
 

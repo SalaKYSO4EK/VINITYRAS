@@ -240,12 +240,16 @@ export default function HomePage() {
         <section className="view max-w-3xl mx-auto">
           <div className="text-center mt-8 sm:mt-10">
             <div className="icon-circle mx-auto done-badge" style={{ width: 68, height: 68 }}><CheckIcon size={30} /></div>
-            <h1 className="title mt-5">{tables.length ? "Ваши таблицы готовы" : "Заполненных таблиц нет"}</h1>
-            <p className="subtitle mt-3">{names.join(", ")}</p>
+            <h1 className="title mt-5">Анализ завершён</h1>
+            <p className="subtitle mt-3">
+              {tables.length ? "Таблицы готовы к просмотру и скачиванию" : `Обработано статей: ${names.length}`}
+            </p>
             {reuse && <p className="subtitle mt-3">{reuse}</p>}
           </div>
           <div className="card p-6 sm:p-8 mt-8 text-center">
-            <h2 className="text-xl sm:text-2xl font-semibold">Таблицы и источники</h2>
+            <h2 className="text-xl sm:text-2xl font-semibold">
+              {tables.length ? "Таблицы и источники" : "Обработка выполнена успешно"}
+            </h2>
             <div className="flex flex-wrap justify-center gap-3 mt-5">
               {result.download_url && <a className="btn" href={result.download_url}><DownloadIcon /> Скачать ZIP</a>}
               <a className="btn btn-ghost" href={`/dashboard/${jobId}`}><ChartIcon /> Открыть дашборд</a>
@@ -259,6 +263,11 @@ export default function HomePage() {
                 </li>
               ))}
             </ul>}
+            {tables.length === 0 && (
+              <p className="text-sm text-[var(--navy-600)] mt-4">
+                Подробности анализа и источники доступны в дашборде.
+              </p>
+            )}
             {result.reference_comparison && (
               <p className="text-sm text-[var(--navy-600)] mt-4">
                 Сверка CSV завершена. <a className="text-btn" href={`/dashboard/${jobId}#referenceHeading`}>Посмотреть итог сверки</a>

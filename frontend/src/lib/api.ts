@@ -4,6 +4,7 @@ export interface FileIssue {
   file: string;
   reason: string;
   archive?: string;
+  status?: "found" | "no_findings" | "processing_limited" | "unreadable";
 }
 
 export interface JobProgress {
